@@ -58,8 +58,79 @@
                   <input type="Reset" value="Reset">
 <br>
 <br>
-            <h3> Order Information</h3>   
-               
+               <h3>Order Information</h3>
+       <label for="quantity">Quantity</label>
+
+<br>
+<input type="number" id="quantity" name="quantity">
+
+<br><br>
+<label for="deliveryDate">Preferred Delivery <b>Date</b></label>
+<br>
+
+<input type="date" id="deliveryDate" name="deliveryDate">
+
+<br><br>
+<label for="food"> Select Food Item </label>
+<br>
+<select id="food" name="food">
+<option>Veg Pizza</option>
+<option>Cheese Burger</option>
+<option>White Sauce Pasta</option>
+<option>Veg Grilled Sandwich</option>
+<option>Chocolate Brownie</option>
+</select>
+<br><br>
+<h3> Payment Method </h3>
+ 
+<input type="radio" id="cash" name="payment">
+<label for="cash"> Cash </label>
+<br>
+ 
+<input type="radio" id="card" name="payment">
+<label for="card"> Card </label>
+<br>
+ 
+<input type="radio" id="upi" name="payment">
+<label for="upi">UPI </label>
+<br><br>
+<h3><b> Extras</b> </h3>
+<input type="checkbox" id="cheese" name="extras">
+<label for="cheese"> Extra Cheese </label>
+<br>
+
+<input type="checkbox" id="drink" name="extras">
+<label for="drink"> Cold Drink </label>
+<br>
+
+<input type="checkbox" id="dessert" name="extras">
+<label for="dessert"> Dessert </label>
+<br><br>
+<h3>Delivery Instructions </h3>
+
+<label for="address">Delivery Address</label>
+
+<br>
+
+<textarea id="address" name="address" rows="5" cols="40">
+</textarea>
+
+<br><br>
+        <button onclick="placeOrder()">Order Now</button>
+        <br>
+<div id="notification" class="notification">
+    ✅ Order placed successfully!
+</div>
+
+<script>
+function placeOrder() {
+    document.getElementById("notification").style.display = "block";
+
+    setTimeout(function() {
+        document.getElementById("notification").style.display = "none";
+    }, 3000);
+}
+</script>
       </form>
 </fieldset>
 <h2> <em><u>Contact Information</u></em></h2>
