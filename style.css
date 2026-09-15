@@ -1,30 +1,238 @@
-*{
-    margin :0;
-    padding:0;
+* {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Website Header */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(228, 237, 121, 0.711);
+    font-family: 'Poppins', sans-serif;
+}
 
 header {
-    background-color:white;
-    padding: 1px;
-    border-bottom: 2px solid #cee7f6;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
 }
-/* Website Logo */
-.logo{
 
-    width: 170px;
+nav {
+    margin-top: 15px;
+    padding: auto;
+        color: #faf4f4;
 
+}
+
+nav a {
+    position: relative;
+
+    padding: 10px 16px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+
+main {
+    width: 100%;
+}
+
+section,
+aside {
+    width: 100%;
+    padding: 50px 20px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
     height: auto;
-
 }
-nav a{
-text-decoration: wavy;
-color:palevioletred;
-font-size: large;
-font-weight: 500;
-margin:10px;
 
+article {
+    margin: 20px auto;
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+.hero {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.hero {
+    min-height: 600px;
+
+    background-image: url("./assets/images/heropage.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    padding: 30px;
+}
+
+.features {
+    text-align: center;
+}
+
+.feature-card {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+}
+
+.feature-card ul {
+    display: inline-block;
+    text-align: left;
+}
+
+.about-section {
+    text-align: center;
+    max-width: 1000px;
+}
+
+.featured-video {
+    text-align: center;
+}
+
+.featured-video video {
+    max-width: 90%;
+    height: auto;
+}
+
+.popular-dishes {
+    text-align: center;
+}
+
+.food-card {
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+    min-height: 420px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.customer-notice {
+    text-align: center;
+}
+
+.offer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.offer-content {
+    max-width: 500px;
+}
+
+.offer-image {
+    position: relative;
+}
+
+.offer-image img {
+    display: block;
+    margin: 10px auto;
+}
+
+.reviews {
+    text-align: center;
+}
+
+.review-card {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    margin: 20px;
+    padding: 25px;
+}
+
+.newsletter {
+    text-align: center;
+}
+
+.newsletter-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form {
+    margin: 25px;
+}
+
+.newsletter-form input {
+    padding: 12px;
+}
+
+.newsletter-form button {
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+.story,
+.chef-message {
+    max-width: 900px;
+    margin: auto;
+}
+
+footer {
+    padding: 50px 20px 20px;
+    text-align: center;
+}
+
+.footer-brand,
+.footer-section {
+    display: inline-block;
+    vertical-align: top;
+    width: 18%;
+    min-width: 180px;
+    margin: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section a {
+    text-decoration: none;
+}
+
+.copyright {
+    margin-top: 30px;
+    padding-top: 20px;
 }
