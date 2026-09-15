@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Bite Box</title>
+        <link rel="stylesheet" href="./style.css">
+
 </head>
 <body style =  " background-color : rgba(228, 237, 121, 0.711);">
   <header>
     <nav>
-          <img src="./assets/images/logo.png" alt="BiteBox Logo" width="150">
-      <h1> Contact Us </h1>
-
+         <img src="./assets/images/logo.png" alt="BiteBox Logo" width="150">
       
+         <h1> Contact Us </h1>
 <p>
 <a href="index.html">Home</a>
 |
@@ -20,10 +21,16 @@
 <a href="about.html">About</a>
 |
 <a href="contact.html">Contact</a>
+|
+<a href="cart.html">My Cart</a>
+
 </p>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBWoCuWFp_c4Kpj9l4Tw6y2nY3TOrQwkFj_P34gZ24Rg&s=10">
 </nav>
 </header>
+
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBWoCuWFp_c4Kpj9l4Tw6y2nY3TOrQwkFj_P34gZ24Rg&s=10">
+
+
 <hr>
 <h2 align="center"> <u>Customer Registration Form</u></h2>
 <fieldset>
@@ -124,6 +131,44 @@
 </script>
       </form>
 </fieldset>
+<!-- Contact Form Section -->
+
+<section id="contact-form">
+
+    <div class="section-title">
+      
+        <h4>Send Us a Message</h4>
+      
+        <h2>We'd Love to Hear From You</h2>
+      
+        <p>
+            Fill out the form below, and our team will get back to you as 
+            soon as possible.
+        </p>
+      
+    </div>
+     <form action="#">
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name">
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email address">
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number">
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Enter the subject">
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" placeholder="Write your message here">
+        </textarea>
+
+        <input type="submit" value="Send Message">
+
+    </form>
+</section>
 <h2> <em><u>Contact Us Information</u></em></h2>
 <p>Phone: +1 (123) 456-7890</p>
 <p>Email: info@bitebox.com</p>

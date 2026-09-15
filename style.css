@@ -1,0 +1,30 @@
+*{
+    margin :0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Website Header */
+
+header {
+    background-color:white;
+    padding: 1px;
+    border-bottom: 2px solid #cee7f6;
+}
+/* Website Logo */
+.logo{
+
+    width: 170px;
+
+    height: auto;
+
+}
+nav a{
+text-decoration: wavy;
+color:palevioletred;
+font-size: large;
+font-weight: 500;
+margin:10px;
+
+}

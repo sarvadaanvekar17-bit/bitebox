@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Bite Box</title>
+        <link rel="stylesheet" href="./style.css">
+
 </head>
 <body style =  " background-color : rgba(228, 237, 121, 0.711);">
   
   <header>
         <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
-
+<nav>
                 <p>
 <a href="index.html">Home</a>
 |
@@ -18,8 +20,11 @@
 <a href="about.html">About</a>
 |
 <a href="contact.html">Contact</a>
+|
+<a href="cart.html">My Cart</a>
 </p>
 </nav>
+</header>
    <!--Menu hero section-->
   <section id="menu-hero">
     <h1>Explore Our Delicious Menu</h1>
@@ -69,6 +74,12 @@
 </header>
   <hr>
 <H1> <b><em>Our Mouth-watering Menu~</em></b></H1>
+<select name="variety" id="variety">
+                    <option value="Snacks">Starter Snacks</option>
+                    <option value="Drinks">Beverages</option>
+                    <option value="Main Courses">Main course</option>
+                </select><br>
+<hr>
 <ul>
     <li>Pizza</li>
     <description>Our pizzas are made with fresh ingredients and baked to perfection.</description>
@@ -122,121 +133,6 @@
     <img src="./assets/images/cola.png" width="300" height="200" alt="Beverage Image"><br>
 <br>
 <br>
-<hr>
-<select name="variety" id="variety">
-                    <option value="Snacks">Starter Snacks</option>
-                    <option value="Drinks">Beverages</option>
-                    <option value="Main Courses">Main course</option>
-                </select><br>
-<table border="5" 
-cellpadding ="15px"
-cellspacing="3">
-  <thead>
-    <tr colspan="4">
-     <caption>BiteBox Menu </caption> <tr>
-       
-<th>Category</th>
-<th>Food Item</th>
-<th>Price</th>
-<th>Availability</th>
- 
-</tr>
-  <tr>
- 
-    <td rowspan="3">Pizza</td>
- 
-    <td >Veg Pizza</td>
- 
-    <td>₹359</td>
- 
-    <td>Available</td>
- 
-</tr>
-<td >Margherita Pizza</td>
- 
-    <td>₹299</td>
- 
-    <td>Available</td>
-    </tr>
-    <tr>
- <td >Pepperoni pizza</td>
- 
-    <td>₹399</td>
- 
-    <td>Available</td>
- <tr>
-<tr>
-
-
-    <td rowspan="3">Burger</td>
-    <td>Cheese Burger</td>
-    <td>₹199</td>
-    <td>Available</td>
-</tr>
-<tr><td >Veggie Burger</td>
- 
-    <td>₹250</td>
- 
-    <td>Available</td></tr>
-
-    <tr>
-      <td >Classic Cheeseburger
-</td>
- 
-    <td>₹290</td>
- 
-    <td>Currently unavailable</td></tr>
-    
-    <td rowspan="3">Pasta</td>
-    <td>White Sauce Pasta</td>
-    <td>₹249</td>
-    <td>Available</td>
-<tr>
-  <tr>   <td>Spaghetti Bolognese
-</td>
-    <td>₹249</td>
-    <td>Available</td>
-    
-</tr>
-
-    <td rowspan="1">Bread</td>
-
-    <td>Garlic bread</td>
-    <td>₹179</td>
-    <td>Slightly delay in order</td>
-  </tr>
-
-    <td rowspan="1">Beverages</td>
-
-    <td>cola</td>
-    <td>₹89</td>
-    <td>chilled</td>
-  </tr>
-<tr align="center">
- 
-    <td colspan="4">
-        <b> Weekend Offer:
-        Flat 20% OFF on Combo Meals</b>
- 
-    </td>
- 
-</tr>
-    </thead>
-      </table>
-<h2>How to Place an Order</h2>
- 
-<ol>
- 
-<li>Select your favourite food.</li>
- 
-<li>Add the item to your cart.</li>
- 
-<li>Confirm your order.</li>
- 
-<li>Enjoy your meal.</li>
- 
-</ol>
-<br><br>
 <hr>
   <!--Restaurant Information-->
 <!--Using Block elements-->
