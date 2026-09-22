@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Order</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body style =  " background-color : rgba(244, 247, 102, 0.938);">
+    <aside id="order-summary">
+    <h2>Order Summary</h2>
+  
+    <p> <span>Subtotal (3 Items)</span> <span>₹826.00</span> </p>
+  
+    <p> <span>Delivery Charges</span> <span>₹40.00</span> </p>
+  
+    <p> <span>Packaging Charges</span> <span>₹20.00</span> </p>
+  
+    <hr>
+    <h3> <span>Total Amount</span> <span>₹886.00</span> </h3>
+  
+    <button type="button"> Proceed to Checkout </button>
+    <p> <img src="./assets/images/shield.png" width="18" height="18">
+    Secure Checkout </p>
+</aside>
+  <img src="./assets/images/cart.png" alt="Cart Icon" width="22" 
+                height="22">
+            </a>
+            <button type="button">
+      
+        <img src="./assets/images/delete.png" width="18" height="18">  Clear Cart
+      
+    </button>
+     <form  align="center" action="./ordered.html" >
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email address" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+        <label for="address">Current location</label>
+        <textarea id="message" rows="6" placeholder="Write your full address here" required>
+        </textarea>
+
+        <input type="submit" value="Order now">
+    <section id="cart-actions">
+
+    <a href="menu.html">
+        <img src="./assets/images/arrow.png" width="18" height="18">
+        Continue Shopping
+    </a>
+</body>
+</html>
