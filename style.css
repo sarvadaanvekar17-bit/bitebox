@@ -261,3 +261,59 @@ footer {
     height: auto;
     border-radius: 20px;
 }
+	
+#features{
+    background-color:#ffffff;
+    padding:45px 25px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+#features h2{
+    width:100%;
+    text-align:center;
+    font-size:42px;
+    font-weight:700;
+    color:#222222;
+    margin-bottom:40px;
+    position:relative;
+}
+
+#features h2::after{
+    content:"";
+    display:block;
+    width:70px;
+    height:3px;
+    background-color:#ff6b00;
+    margin:10px auto 0;
+}
+/* Feature Icon */
+
+#features article img{
+    width:150px;
+    height:150px;
+    margin-right:20px;
+    flex-shrink:0;
+}
+
+/* Feature Content */
+
+#features article div{
+    flex:1;
+}
+
+/* Feature Title */
+#features article h3{
+    font-size:18px;
+    font-weight:700;
+   color:#000000;
+    margin-bottom:6px;
+}
+
+/* Feature Description */
+#features article p{
+    font-size:16px;
+    color:#3a3939;
+    line-height:21px;
+    margin:0;
+}
