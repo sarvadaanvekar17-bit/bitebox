@@ -4,11 +4,11 @@
    DESIGN TOKENS  (change colours/radius here, once)
    ========================================================= */
 :root{
-    --brand:#0b0a52;
-    --brand-dark:#1b196a;
+    --brand:#7b79e9;
+    --brand-dark:#f0dfc6;
     --red:#ff3b30;
     --gold:#e0bc61;
-    --ink:#010d0e;
+    --ink:#0d0721;
     --muted:#666666;
     --line:#ececec;
     --page:#f6f3ef;
@@ -590,7 +590,7 @@ table {
   width: 85%;
   margin: 30px auto;
   border-collapse: collapse;
-  background-color: #1c0f71;
+  background-color: #f1e1c8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -602,7 +602,7 @@ th, td {
 
 th {
   background-color: #221469;
-  color: #060606;
+  color: #f8f6f6;
   font-weight: 600;
 }
 
@@ -616,7 +616,7 @@ tr:hover {
 }
 
 caption h3 {
-  color: #090909;
+  color: #0a0a0a;
   font-family: 'Poppins', sans-serif;
   margin-bottom: 10px;
 }
@@ -1756,10 +1756,55 @@ footer > p{
     padding:18px 0;
     font-size:15px;
 }
+#cart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin: 50px auto;
+  max-width: 1100px;
+}
+#shopping-cart, #order-summary {
+  box-shadow: var(--shadow);
+  border-radius: var(--r-card);
+  background: var(--card);
+  padding: 25px;
+}
+button {
+  background-color: var(--red);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--r-btn);
+  transition: background 0.3s ease;
+}
+button:hover {
+  background-color: var(--brand-dark);
+}
+
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
+   @media (max-width: 768px) {
+  #shopping-cart table, #shopping-cart thead, #shopping-cart tbody, #shopping-cart th, #shopping-cart td, #shopping-cart tr {
+    display: block;
+  }
+  #shopping-cart td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  #shopping-cart td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: 600;
+    text-align: left;
+  }
+}
+
 @media (max-width:992px){
     header{ padding:0 24px; }
     header nav{ gap:6px; }
