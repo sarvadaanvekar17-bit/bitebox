@@ -7,12 +7,14 @@
     <title>Cart</title>
 
     <link rel="stylesheet" href="./style.css">
+    <!-- Cart fixes (you can also paste this file's contents at the end of style.css) -->
+    <link rel="stylesheet" href="./cart-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
+<body style="background-color: rgba(248, 225, 151, 0.938);">
     <header>
         <div class="logo">
             <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
@@ -30,14 +32,15 @@
                 <a href="cart.html">My Cart</a>
             </p>
         </nav>
-    </div>
     </header>
 
     <br>
     <br>
 
     <!-- Menu Table -->
-    <table border="2" align="center" cellpadding="10px" cellspacing="6px">
+    <!-- Each Add to Cart button carries the dish details in data-* attributes.
+         The JavaScript reads these, so rowspan cells can never break it. -->
+    <table id="cart-table" border="2" align="center" cellpadding="10px" cellspacing="6px">
         <caption>
             <h1 align="center">My Cart</h1>
             <h3 align="center">- BiteBox Menu -</h3>
@@ -49,26 +52,38 @@
                 <th>Food Item</th>
                 <th>Price</th>
                 <th>Availability</th>
+                <th>Action</th>
             </tr>
         </thead>
 
-        <tbody>
+        <tbody id="menu-body">
             <!-- Pizza -->
             <tr>
                 <td rowspan="3">Pizza</td>
                 <td>Veg Pizza</td>
                 <td>₹359</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Veg Pizza" data-price="359" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                </td>
             </tr>
+
             <tr>
                 <td>Margherita Pizza</td>
                 <td>₹299</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="299" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                </td>
             </tr>
+
             <tr>
-                <td>Pepperoni pizza</td>
+                <td>Pepperoni Pizza</td>
                 <td>₹399</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Pepperoni Pizza" data-price="399" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                </td>
             </tr>
 
             <!-- Burger -->
@@ -77,16 +92,27 @@
                 <td>Cheese Burger</td>
                 <td>₹199</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart</button>
+                </td>
             </tr>
+
             <tr>
                 <td>Veggie Burger</td>
                 <td>₹250</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Veggie Burger" data-price="250" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart</button>
+                </td>
             </tr>
+
             <tr>
                 <td>Classic Cheeseburger</td>
                 <td>₹290</td>
                 <td>Currently unavailable</td>
+                <td>
+                    <button type="button" disabled>Add to Cart</button>
+                </td>
             </tr>
 
             <!-- Pasta -->
@@ -95,32 +121,44 @@
                 <td>White Sauce Pasta</td>
                 <td>₹249</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="White Sauce Pasta" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart</button>
+                </td>
             </tr>
+
             <tr>
                 <td>Spaghetti Bolognese</td>
                 <td>₹249</td>
                 <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Spaghetti Bolognese" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart</button>
+                </td>
             </tr>
 
             <!-- Bread -->
             <tr>
-                <td rowspan="1">Bread</td>
-                <td>Garlic bread</td>
+                <td>Bread</td>
+                <td>Garlic Bread</td>
                 <td>₹179</td>
-                <td>Slightly delay in order</td>
+                <td>Slightly delayed order</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Garlic Bread" data-price="179" data-category="Bread">Add to Cart</button>
+                </td>
             </tr>
 
             <!-- Beverages -->
             <tr>
-                <td rowspan="1">Beverages</td>
-                <td>cola</td>
+                <td>Beverages</td>
+                <td>Cola</td>
                 <td>₹89</td>
-                <td>chilled</td>
+                <td>Chilled</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Cola" data-price="89" data-category="Beverages">Add to Cart</button>
+                </td>
             </tr>
 
-            <!-- Offer -->
             <tr align="center">
-                <td colspan="4">
+                <td colspan="5">
                     <b>Weekend Offer: Flat 20% OFF on Combo Meals</b>
                 </td>
             </tr>
@@ -151,218 +189,78 @@
         </div>
     </section>
 
-    <!-- Shopping Cart -->
-    <section id="shopping-cart">
-        <table>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+    <!-- Cart + Order Summary side by side -->
+    <div id="cart-container">
 
-            <tbody>
-                <!-- Item 1 -->
-                <tr>
-                    <td>
-                        <div class="cart-item">
-                            <img src="./assets/images/pizza.png" alt="Margherita Pizza" width="80">
-                            <div>
-                                <h3>Margherita Pizza</h3>
-                                <p>Classic delight with fresh cheese &amp; basil.</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>249</td>
-                    <td>
-                        <div class="qty">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
-                        </div>
-                    </td>
-                    <td>249</td>
-                    <td>
-                        <button class="remove" aria-label="Remove item">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+        <!-- Shopping Cart (rows are added by file.js) -->
+        <section id="shopping-cart">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-                <!-- Item 2 -->
-                <tr>
-                    <td>
-                        <div class="cart-item">
-                            <img src="./assets/images/burger.png" alt="Cheese Burger" width="80">
-                            <div>
-                                <h3>Cheese Burger</h3>
-                                <p>Juicy grilled burger with cheese &amp; veggies.</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>189</td>
-                    <td>
-                        <div class="qty">
-                            <button>-</button>
-                            <span>2</span>
-                            <button>+</button>
-                        </div>
-                    </td>
-                    <td>378</td>
-                    <td>
-                        <button class="remove" aria-label="Remove item">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+                <tbody id="cart-items">
+                    <!-- Filled by JavaScript -->
+                </tbody>
+            </table>
+        </section>
 
-                <!-- Item 3 -->
-                <tr>
-                    <td>
-                        <div class="cart-item">
-                            <img src="./assets/images/pasta.png" alt="Creamy Pasta" width="80">
-                            <div>
-                                <h3>Creamy Pasta</h3>
-                                <p>Delicious white sauce pasta with herbs.</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>199</td>
-                    <td>
-                        <div class="qty">
-                            <button>-</button>
-                            <span>1</span>
-                            <button>+</button>
-                        </div>
-                    </td>
-                    <td>199</td>
-                    <td>
-                        <button class="remove" aria-label="Remove item">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+        <!-- Right column: Clear Cart sits above the Order Summary -->
+<div class="summary-column">
 
-<aside id="order-summary">
-    <h2>Order Summary</h2>
-    <p> <span>Subtotal (3 Items)</span>
-        <span id="subtotal-amount">₹0.00</span>
-    </p>
+    <button type="button" id="clear-cart-btn">
+        <img src="./assets/images/delete.png" width="18" height="18" alt="">
+        Clear Cart
+    </button>
 
-    <p> <span>Delivery Charges</span>
-        <span id="delivery-amount">₹0.00</span>
-    </p>
+    <!-- Order Summary -->
+    <aside id="order-summary">
+        <h2>Order Summary</h2>
 
-<p> <span>Packaging Charges</span>
-        <span id="packaging-amount">₹0.00</span>
-    </p>
+        <p>
+            <span id="item-count">Subtotal (0 Items)</span>
+            <span id="subtotal-amount">₹0.00</span>
+        </p>
 
-    <p id="discount-row">
-      <span>Discount</span>
-        <span id="discount-amount">₹0.00</span>
-    </p>
+        <p>
+            <span>Delivery Charges</span>
+            <span id="delivery-amount">₹0.00</span>
+        </p>
 
-    <hr>
-    <h3><span>Total Amount</span>
-        <span id="total-amount">₹0.00</span>
-    </h3>
+        <p>
+            <span>Packaging Charges</span>
+            <span id="packaging-amount">₹0.00</span>
+        </p>
 
-    <button type="button"> Proceed to Checkout </button>
+        <p id="discount-row">
+            <span>Discount</span>
+            <span id="discount-amount">₹0.00</span>
+        </p>
 
-    <p> <img src="./assets/images/shield.png" width="18" height="18">
-        Secure Checkout
-    </p>
+        <hr>
 
-</aside>
+        <h3>
+            <span>Total Amount</span>
+            <span id="total-amount">₹0.00</span>
+        </h3>
 
-    <!-- Order Form -->
-    <section align="center">
-        <fieldset>
-            <form action="./ordernow.html">
-                <h3><u>Order Information</u></h3>
-                <br>
+        <button type="button" id="checkout-btn">Proceed to Checkout</button>
 
-                <label for="quantity">Quantity</label>
-                <br>
-                <input type="number" id="quantity" name="quantity" required>
+        <p class="secure-note">
+            <img src="./assets/images/shield.png" width="18" height="18" alt="">
+            Secure Checkout
+        </p>
+    </aside>
 
-                <br><br>
-
-                <label for="deliveryDate">Preferred Delivery <b>Date</b></label>
-                <br>
-                <input type="date" id="deliveryDate" name="deliveryDate" required>
-
-                <br><br>
-
-                <label for="food">Select Food Item</label>
-                <br>
-                <select id="food" name="food">
-                    <option>Veg Pizza</option>
-                    <option>Cheese Burger</option>
-                    <option>White Sauce Pasta</option>
-                    <option>Veg Grilled Sandwich</option>
-                    <option>Chocolate Brownie</option>
-                </select>
-
-                <br><br>
-
-                <h3><u>Payment Method</u></h3>
-
-                <input type="radio" id="cash" name="payment" required>
-                <label for="cash">Cash</label>
-                <br>
-
-                <input type="radio" id="card" name="payment">
-                <label for="card">Card</label>
-                <br>
-
-                <input type="radio" id="upi" name="payment">
-                <label for="upi">UPI</label>
-
-                <br><br>
-
-                <h3><b><u>Extras</u></b></h3>
-
-                <input type="checkbox" id="cheese" name="extras">
-                <label for="cheese">Extra Cheese</label>
-                <br>
-
-                <input type="checkbox" id="drink" name="extras">
-                <label for="drink">Cold Drink</label>
-                <br>
-
-                <input type="checkbox" id="dessert" name="extras">
-                <label for="dessert">Dessert</label>
-
-                <br><br>
-
-                <h3><u>Delivery Instructions :</u></h3>
-
-                <textarea id="address" name="address" rows="5" cols="40"></textarea>
-
-                <br><br>
-
-                <button onclick="placeOrder()">Next</button>
-                <br>
-            </form>
-        </fieldset>
-    </section>
-
+</div>
+    </div>
+<br>
     <!-- Cart Action Buttons -->
     <section id="cart-actions">
         <a href="menu.html">
@@ -370,7 +268,8 @@
             Continue Shopping
         </a>
     </section>
-<script src="./file.js"></script>
+
+    <script src="./file.js"></script>
 
 </body>
 

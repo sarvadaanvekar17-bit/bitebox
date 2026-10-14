@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Order</title>
+
     <link rel="stylesheet" href="./style.css">
-
+    <link rel="stylesheet" href="./ordernow.css">
 </head>
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
-   
-    
-  <img src="./assets/images/cart.png" alt="Cart Icon" width="22" 
-                height="22">
-            </a>
-            <button type="button">
-      
-        <img src="./assets/images/delete.png" width="18" height="18">  Clear Cart
-      
-    </button>
-     <form  align="center" action="./ordered.html" >
 
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your full name" required>
-<br>
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email address" required>
-<br>
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" required>
-<br>
-        <label for="address">Current location</label>
-        <textarea id="message" rows="6" placeholder="Write your full address here" required>
-        </textarea>
+<body style="background-color: rgba(248, 225, 151, 0.938);">
+    <header>
+        <div class="logo">
+            <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
+        </div>
+        <nav>
+            <p>
+                <a href="index.html">Home</a>
+                |
+                <a href="menu.html">Menu</a>
+                |
+                <a href="about.html">About</a>
+                |
+                <a href="contact.html">Contact</a>
+                |
+                <a href="cart.html">My Cart</a>
+            </p>
+        </nav>
+    </header>
 
-        <input type="submit" value="Order now">
+    <main id="checkout">
+
+        <!-- Delivery + payment details -->
+        <form id="order-form" action="./ordered.html">
+            <h1>Delivery Details</h1>
+
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" required>
+
+            <label for="address">Current location</label>
+            <textarea id="address" name="address" rows="6" placeholder="Write your full address here" required></textarea>
+
+            <fieldset class="payment">
+                <legend>Payment Method</legend>
+
+                <div>
+                    <input type="radio" id="cash" name="payment" value="Cash" required>
+                    <label for="cash">Cash</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="card" name="payment" value="Card">
+                    <label for="card">Card</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="upi" name="payment" value="UPI">
+                    <label for="upi">UPI</label>
+                </div>
+            </fieldset>
+
+            <!-- Filled by ordernow.js so ordered.html receives the final amount -->
+            <input type="hidden" id="order-total-field" name="total" value="">
+
+            <input type="submit" id="order-submit" value="Order now">
+        </form>
+
+        <!-- Recap of what is in the cart -->
+        <aside id="order-recap">
+            <h2>Your Order</h2>
+
+            <ul id="recap-items"></ul>
+
+            <p><span>Subtotal</span> <span id="recap-subtotal">₹0.00</span></p>
+            <p><span>Delivery Charges</span> <span id="recap-delivery">₹0.00</span></p>
+            <p><span>Packaging Charges</span> <span id="recap-packaging">₹0.00</span></p>
+            <p><span>Discount</span> <span id="recap-discount">₹0.00</span></p>
+
+            <hr>
+
+            <h3><span>Total Amount</span> <span id="recap-total">₹0.00</span></h3>
+
+            <a class="edit-cart" href="cart.html">Edit cart</a>
+        </aside>
+    </main>
+
+    <!-- Cart Action Buttons -->
     <section id="cart-actions">
+        <a href="menu.html">
+            <img src="./assets/images/arrow.png" width="18" height="18" alt="">
+            Continue Shopping
+        </a>
+    </section>
 
-    <a href="menu.html">
-        <img src="./assets/images/arrow.png" width="18" height="18">
-        Continue Shopping
-    </a>
+    <script src="./ordernow.js"></script>
 </body>
+
 </html>
