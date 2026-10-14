@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Order</title>
+    <title>Checkout | BiteBox</title>
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./ordernow.css">
 </head>
 
-<body style="background-color: rgba(248, 225, 151, 0.938);">
+<body class="order-page">
     <header>
         <div class="logo">
             <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
@@ -32,64 +31,99 @@
 
     <main id="checkout">
 
-        <!-- Delivery + payment details -->
-        <form id="order-form" action="./ordered.html">
-            <h1>Delivery Details</h1>
+        <div class="checkout-head">
+            <ol class="steps" aria-label="Checkout progress">
+                <li class="done"><a href="cart.html">Cart</a></li>
+                <li class="current" aria-current="step">Your details</li>
+                <li>Order placed</li>
+            </ol>
+            <h1>Checkout</h1>
+            <p>Tell us where to deliver and how you'd like to pay.</p>
+        </div>
 
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+        <div class="checkout-grid">
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+            <!-- Delivery + payment details -->
+            <form id="order-form" action="./ordered.html">
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" required>
+                <div class="form-block">
+                    <h2>Contact</h2>
+                    <div class="fields">
+                        <div class="field full">
+                            <label for="name">Full name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+                        </div>
 
-            <label for="address">Current location</label>
-            <textarea id="address" name="address" rows="6" placeholder="Write your full address here" required></textarea>
+                        <div class="field">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+                        </div>
 
-            <fieldset class="payment">
-                <legend>Payment Method</legend>
-
-                <div>
-                    <input type="radio" id="cash" name="payment" value="Cash" required>
-                    <label for="cash">Cash</label>
+                        <div class="field">
+                            <label for="phone">Phone number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" required>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <input type="radio" id="card" name="payment" value="Card">
-                    <label for="card">Card</label>
+                <div class="form-block">
+                    <h2>Delivery address</h2>
+                    <div class="field">
+                        <label for="address">Current location</label>
+                        <textarea id="address" name="address" rows="5" placeholder="Write your full address here" autocomplete="street-address" required></textarea>
+                    </div>
                 </div>
 
-                <div>
-                    <input type="radio" id="upi" name="payment" value="UPI">
-                    <label for="upi">UPI</label>
+                <fieldset class="form-block payment">
+                    <legend>Payment method</legend>
+
+                    <div class="pay-options">
+                        <div class="pay-option">
+                            <input type="radio" id="cash" name="payment" value="Cash" required>
+                            <label for="cash">Cash</label>
+                        </div>
+
+                        <div class="pay-option">
+                            <input type="radio" id="card" name="payment" value="Card">
+                            <label for="card">Card</label>
+                        </div>
+
+                        <div class="pay-option">
+                            <input type="radio" id="upi" name="payment" value="UPI">
+                            <label for="upi">UPI</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Filled by ordernow.js so ordered.html receives the final amount -->
+                <input type="hidden" id="order-total-field" name="total" value="">
+
+                <div class="form-actions">
+                    <input type="submit" id="order-submit" value="Order now">
                 </div>
-            </fieldset>
+            </form>
 
-            <!-- Filled by ordernow.js so ordered.html receives the final amount -->
-            <input type="hidden" id="order-total-field" name="total" value="">
+            <!-- Receipt -->
+            <aside id="order-recap">
+                <h2>Your order</h2>
 
-            <input type="submit" id="order-submit" value="Order now">
-        </form>
+                <ul id="recap-items"></ul>
 
-        <!-- Recap of what is in the cart -->
-        <aside id="order-recap">
-            <h2>Your Order</h2>
+                <div class="tear" aria-hidden="true"></div>
 
-            <ul id="recap-items"></ul>
+                <p><span>Subtotal</span> <span id="recap-subtotal">₹0.00</span></p>
+                <p><span>Delivery charges</span> <span id="recap-delivery">₹0.00</span></p>
+                <p><span>Packaging charges</span> <span id="recap-packaging">₹0.00</span></p>
+                <p><span>Discount</span> <span id="recap-discount">₹0.00</span></p>
 
-            <p><span>Subtotal</span> <span id="recap-subtotal">₹0.00</span></p>
-            <p><span>Delivery Charges</span> <span id="recap-delivery">₹0.00</span></p>
-            <p><span>Packaging Charges</span> <span id="recap-packaging">₹0.00</span></p>
-            <p><span>Discount</span> <span id="recap-discount">₹0.00</span></p>
+                <div class="tear" aria-hidden="true"></div>
 
-            <hr>
+                <h3><span>Total</span> <span id="recap-total">₹0.00</span></h3>
 
-            <h3><span>Total Amount</span> <span id="recap-total">₹0.00</span></h3>
+                <a class="edit-cart" href="cart.html">Edit cart</a>
+            </aside>
 
-            <a class="edit-cart" href="cart.html">Edit cart</a>
-        </aside>
+        </div>
     </main>
 
     <!-- Cart Action Buttons -->
@@ -99,8 +133,132 @@
             Continue Shopping
         </a>
     </section>
+<script>
+(function () {
+    "use strict";
 
-    <script src="./ordernow.js"></script>
+    const DELIVERY_CHARGE  = 40;
+    const PACKAGING_CHARGE = 20;
+    const CART_KEY         = "biteboxCart";
+    const LAST_ORDER_KEY   = "biteboxLastOrder";
+
+    const form        = document.getElementById("order-form");
+    const submitBtn   = document.getElementById("order-submit");
+    const itemsList   = document.getElementById("recap-items");
+    const totalField  = document.getElementById("order-total-field");
+
+    /* ---------- Load cart saved by the cart page ---------- */
+    function loadCart() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(CART_KEY));
+            if (Array.isArray(saved)) {
+                return saved.filter(function (item) {
+                    return item && item.name && Number(item.price) > 0 && Number(item.quantity) > 0;
+                });
+            }
+        } catch (error) { /* start empty */ }
+        return [];
+    }
+
+    const cart = loadCart();
+
+    /* ---------- Calculations (same rules as the cart page) ---------- */
+    function calculateDiscount(subtotal) {
+        if (subtotal > 1000) return subtotal * 0.25;
+        if (subtotal >= 800) return subtotal * 0.15;
+        if (subtotal >= 699) return subtotal * 0.10;
+        return 0;
+    }
+
+    function formatPrice(amount) {
+        return "₹" + amount.toFixed(2);
+    }
+
+    const subtotal  = cart.reduce(function (sum, item) { return sum + item.price * item.quantity; }, 0);
+    const delivery  = subtotal > 0 ? DELIVERY_CHARGE : 0;
+    const packaging = subtotal > 0 ? PACKAGING_CHARGE : 0;
+    const discount  = calculateDiscount(subtotal);
+    const total     = subtotal + delivery + packaging - discount;
+
+    /* ---------- Show recap ---------- */
+    if (cart.length === 0) {
+        const empty = document.createElement("li");
+        empty.className = "recap-empty";
+        empty.innerHTML = 'Your cart is empty. <a href="menu.html">Pick a dish</a> or <a href="cart.html">go to your cart</a>.';
+        itemsList.appendChild(empty);
+        submitBtn.disabled = true;
+    } else {
+        cart.forEach(function (item) {
+            const li = document.createElement("li");
+
+            let thumb;
+            if (item.img) {
+                thumb = document.createElement("img");
+                thumb.src = item.img;
+                thumb.alt = "";
+                thumb.width = 48;
+                thumb.height = 48;
+            } else {
+                thumb = document.createElement("div");
+                thumb.className = "recap-thumb";
+                thumb.textContent = item.name.charAt(0);
+            }
+
+            const info = document.createElement("div");
+
+            const name = document.createElement("span");
+            name.className = "recap-name";
+            name.textContent = item.name;
+
+            const qty = document.createElement("span");
+            qty.className = "recap-qty";
+            qty.textContent = "Qty " + item.quantity;
+
+            info.appendChild(name);
+            info.appendChild(qty);
+
+            const amount = document.createElement("span");
+            amount.className = "recap-price";
+            amount.textContent = formatPrice(item.price * item.quantity);
+
+            li.appendChild(thumb);
+            li.appendChild(info);
+            li.appendChild(amount);
+            itemsList.appendChild(li);
+        });
+
+        submitBtn.value = "Order now – " + formatPrice(total);
+    }
+
+    document.getElementById("recap-subtotal").textContent  = formatPrice(subtotal);
+    document.getElementById("recap-delivery").textContent  = formatPrice(delivery);
+    document.getElementById("recap-packaging").textContent = formatPrice(packaging);
+    document.getElementById("recap-discount").textContent  = discount > 0 ? "-" + formatPrice(discount) : formatPrice(0);
+    document.getElementById("recap-total").textContent     = formatPrice(total);
+
+    totalField.value = total.toFixed(2);
+
+    /* ---------- Place order ---------- */
+    form.addEventListener("submit", function (event) {
+        if (cart.length === 0) {
+            event.preventDefault();
+            return;
+        }
+
+        try {
+            localStorage.setItem(LAST_ORDER_KEY, JSON.stringify({
+                items: cart,
+                subtotal: subtotal,
+                delivery: delivery,
+                packaging: packaging,
+                discount: discount,
+                total: total
+            }));
+            localStorage.removeItem(CART_KEY); // order placed: empty the cart
+        } catch (error) { /* order still goes through */ }
+    });
+})();
+</script>
 </body>
 
 </html>

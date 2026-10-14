@@ -1,3 +1,12 @@
+/* =========================================================
+   BITEBOX CART
+   - "Add to Cart" buttons in the menu table add dishes to the
+     Shopping Cart table.
+   - Quantity (+ / -) and Remove buttons update the cart.
+   - Order Summary (subtotal, delivery, packaging, discount,
+     total) recalculates after every change.
+   - Cart is saved in the browser, so it survives a refresh.
+   ========================================================= */
 (function () {
     "use strict";
 
@@ -7,7 +16,8 @@
     const STORAGE_KEY      = "biteboxCart";
 
     /* ---------- Page elements ---------- */
-    const menuBody  = document.getElementById("menu-body");   // menu table <tbody>
+    const menuBody  = document.getElementById("menu-body") ||
+                      document.getElementById("menuBody");    // menu table <tbody>
     const cartBody  = document.getElementById("cart-items");  // shopping cart <tbody>
 
     const itemCountEl = document.getElementById("item-count");
@@ -230,135 +240,38 @@
 
         refresh();
     });
+
     /* =====================================================
        PROCEED TO CHECKOUT
        ===================================================== */
     const checkoutBtn = document.getElementById("checkout-btn");
 
-    checkoutBtn.addEventListener("click", function () {
-        if (cart.length === 0) {
-            alert("Your cart is empty. Add a dish from the menu first.");
-            return;
-        }
-        window.location.href = "./ordernow.html";
-    });
-        /* =====================================================
-       CLEAR CART
-       ===================================================== */
-    document.getElementById("clear-cart-btn").addEventListener("click", function () {
-        if (cart.length === 0) return;
-
-        if (confirm("Remove all items from your cart?")) {
-            cart = [];
-            refresh();
-        }
-    });
-    /* ---------- First load ---------- */
-    renderCart();
-})();
-/* =========================================================
-   BITEBOX - ORDER NOW PAGE
-   Reads the cart saved by file.js, shows the order recap and
-   total, and clears the cart once the order is placed.
-   Keep these charges/discount rules the same as in file.js.
-   ========================================================= */
-(function () {
-    "use strict";
-
-    const DELIVERY_CHARGE  = 40;
-    const PACKAGING_CHARGE = 20;
-    const CART_KEY         = "biteboxCart";
-    const LAST_ORDER_KEY   = "biteboxLastOrder";
-
-    const form        = document.getElementById("order-form");
-    const submitBtn   = document.getElementById("order-submit");
-    const itemsList   = document.getElementById("recap-items");
-    const totalField  = document.getElementById("order-total-field");
-
-    /* ---------- Load cart ---------- */
-    function loadCart() {
-        try {
-            const saved = JSON.parse(localStorage.getItem(CART_KEY));
-            if (Array.isArray(saved)) {
-                return saved.filter(function (item) {
-                    return item && item.name && Number(item.price) > 0 && Number(item.quantity) > 0;
-                });
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", function () {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Add a dish from the menu first.");
+                return;
             }
-        } catch (error) { /* start empty */ }
-        return [];
-    }
-
-    const cart = loadCart();
-
-    /* ---------- Calculations (same rules as the cart page) ---------- */
-    function calculateDiscount(subtotal) {
-        if (subtotal > 1000) return subtotal * 0.25;
-        if (subtotal >= 800) return subtotal * 0.15;
-        if (subtotal >= 699) return subtotal * 0.10;
-        return 0;
-    }
-
-    function formatPrice(amount) {
-        return "₹" + amount.toFixed(2);
-    }
-
-    const subtotal  = cart.reduce(function (sum, item) { return sum + item.price * item.quantity; }, 0);
-    const delivery  = subtotal > 0 ? DELIVERY_CHARGE : 0;
-    const packaging = subtotal > 0 ? PACKAGING_CHARGE : 0;
-    const discount  = calculateDiscount(subtotal);
-    const total     = subtotal + delivery + packaging - discount;
-
-    /* ---------- Show recap ---------- */
-    if (cart.length === 0) {
-        const empty = document.createElement("li");
-        empty.className = "recap-empty";
-        empty.innerHTML = 'Your cart is empty. <a href="menu.html">Pick a dish</a> or <a href="cart.html">go to your cart</a>.';
-        itemsList.appendChild(empty);
-
-        submitBtn.disabled = true;
-    } else {
-        cart.forEach(function (item) {
-            const li = document.createElement("li");
-
-            const label = document.createElement("span");
-            label.textContent = item.name + " × " + item.quantity;
-
-            const amount = document.createElement("span");
-            amount.textContent = formatPrice(item.price * item.quantity);
-
-            li.appendChild(label);
-            li.appendChild(amount);
-            itemsList.appendChild(li);
+            window.location.href = "./ordernow.html";
         });
     }
 
-    document.getElementById("recap-subtotal").textContent  = formatPrice(subtotal);
-    document.getElementById("recap-delivery").textContent  = formatPrice(delivery);
-    document.getElementById("recap-packaging").textContent = formatPrice(packaging);
-    document.getElementById("recap-discount").textContent  = discount > 0 ? "-" + formatPrice(discount) : formatPrice(0);
-    document.getElementById("recap-total").textContent     = formatPrice(total);
+    /* =====================================================
+       CLEAR CART
+       ===================================================== */
+    const clearBtn = document.getElementById("clear-cart-btn");
 
-    totalField.value = total.toFixed(2);
+    if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+            if (cart.length === 0) return;
 
-    /* ---------- Place order ---------- */
-    // The submit event only fires when every required field is valid.
-    form.addEventListener("submit", function (event) {
-        if (cart.length === 0) {
-            event.preventDefault();
-            return;
-        }
+            if (confirm("Remove all items from your cart?")) {
+                cart = [];
+                refresh();
+            }
+        });
+    }
 
-        try {
-            // Saved so ordered.html can show a confirmation if you want it to
-            localStorage.setItem(LAST_ORDER_KEY, JSON.stringify({
-                items: cart,
-                subtotal: subtotal,
-                delivery: delivery,
-                packaging: packaging,
-                discount: discount,
-                total: total
-            }));
-            localStorage.removeItem(CART_KEY); // order placed: empty the cart
-        } catch (error) { /* storage blocked: order still goes through */ }
-    });
+    /* ---------- First load ---------- */
+    renderCart();
 })();

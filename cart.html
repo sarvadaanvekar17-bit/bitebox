@@ -7,8 +7,6 @@
     <title>Cart</title>
 
     <link rel="stylesheet" href="./style.css">
-    <!-- Cart fixes (you can also paste this file's contents at the end of style.css) -->
-    <link rel="stylesheet" href="./cart-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,8 +36,7 @@
     <br>
 
     <!-- Menu Table -->
-    <!-- Each Add to Cart button carries the dish details in data-* attributes.
-         The JavaScript reads these, so rowspan cells can never break it. -->
+   
     <table id="cart-table" border="2" align="center" cellpadding="10px" cellspacing="6px">
         <caption>
             <h1 align="center">My Cart</h1>
@@ -56,7 +53,7 @@
             </tr>
         </thead>
 
-        <tbody id="menu-body">
+        <tbody id="menuBody">
             <!-- Pizza -->
             <tr>
                 <td rowspan="3">Pizza</td>
@@ -269,8 +266,7 @@
         </a>
     </section>
 
-    <script src="./file.js"></script>
-
+<script src="./file.js" defer></script>
 </body>
 
 </html>
