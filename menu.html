@@ -160,5 +160,47 @@
 <span> | </span>
 <span>Fresh Ingredients</span>
 
+
+<script>
+
+const CART_KEY = "biteboxCart";
+
+    const dishes = document.querySelectorAll("#menu-items article");
+
+    dishes.forEach(function (dish) {
+
+        const button = dish.querySelector("button");
+
+        button.addEventListener("click", function () {
+
+            const name = dish.querySelector("h3").textContent.trim();
+
+            const priceText = dish.querySelector(".price").textContent;
+            const price = Number(priceText.replace("₹", "").trim());
+
+            const img = dish.querySelector("img").getAttribute("src");
+
+            let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+            const existingDish = cart.find(function (item) {
+                return item.name === name;
+            });
+
+            if (existingDish) {
+                existingDish.quantity++;
+
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1,
+                    img: img
+                });
+            }
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            alert(name + " added to your cart! 🛒");
+        });
+    });
+</script>
 </body>
 </html>
