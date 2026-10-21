@@ -236,8 +236,7 @@
             if (item.quantity <= 0) cart.splice(index, 1);
         } else if (action === "remove") {
             cart.splice(index, 1);
-        }
-
+        } 
         refresh();
     });
 
@@ -271,7 +270,39 @@
             }
         });
     }
-
+    
     /* ---------- First load ---------- */
     renderCart();
+
+/* ---------- SEARCH MENU TABLE ---------- */
+
+const searchInput = document.getElementById("menu-search");
+const searchButton = document.getElementById("search-button");
+const menuRows = document.querySelectorAll("#menuBody tr");
+
+function searchMenu() {
+    const searchValue = searchInput.value.trim().toLowerCase();
+
+    menuRows.forEach(function (row) {
+        const rowText = row.textContent.toLowerCase();
+
+        if (rowText.includes(searchValue)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
+// Search when the button is clicked
+if (searchButton && searchInput) {
+    searchButton.addEventListener("click", searchMenu);
+
+    // Search when Enter is pressed
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            searchMenu();
+        }
+    });
+}
 })();

@@ -27,7 +27,7 @@
                 |
                 <a href="contact.html">Contact</a>
                 |
-                <a href="cart.html">My Cart</a>
+                <a href="cart.html">My Cart 🛒</a>
             </p>
         </nav>
     </header>
@@ -43,7 +43,14 @@
             <h3 align="center">- BiteBox Menu -</h3>
         </caption>
 
+<div class="search-container">
+    <input type="text" id="menu-search" placeholder="Search for dishes...">
+
+    <button type="button" id="search-button">
+        <img src="./assets/icons/search.jpg" alt="Search">
+    </button>
         <thead>
+            
             <tr>
                 <th>Category</th>
                 <th>Food Item</th>
@@ -52,124 +59,167 @@
                 <th>Action</th>
             </tr>
         </thead>
-
         <tbody id="menuBody">
             <!-- Pizza -->
             <tr>
+                <article data-category="pizza">
                 <td rowspan="3">Pizza</td>
                 <td>Veg Pizza</td>
                 <td>₹359</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Veg Pizza" data-price="359" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Veg Pizza" data-price="359" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
+                                <article data-category="pizza">
+
                 <td>Margherita Pizza</td>
                 <td>₹299</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="299" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="299" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
+                                <article data-category="pizza">
+
                 <td>Pepperoni Pizza</td>
                 <td>₹399</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Pepperoni Pizza" data-price="399" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Pepperoni Pizza" data-price="399" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <!-- Burger -->
             <tr>
+                <article data-category="burger">
                 <td rowspan="3">Burger</td>
                 <td>Cheese Burger</td>
                 <td>₹199</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
+                                <article data-category="burger">
+
                 <td>Veggie Burger</td>
                 <td>₹250</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Veggie Burger" data-price="250" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Veggie Burger" data-price="250" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
+                                <article data-category="burger">
+
                 <td>Classic Cheeseburger</td>
                 <td>₹290</td>
                 <td>Currently unavailable</td>
                 <td>
                     <button type="button" disabled>Add to Cart</button>
                 </td>
+                </article>
             </tr>
 
             <!-- Pasta -->
             <tr>
+                                <article data-category="pasta">
                 <td rowspan="2">Pasta</td>
                 <td>White Sauce Pasta</td>
                 <td>₹249</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="White Sauce Pasta" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="White Sauce Pasta" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
+                    <article data-category="pasta">
+
                 <td>Spaghetti Bolognese</td>
                 <td>₹249</td>
                 <td>Available</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Spaghetti Bolognese" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Spaghetti Bolognese" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Car🛒t</button>
                 </td>
+                </article>
             </tr>
 
             <tr>
-                <td>Rice</td>
+           <article data-category="Biryani">
+
+                <td rowspan="2">Rice</td>
                 <td>Chicken-Biryani</td>
                 <td>₹279</td>
                 <td>Highly ordered</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Biryani" data-price="279" data-category="Rice" data-img="./assets/images/ChickenB.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Chicken-Biryani" data-price="279" data-category="Rice" data-img="./assets/images/ChickenB.png">Add to Cart🛒</button>
                 </td>
+                </article>
+            </tr>
+            <tr>
+               <article data-category="Biryani">
+
+                <td>Veg-Biryani</td>
+                <td>₹259</td>
+                <td>Available</td>
+                <td>
+                    <button type="button" class="add-to-cart" data-name="Veg-Biryani" data-price="259" data-category="Rice" data-img="./assets/images/ChickenB.png">Add to Cart🛒</button>
+                </td>
+                </article>
                 </tr>
 
             <!-- Beverages -->
             <tr>
+                 <article data-category="Drinks">
+
                 <td rowspan="2">Beverages</td>
                 <td>Cola</td>
                 <td>₹89</td>
                 <td>Chilled</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Cola" data-price="89" data-category="Beverages" data-img="./assets/images/cola.png">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Cola" data-price="89" data-category="Beverages" data-img="./assets/images/cola.png">Add to Cart🛒</button>
                 </td>
+                </article>
                 </tr>
                 <tr>
+              <article data-category="drinks">
+
             <td>Sparkling Water</td>
                 <td>₹79</td>
                 <td>Chilled</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="sparkling-water" data-price="79" data-category="Beverages">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="sparkling-water" data-price="79" data-category="Beverages" data-img="./assets/images/soda.png">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <!-- Bread -->
             <tr>
+               <article data-category="bread">
+
                 <td>Bread</td>
                 <td>Garlic Bread</td>
                 <td>₹179</td>
                 <td>Slightly delayed order</td>
                 <td>
-                    <button type="button" class="add-to-cart" data-name="Garlic Bread" data-price="179" data-category="Bread">Add to Cart</button>
+                    <button type="button" class="add-to-cart" data-name="Garlic Bread" data-price="179" data-category="Bread">Add to Cart🛒</button>
                 </td>
+                </article>
             </tr>
 
             <tr align="center">
@@ -195,7 +245,7 @@
     <!-- Cart Hero Section -->
     <section id="cart-hero">
         <div class="hero-content">
-            <h2>Your Shopping Cart</h2>
+            <h2>Your Shopping Cart 🛒</h2>
             <p>
                 Review your selected food items before
                 proceeding to checkout.
@@ -280,7 +330,7 @@
     <section id="cart-actions">
         <a href="menu.html">
             <img src="./assets/images/arrow.png" width="18" height="18" alt="">
-            Continue Shopping
+            Continue Shopping🛒
         </a>
     </section>
 
