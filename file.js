@@ -16,8 +16,7 @@
     const STORAGE_KEY      = "biteboxCart";
 
     /* ---------- Page elements ---------- */
-    const menuBody  = document.getElementById("menu-body") ||
-                      document.getElementById("menuBody");    // menu table <tbody>
+    const menuRows = document.querySelectorAll("#menuBody tr");    // menu table <tbody>
     const cartBody  = document.getElementById("cart-items");  // shopping cart <tbody>
 
     const itemCountEl = document.getElementById("item-count");
@@ -178,15 +177,18 @@
         renderCart();
     }
 
-    /* =====================================================
-       ADD TO CART (menu table)
-       ===================================================== */
+    
+/* ADD TO CART — menu table */
+
+if (menuBody) {
     menuBody.addEventListener("click", function (event) {
         const button = event.target.closest(".add-to-cart");
+
         if (!button || button.disabled) return;
 
-        const name  = button.dataset.name;
+        const name = button.dataset.name;
         const price = Number(button.dataset.price);
+
         if (!name || !(price > 0)) return;
 
         const existing = cart.find(function (item) {
@@ -207,7 +209,6 @@
 
         refresh();
 
-        // Small confirmation on the button
         const originalText = button.dataset.label || button.textContent;
         button.dataset.label = originalText;
         button.textContent = "Added ✓";
@@ -216,7 +217,7 @@
             button.textContent = originalText;
         }, 900);
     });
-
+}
     /* =====================================================
        + / - / REMOVE (shopping cart table)
        ===================================================== */
@@ -278,12 +279,12 @@
 
 const searchInput = document.getElementById("menu-search");
 const searchButton = document.getElementById("search-button");
-const menuRows = document.querySelectorAll("#menuBody tr");
+
 
 function searchMenu() {
     const searchValue = searchInput.value.trim().toLowerCase();
 
-    menuRows.forEach(function (row) {
+    (document.querySelectorAll("#menuBody tr")).forEach(function (row) {
         const rowText = row.textContent.toLowerCase();
 
         if (rowText.includes(searchValue)) {
@@ -304,5 +305,48 @@ if (searchButton && searchInput) {
             searchMenu();
         }
     });
+}
+
+/* ---------- DAY MODE / NIGHT MODE ---------- */
+
+const themeButton = document.getElementById("theme-toggle");
+
+function updateThemeButton() {
+    const isDark = document.body.classList.contains("dark-theme");
+
+    const themeIcon = themeButton?.querySelector(".theme-icon");
+    const themeText = themeButton?.querySelector(".theme-text");
+
+    if (themeIcon) {
+        themeIcon.textContent = isDark ? "☾" : "☀";
+    }
+
+    if (themeText) {
+        themeText.textContent = isDark ? "NIGHT MODE" : "DAY MODE";
+    }
+}
+
+function toggleTheme() {
+    const isDark = document.body.classList.toggle("dark-theme");
+
+    localStorage.setItem("biteboxTheme", isDark ? "dark" : "light");
+
+    updateThemeButton();
+}
+
+// Load the previously saved theme when the page opens
+const savedTheme = localStorage.getItem("biteboxTheme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");
+} else {
+    document.body.classList.remove("dark-theme");
+}
+
+updateThemeButton();
+
+// Activate the button
+if (themeButton) {
+    themeButton.addEventListener("click", toggleTheme);
 }
 })();
