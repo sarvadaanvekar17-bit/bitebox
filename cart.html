@@ -47,14 +47,73 @@
             <h1 align="center">More items</h1>
             <h3 align="center">- BiteBox Menu -</h3>
         </caption>
+        <div class="menu-controls">
+            <div class="menu-search">
+                <input type="text" id="menu-search" placeholder="Search for dishes...">
 
-<div class="search-container">
-    <input type="text" id="menu-search" placeholder="Search for dishes...">
+                <button type="button" id="search-button">
+                    <img src="./assets/icons/search.jpg" alt="Search">
+                </button>
+                </div>
+                    <button type="button" id="add-menu-btn"> + Add Menu Item </button>
+            </div>   
+             <div id="menu-modal" class="menu-modal">
+      <div class="menu-modal-content">
+        <div class="modal-header">
+          <h2>Add Menu Item</h2>
+        </div>
 
-    <button type="button" id="search-button">
-        <img src="./assets/icons/search.jpg" alt="Search">
-    </button>
-        <thead>
+        <form id="menu-form">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="menu-name"> Menu Item Name </label>
+              <input type="text" id="menu-name" placeholder="Enter item name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="menu-price"> Price (₹) </label>
+              <input type="number" id="menu-price" placeholder="Enter price" required>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="menu-category"> Category </label>
+              <input type="text" id="menu-category" placeholder="Enter category" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="menu-rating"> Rating (0 - 5) </label>
+              <input type="text" id="menu-rating" placeholder="★★★★★" required>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="menu-reviews"> Number of Reviews </label>
+              <input type="number" id="menu-reviews" placeholder="Enter number of reviews" 
+              required>
+            </div>
+
+            <div class="form-group">
+              <label for="menu-image"> Image URL / Path </label>
+              <input type="text" id="menu-image" placeholder="Enter image URL or path" 
+              required>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-menu-form" onclick="hideform()"> Cancel </button>
+            <button type="submit"> Add Menu Item </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <thead>
             
             <tr>
                 <th>Category</th>

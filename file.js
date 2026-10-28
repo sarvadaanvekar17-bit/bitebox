@@ -350,3 +350,91 @@ if (themeButton) {
     themeButton.addEventListener("click", toggleTheme);
 }
 })();
+
+const addMenuBtn = document.getElementById("add-menu-btn");
+const menuModal = document.getElementById("menu-modal");
+const cancelMenuForm = document.getElementById("cancel-menu-form");
+const menuForm = document.getElementById("menu-form");
+
+// 1. Open the modal
+addMenuBtn.addEventListener("click", function () {
+    menuModal.classList.add("show");
+});
+
+// 2. Close the modal when Cancel is clicked
+cancelMenuForm.addEventListener("click", function () {
+    menuModal.classList.remove("show");
+});
+
+// 3. Add a new menu item when the form is submitted
+menuForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Get values from the form
+    const name = document.getElementById("menu-name").value.trim();
+    const price = Number(document.getElementById("menu-price").value);
+    const category = document.getElementById("menu-category").value;
+    const rating = Number(document.getElementById("menu-rating").value);
+    const reviews = Number(document.getElementById("menu-reviews").value);
+    const image = document.getElementById("menu-image").value.trim();
+
+    // Create the menu item object
+    const menuItem = {
+        name: name,
+        price: price,
+        category: category,
+        rating: rating,
+        reviews: reviews,
+        image: image
+    };
+
+    console.log("New menu item:", menuItem);
+    const menuForm = document.getElementById("menu-form");
+
+    menuForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("menu-name").value;
+    const price = document.getElementById("menu-price").value;
+
+    const category = document.getElementById("menu-category").value;
+    const rating = document.getElementById("menu-rating").value;
+    const reviews = document.getElementById("menu-reviews").value;
+    const image = document.getElementById("menu-image").value;
+
+    const menuItem = {
+        name: name,
+        price: price,
+        category: category,
+        rating: rating,
+        reviews: reviews,
+        image: image
+    };
+
+    const API_URL ="https://6ae1efa7bbb5412922996528.mockapi.io/menu/menu"
+
+    try {
+
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(menuItem)
+        });
+       const data = await response.json();
+        console.log("Menu item added:", data);
+    } catch (error) {
+        console.error("Error adding menu item:", error);
+    }
+});
+async function fetchMenuItems() {
+    try {
+        const response = await fetch(API_URL);
+        const menuItems = await response.json();
+        console.log("Menu items fetched:", menuItems);
+    } catch (error) {
+        console.error("Error fetching menu items:", error);
+    } }
+});
