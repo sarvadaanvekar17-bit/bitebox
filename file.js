@@ -1,14 +1,4 @@
-/* =========================================================
-   BITEBOX CART
-   - "Add to Cart" buttons in the menu table add dishes to the
-     Shopping Cart table.
-   - Quantity (+ / -) and Remove buttons update the cart.
-   - Order Summary (subtotal, delivery, packaging, discount,
-     total) recalculates after every change.
-   - Cart is saved in the browser, so it survives a refresh.
-   ========================================================= */
-(function () {
-    "use strict";
+ "use strict";
 
     /* ---------- Settings (change here) ---------- */
     const DELIVERY_CHARGE  = 40;
@@ -349,8 +339,6 @@ updateThemeButton();
 if (themeButton) {
     themeButton.addEventListener("click", toggleTheme);
 }
-})();
-
 const addMenuBtn = document.getElementById("add-menu-btn");
 const menuModal = document.getElementById("menu-modal");
 const cancelMenuForm = document.getElementById("cancel-menu-form");
@@ -367,74 +355,65 @@ cancelMenuForm.addEventListener("click", function () {
 });
 
 // 3. Add a new menu item when the form is submitted
-menuForm.addEventListener("submit", function (event) {
+const API_URL = "https://6ae1efa7bbb5412922996528.mockapi.io/menu";
+
+menuForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-
-    // Get values from the form
-    const name = document.getElementById("menu-name").value.trim();
-    const price = Number(document.getElementById("menu-price").value);
-    const category = document.getElementById("menu-category").value;
-    const rating = Number(document.getElementById("menu-rating").value);
-    const reviews = Number(document.getElementById("menu-reviews").value);
-    const image = document.getElementById("menu-image").value.trim();
-
-    // Create the menu item object
     const menuItem = {
-        name: name,
-        price: price,
-        category: category,
-        rating: rating,
-        reviews: reviews,
-        image: image
+        name: document.getElementById("menu-name").value.trim(),
+        price: Number(document.getElementById("menu-price").value),
+        category: document.getElementById("menu-category").value,
+        rating: Number(document.getElementById("menu-rating").value),
+        reviews: Number(document.getElementById("menu-reviews").value),
+        image: document.getElementById("menu-image").value.trim()
     };
-
-    console.log("New menu item:", menuItem);
-    const menuForm = document.getElementById("menu-form");
-
-    menuForm.addEventListener("submit", async function (event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("menu-name").value;
-    const price = document.getElementById("menu-price").value;
-
-    const category = document.getElementById("menu-category").value;
-    const rating = document.getElementById("menu-rating").value;
-    const reviews = document.getElementById("menu-reviews").value;
-    const image = document.getElementById("menu-image").value;
-
-    const menuItem = {
-        name: name,
-        price: price,
-        category: category,
-        rating: rating,
-        reviews: reviews,
-        image: image
-    };
-
-    const API_URL ="https://6ae1efa7bbb5412922996528.mockapi.io/menu/menu"
 
     try {
-
         const response = await fetch(API_URL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(menuItem)
         });
-       const data = await response.json();
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+        const data = await response.json();
         console.log("Menu item added:", data);
+        menuForm.reset();
+        menuModal.classList.remove("show");
+        fetchMenuItems();
     } catch (error) {
         console.error("Error adding menu item:", error);
     }
 });
+
 async function fetchMenuItems() {
     try {
         const response = await fetch(API_URL);
+        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
         const menuItems = await response.json();
-        console.log("Menu items fetched:", menuItems);
+        displayMenuItems(menuItems);
     } catch (error) {
         console.error("Error fetching menu items:", error);
-    } }
-});
+    }
+}
+
+function displayMenuItems(menuItems) {
+    const menuContainer = document.getElementById("menu-container");
+    menuContainer.innerHTML = "";
+
+    menuItems.forEach(menuItem => {
+        const card = document.createElement("article");
+        card.innerHTML = `
+            <img src="${menuItem.image}" alt="${menuItem.name}">
+            <h3>${menuItem.name}</h3>
+            <p class="rating">
+                ${menuItem.rating}
+                <small>(${menuItem.reviews})</small>
+            </p>
+            <p class="price">₹${menuItem.price}</p>
+            <button> Add to Cart🛒 </button>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
+
+fetchMenuItems();

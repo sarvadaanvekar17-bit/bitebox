@@ -3423,15 +3423,15 @@ body table {
 
 .menu-modal-content {
     width: 90%;
-    max-width: 650px;
-
-
+    max-width: 450px;
+    max-height:85vh;
+    overflow-y:auto;
     background: #ffffff;
 
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-
+    padding:24px;
     padding: 28px 26px 24px;
 
 
@@ -3445,7 +3445,50 @@ body table {
 }
 
 
+/* Food menu container */
+#menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 25px;
+}
 
+/* Individual food card */
+#menu-container article {
+    width: 100%;
+    max-width: 300px;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+}
+
+/* Food image size */
+#menu-container article img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Food name */
+#menu-container article h3 {
+    padding: 0 15px;
+    margin: 15px 0 10px;
+}
+
+/* Rating and price */
+#menu-container article p {
+    padding: 0 15px;
+    margin: 10px 0;
+}
+
+/* Add to Cart button */
+#menu-container article button {
+    margin: 10px 15px 15px;
+}
 
 /* =========================================================
    MODAL HEADER
