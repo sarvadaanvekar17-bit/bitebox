@@ -3737,3 +3737,166 @@ body table {
     border-color: #e53935;
 }
 
+
+
+/* =========================================================
+   BITEBOX PROFESSIONAL POLISH LAYER
+   Added as overrides so the existing pages keep their sections.
+   ========================================================= */
+:root {
+  --brand: #ff6b35;
+  --brand-dark: #e65325;
+  --red: #ef4444;
+  --gold: #f5b301;
+  --ink: #211b18;
+  --muted: #716b67;
+  --line: #eee5df;
+  --page: #fffaf6;
+  --card: #ffffff;
+  --r-card: 18px;
+  --r-btn: 10px;
+  --shadow: 0 8px 26px rgba(48, 27, 14, .08);
+  --shadow-hover: 0 16px 36px rgba(48, 27, 14, .15);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--page); color: var(--ink); }
+header {
+  min-height: 78px; height: auto; padding: 12px clamp(18px, 5vw, 72px);
+  background: #171311; box-shadow: 0 8px 24px rgba(0,0,0,.10);
+}
+header .logo { display:flex; align-items:center; width:auto; height:auto; flex-shrink:0; }
+header .logo img, .logo img { max-width: 170px; max-height: 52px; object-fit:contain; }
+header nav { gap: clamp(4px, 1.2vw, 18px); flex-wrap:wrap; justify-content:flex-end; }
+header nav p { margin:0; display:flex; align-items:center; gap: clamp(4px, 1.1vw, 16px); }
+header nav a { padding: 9px 12px; border-radius: 9px; font-size: 14px; transition: background .2s ease, color .2s ease; }
+header nav a:hover, header nav a:focus-visible { background: rgba(255,107,53,.14); color:#ff9a73; }
+.theme-toggle { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 13px; color:#fff; background:#302923; border:1px solid rgba(255,255,255,.16); border-radius:999px; font-size:12px; font-weight:700; }
+.theme-toggle:hover { background:var(--brand); }
+section, aside { padding: clamp(36px, 5vw, 72px) clamp(16px, 4vw, 48px); }
+.hero { min-height: min(680px, 82vh); background-attachment:scroll; position:relative; isolation:isolate; }
+.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(110deg,rgba(15,10,7,.72),rgba(15,10,7,.18)); z-index:-1; }
+.hero-content { max-width:850px; padding:clamp(22px,4vw,48px); }
+.hero-content h1 { font-size:clamp(2.4rem,6vw,5.2rem); line-height:1.04; letter-spacing:-.04em; text-wrap:balance; }
+.hero-content p { color:rgba(255,255,255,.88); font-size:clamp(1rem,1.8vw,1.2rem); }
+.hero-content a, .offer-content a, .primary-button, .primary-btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  background:var(--brand); color:#fff; border:0; border-radius:999px;
+  padding:13px 25px; font-weight:700; text-decoration:none;
+  box-shadow:0 8px 18px rgba(255,107,53,.22); transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.hero-content a:hover, .offer-content a:hover, .primary-button:hover, .primary-btn:hover { background:var(--brand-dark); transform:translateY(-2px); box-shadow:0 12px 24px rgba(255,107,53,.28); }
+#features, #popular-dishes, #reviews, #categories, #menu-items { background:var(--card); }
+#features, .features { display:flex; flex-wrap:wrap; align-items:stretch; justify-content:center; gap:20px; }
+#features > h2, .features > h2 { width:100%; text-align:center; margin:0 0 12px; font-size:clamp(1.8rem,3vw,2.7rem); }
+.feature-card { width:min(100%,230px); margin:0; padding:24px 18px; border:1px solid var(--line); border-radius:var(--r-card); background:#fff; box-shadow:var(--shadow); text-align:center; transition:transform .25s ease,box-shadow .25s ease; }
+.feature-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-hover); }
+.feature-card img { width:100px; height:100px; object-fit:contain; }
+.feature-card h3 { margin:14px 0 0; font-size:1rem; }
+.featured-video video { width:min(100%,900px); max-height:460px; object-fit:cover; border-radius:var(--r-card); box-shadow:var(--shadow-hover); }
+#popular-dishes, .popular-dishes { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; }
+#popular-dishes > h2, .popular-dishes > h2 { width:100%; text-align:center; font-size:clamp(1.8rem,3vw,2.7rem); margin:0 0 12px; }
+.food-card, #popular-dishes article { width:min(100%,260px); min-height:0; margin:0; padding:0 0 18px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-card); overflow:hidden; box-shadow:var(--shadow); text-align:left; transition:transform .25s ease,box-shadow .25s ease; }
+.food-card:hover, #popular-dishes article:hover { transform:translateY(-6px); box-shadow:var(--shadow-hover); }
+.food-card > img, #popular-dishes article > img { display:block; width:100%; height:175px; object-fit:cover; }
+.food-card h3, #popular-dishes article h3 { margin:16px 16px 6px; font-size:1.08rem; }
+.food-card p { margin:8px 16px; color:var(--muted); font-size:.9rem; }
+.food-card strong, #popular-dishes .price { color:var(--brand-dark); }
+.customer-notice { margin:0; background:#fff1e9; color:#56301f; }
+.customer-notice h2 { margin-top:0; }
+#offer { background:linear-gradient(115deg,#2a1710,#69301d 65%,#a34325); color:#fff; border-radius:24px; box-shadow:var(--shadow-hover); }
+#offer p { color:#f9dfd3; }
+#offer .offer-content { width:min(100%,580px); }
+#reviews { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; }
+#reviews > h2 { width:100%; text-align:center; font-size:clamp(1.8rem,3vw,2.7rem); }
+.review-card, #reviews article { width:min(100%,330px); margin:0; padding:26px; background:#fff; border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow); }
+.review-card img { border-radius:50%; object-fit:cover; }
+#newsletter { padding:28px clamp(18px,5vw,72px); background:linear-gradient(110deg,#a52b1d,#f16a3c); }
+#categories > div { gap:30px; }
+#categories article img { width:112px; height:112px; }
+#menu-items > div { gap:22px; }
+#menu-items article { width:min(100%,260px); margin:0; border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow); }
+#menu-items article img { height:175px; }
+#menu-items article button, .add-to-cart { background:#fff5ef; color:var(--brand-dark); border:1px solid #ffd5c4; border-radius:999px; padding:11px 14px; font-weight:700; }
+#menu-items article button:hover, .add-to-cart:hover { background:var(--brand); color:#fff; border-color:var(--brand); }
+#menu-items article button img { width:22px; height:22px; }
+#story > article { flex-wrap:wrap; gap:clamp(24px,5vw,60px); }
+#story > article > img { width:min(100%,480px); }
+.story-content { width:min(100%,520px); }
+footer { background:#171311; color:#f7eee8; }
+footer h3 { color:#fff; }
+footer a { color:#f7c5ad; }
+footer a:hover { color:#fff; }
+
+/* Menu page controls */
+#menu-hero { text-align:center; background:linear-gradient(135deg,#fff0e7,#fffaf6); padding:clamp(48px,7vw,90px) 20px; }
+#menu-hero h1 { max-width:900px; margin:0 auto 16px; font-size:clamp(2.2rem,5vw,4rem); line-height:1.08; letter-spacing:-.04em; }
+#menu-hero p { max-width:720px; margin:0 auto; color:#716b67; font-size:1.05rem; }
+.menu-toolbar { width:min(100%,1000px); margin:0 auto 28px; display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+.menu-search { width:min(100%,420px); min-height:48px; padding:12px 16px; border:1px solid #e6d9d0; border-radius:999px; background:#fff; font:inherit; }
+.menu-search-button { padding:12px 22px; border-radius:999px; color:#fff; background:var(--brand); font-weight:700; }
+.menu-search-button:hover { background:var(--brand-dark); }
+.menu-empty { width:100%; padding:30px; color:var(--muted); text-align:center; }
+#restaurant-info { text-align:center; background:#fff3eb; color:#573322; padding:28px 16px; }
+#restaurant-info h2 { margin-top:0; }
+#restaurant-info p { margin:0; }
+
+/* Dark theme polish */
+body.dark-theme { --page:#151311; --card:#201d1a; --ink:#f8f1ec; --muted:#c1b5ad; --line:#39312b; background:#151311 !important; color:#f8f1ec !important; }
+body.dark-theme main, body.dark-theme main > section:not(.hero):not(#offer):not(.newsletter), body.dark-theme #features, body.dark-theme #popular-dishes, body.dark-theme #reviews, body.dark-theme #categories, body.dark-theme #menu-items, body.dark-theme #story, body.dark-theme #restaurant-info { background:#151311 !important; color:#f8f1ec !important; }
+body.dark-theme .feature-card, body.dark-theme .food-card, body.dark-theme #popular-dishes article, body.dark-theme #reviews article, body.dark-theme #menu-items article, body.dark-theme .review-card { background:#211d19 !important; color:#f8f1ec !important; border-color:#3a3029 !important; }
+body.dark-theme .food-card p, body.dark-theme #menu-hero p, body.dark-theme .story-content p { color:#d0c4bc !important; }
+body.dark-theme #menu-hero, body.dark-theme .customer-notice { background:#241a15 !important; color:#f8f1ec !important; }
+body.dark-theme .menu-search { background:#211d19; color:#fff; border-color:#51433a; }
+body.dark-theme #restaurant-info { background:#211d19 !important; color:#f8f1ec !important; }
+
+@media (max-width: 900px) {
+  header { align-items:center; gap:12px; padding:12px 20px; }
+  header nav { gap:4px; }
+  header nav a { padding:8px; font-size:13px; }
+  #story { padding:50px 22px; }
+  #story > article { flex-direction:column; }
+  #story > article > img, .story-content { width:min(100%,650px); }
+}
+@media (max-width: 640px) {
+  header { position:relative; flex-direction:column; padding:14px 12px; }
+  header nav, header nav p { justify-content:center; flex-wrap:wrap; }
+  header nav a { font-size:12px; padding:7px; }
+  .theme-toggle { padding:8px 10px; font-size:11px; }
+  .hero { min-height:520px; }
+  .hero-content { padding:22px 12px; }
+  section, aside { padding:38px 16px; }
+  #popular-dishes, #reviews, #menu-items { padding-left:14px; padding-right:14px; }
+  .food-card, #popular-dishes article, #menu-items article { width:min(100%,360px); }
+  #offer { width:calc(100% - 28px); height:auto; margin:28px auto; padding:28px 22px; }
+  .offer-content { width:100%; }
+  .offer-content h2 { font-size:clamp(1.7rem,7vw,2.3rem); }
+  #newsletter { padding:24px 18px; }
+  .newsletter-content { gap:12px; }
+  .newsletter-form { width:100%; }
+  .newsletter-form input { min-width:0; width:100%; }
+  .newsletter-form button { padding:0 14px; }
+  #categories h2 span { display:none; }
+  #features article { max-width:100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+
+.eyebrow { margin:0 auto 14px !important; color:var(--brand) !important; font-size:.78rem !important; font-weight:800; letter-spacing:.18em; }
+#menu-items > h2 { width:100%; text-align:center; margin:0 0 24px; font-size:clamp(1.8rem,3vw,2.7rem); }
+#menu-items .menu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),260px)); justify-content:center; align-items:stretch; gap:22px; width:100%; }
+#menu-items .menu-grid article { width:100%; margin:0; display:flex; flex-direction:column; }
+#menu-items .menu-grid article .price { margin-top:auto; }
+#menu-items .menu-grid article .add-to-cart { margin-top:0; }
+.cart-count-badge { display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; margin-left:5px; padding:0 5px; border-radius:999px; background:var(--brand); color:#fff; font-size:11px; font-weight:800; vertical-align:middle; }
+.cart-count-badge[hidden] { display:none; }
+.bitebox-status { position:fixed; z-index:5000; right:20px; bottom:20px; max-width:min(90vw,360px); padding:13px 18px; border-radius:14px; background:#201a16; color:#fff; box-shadow:0 12px 35px rgba(0,0,0,.22); opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .2s ease,transform .2s ease; }
+.bitebox-status.visible { opacity:1; transform:translateY(0); }
+.bitebox-menu-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding:24px clamp(18px,5vw,72px); background:#171311; color:#f7eee8; }
+.bitebox-menu-footer p { margin:0; }
+.bitebox-menu-footer a { color:#ffb596; text-decoration:none; font-weight:600; }
+#menu-items article[hidden], #menu-container article[hidden], #menuBody tr[hidden], .menu-card[hidden] { display:none !important; }
+body.dark-theme .bitebox-status { background:#f8eee7; color:#211b18; }

@@ -1,203 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Bite Box</title>
-        <link rel="stylesheet" href="./style.css">
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family
-    =Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;
-    400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171311">
+  <meta name="description" content="Explore the BiteBox menu: freshly prepared favourites delivered to your door.">
+  <title>Menu | BiteBox</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
-  
+<body>
   <header>
-    <div class="logo">
-        <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
-    </div>
-    <nav>
-        <p>
-            <a href="index.html">Home</a>
-            |
-            <a href="menu.html">Menu</a>
-            |
-            <a href="about.html">About</a>
-            |
-            <a href="contact.html">Contact</a>
-            |
-            <a href="cart.html">🛒</a><button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-</p>
-</nav>
-</header>
-   <!--Menu hero section-->
-  <section id="menu-hero">
-    <h1>Explore Our Delicious Menu</h1>
+    <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.png" alt="BiteBox" width="170"></a>
+    <nav aria-label="Main navigation">
+      <p>
+        <a href="index.html">Home</a>
+        <a href="menu.html" aria-current="page">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" aria-label="Shopping cart">🛒 Cart</a>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"><span class="theme-icon">☀</span><span class="theme-text">DAY MODE</span></button>
+      </p>
+    </nav>
+  </header>
 
-    <p>Discover freshly prepared pizzas, burgers, pasta,
-       biryani, desserts and many more delicious dishes
-       made with premium ingredients.
-    </p>
-  </section>
-
-<!-- Menu Items Section -->
-<section id="menu-items">
-<h2>
-        <span></span>
-        Popular Dishes
-        <span></span>
-    </h2>
-        <!-- Menu Item 1 -->
-        <article>
-
-            <span class="tag">Bestseller</span>
-
-            <img src="./assets/images/pizza.png" alt="Margherita Pizza">
-
-            <h3>Margherita Pizza</h3>
-
-            <p class="rating">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-                <small>(120)</small>
-            </p>
-
-            <p class="price">₹249</p>
-
-            <button>
-                <img src="./assets/images/cart-red.png" alt="Cart" width="8" height="8">
-                Add to Cart
-            </button>
-
- </article>
-
-        <!-- Menu Item 2 -->
-
-        <article>
-
-            <img src="./assets/images/burger.png" alt="Cheese Burger">
-
-            <h3>Cheese Burger</h3>
-
-            <p class="rating">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-                <small>(98)</small>
-            </p>
-
-            <p class="price">₹199</p>
-<div class="cart-img">
-            <button>
-                <img src="assets/images/cart-red.png" alt="Cart">
-                Add to Cart
-            </button>
-</div>
-        </article>
-
-        <!-- Menu Item 3 -->
-
-        <article>
-
-            <img src="assets/images/pasta.png" alt="Creamy Alfredo Pasta">
-
- <h3>Creamy Alfredo Pasta</h3>
-
-            <p class="rating">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-                <small>(85)</small>
-            </p>
-
-            <p class="price">₹229</p>
-<div class="cart-img">
-
-            <button>
-                <img src="assets/images/cart-red.png" alt="Cart">
-                Add to Cart
-            </button>
-</div>
-        </article>
-
-        <!-- Menu Item 4 -->
-
-        <article>
-
-            <span class="tag spicy">Spicy</span>
-
-            <img src="./assets/images/ChickenB.png" alt="Chicken Biryani" >
-
-            <h3>Chicken Biryani</h3>
-
-            <p class="rating">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-                <small>(110)</small>
-            </p>
-
-<p class="price">₹279</p>
-<div class="cart-img">
-
-  <button>
-              <img src="assets/images/cart-red.png" alt="Cart" >
-          Add to Cart  </button>
-</div>
-        </article>
+  <main>
+    <section id="menu-hero">
+      <p class="eyebrow">MADE FRESH. DELIVERED FAST.</p>
+      <h1>Good food. <span style="color:var(--brand)">Great mood.</span></h1>
+      <p>Find your new favourite, from cheesy pizza and juicy burgers to comforting pasta and aromatic biryani.</p>
     </section>
-<br>
-  <!--Restaurant Information-->
-<!--Using Block elements-->
-<h2>Restaurant Information</h2>
 
-<!--Using inline elements-->
-<span>Delivery Available</span>
-<span> | </span>
-<span>Open Every Day</span>
-<span> | </span>
-<span>Fresh Ingredients</span>
+    <section id="menu-items" aria-labelledby="menu-title">
+      <h2 id="menu-title">Explore the Menu</h2>
+      <div class="menu-toolbar">
+        <input class="menu-search" id="menu-search" type="search" placeholder="Search pizza, burger, pasta…" aria-label="Search menu">
+        <button class="menu-search-button" id="search-button" type="button">Search</button>
+      </div>
+      <div class="menu-grid">
+        <article data-category="Pizza">
+          <span class="tag">Bestseller</span>
+          <img src="./assets/images/pizza.png" alt="Margherita pizza" loading="lazy">
+          <h3>Margherita Pizza</h3>
+          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(120)</small></p>
+          <p class="price">₹249</p>
+          <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="249" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart <span aria-hidden="true">＋</span></button>
+        </article>
+        <article data-category="Burger">
+          <img src="./assets/images/burger.png" alt="Cheese burger" loading="lazy">
+          <h3>Cheese Burger</h3>
+          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(98)</small></p>
+          <p class="price">₹199</p>
+          <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart <span aria-hidden="true">＋</span></button>
+        </article>
+        <article data-category="Pasta">
+          <img src="./assets/images/pasta.png" alt="Creamy Alfredo pasta" loading="lazy">
+          <h3>Creamy Alfredo Pasta</h3>
+          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(85)</small></p>
+          <p class="price">₹229</p>
+          <button type="button" class="add-to-cart" data-name="Creamy Alfredo Pasta" data-price="229" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart <span aria-hidden="true">＋</span></button>
+        </article>
+        <article data-category="Biryani">
+          <span class="tag spicy">Popular</span>
+          <img src="./assets/images/ChickenB.png" alt="Chicken biryani" loading="lazy">
+          <h3>Chicken Biryani</h3>
+          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(110)</small></p>
+          <p class="price">₹279</p>
+          <button type="button" class="add-to-cart" data-name="Chicken Biryani" data-price="279" data-category="Biryani" data-img="./assets/images/ChickenB.png">Add to Cart <span aria-hidden="true">＋</span></button>
+        </article>
+      </div>
+      <p id="menu-no-results" class="menu-empty" hidden>No dishes match your search. Try another word.</p>
+    </section>
 
+    <section id="restaurant-info">
+      <h2>Good food, made easy.</h2>
+      <p>🛵 Delivery available <span aria-hidden="true"> · </span> Fresh ingredients <span aria-hidden="true"> · </span> Open every day</p>
+    </section>
+  </main>
 
-<script>
-
-const CART_KEY = "biteboxCart";
-
-    const dishes = document.querySelectorAll("#menu-items article");
-
-    dishes.forEach(function (dish) {
-
-        const button = dish.querySelector("button");
-
-        button.addEventListener("click", function () {
-
-            const name = dish.querySelector("h3").textContent.trim();
-
-            const priceText = dish.querySelector(".price").textContent;
-            const price = Number(priceText.replace("₹", "").trim());
-
-            const img = dish.querySelector("img").getAttribute("src");
-
-            let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-
-            const existingDish = cart.find(function (item) {
-                return item.name === name;
-            });
-
-            if (existingDish) {
-                existingDish.quantity++;
-
-            } else {
-                cart.push({
-                    name: name,
-                    price: price,
-                    quantity: 1,
-                    img: img
-                });
-            }
-            localStorage.setItem(CART_KEY, JSON.stringify(cart));
-            alert(name + " added to your cart! 🛒");
-        });
-    });
-</script>
-<script src="./file.js" defer></script>
+  <footer class="bitebox-menu-footer">
+    <p>© 2026 BiteBox. Fresh food, fast delivery.</p>
+    <a href="index.html">Back to home ↑</a>
+  </footer>
+  <script src="./file.js" defer></script>
 </body>
 </html>

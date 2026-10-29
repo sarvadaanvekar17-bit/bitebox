@@ -1,419 +1,320 @@
- "use strict";
+"use strict";
 
-    /* ---------- Settings (change here) ---------- */
-    const DELIVERY_CHARGE  = 40;
-    const PACKAGING_CHARGE = 20;
-    const STORAGE_KEY      = "biteboxCart";
+/* =========================================================
+   BITEBOX APP SCRIPT
+   Works safely across Home, Menu, Cart, and Order pages.
+   ========================================================= */
+(function () {
+  const DELIVERY_CHARGE = 40;
+  const PACKAGING_CHARGE = 20;
+  const CART_KEY = "biteboxCart";
+  const THEME_KEY = "biteboxTheme";
+  const API_URL = "https://6ae1efa7bbb5412922996528.mockapi.io/menu";
 
-    /* ---------- Page elements ---------- */
-    const menuRows = document.querySelectorAll("#menuBody tr");    // menu table <tbody>
-    const cartBody  = document.getElementById("cart-items");  // shopping cart <tbody>
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-    const itemCountEl = document.getElementById("item-count");
-    const subtotalEl  = document.getElementById("subtotal-amount");
-    const deliveryEl  = document.getElementById("delivery-amount");
-    const packagingEl = document.getElementById("packaging-amount");
-    const discountEl  = document.getElementById("discount-amount");
-    const totalEl     = document.getElementById("total-amount");
-
-    /* ---------- Cart data: [{name, category, price, img, quantity}] ---------- */
-    let cart = loadCart();
-
-    /* =====================================================
-       CALCULATIONS
-       ===================================================== */
-    function calculateItemTotal(price, quantity) {
-        return price * quantity;
+  function readStorage(key, fallback) {
+    try {
+      const value = localStorage.getItem(key);
+      return value === null ? fallback : JSON.parse(value);
+    } catch (error) {
+      return fallback;
     }
+  }
 
-    function calculateSubtotal() {
-        return cart.reduce(function (sum, item) {
-            return sum + calculateItemTotal(item.price, item.quantity);
-        }, 0);
-    }
+  function writeStorage(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); }
+    catch (error) { console.warn("BiteBox: browser storage is unavailable.", error); }
+  }
 
-    function calculateDeliveryCharges(subtotal) {
-        return subtotal > 0 ? DELIVERY_CHARGE : 0;
-    }
+  function loadCart() {
+    const saved = readStorage(CART_KEY, []);
+    if (!Array.isArray(saved)) return [];
+    return saved.map(item => ({
+      name: String(item?.name || "").trim(),
+      category: String(item?.category || ""),
+      price: Number(item?.price),
+      img: String(item?.img || item?.image || ""),
+      quantity: Math.floor(Number(item?.quantity))
+    })).filter(item => item.name && Number.isFinite(item.price) && item.price > 0 && Number.isFinite(item.quantity) && item.quantity > 0);
+  }
 
-    function calculatePackagingCharges(subtotal) {
-        return subtotal > 0 ? PACKAGING_CHARGE : 0;
-    }
+  let cart = loadCart();
+  const money = amount => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 2 }).format(amount);
 
-    // 699-799 = 10%, 800-1000 = 15%, above 1000 = 25%
-    function calculateDiscount(subtotal) {
-        if (subtotal > 1000)  return subtotal * 0.25;
-        if (subtotal >= 800)  return subtotal * 0.15;
-        if (subtotal >= 699)  return subtotal * 0.10;
-        return 0;
-    }
+  function saveCart() { writeStorage(CART_KEY, cart); }
+  function subtotal() { return cart.reduce((sum, item) => sum + item.price * item.quantity, 0); }
+  function discountFor(amount) {
+    if (amount > 1000) return amount * 0.25;
+    if (amount >= 800) return amount * 0.15;
+    if (amount >= 699) return amount * 0.10;
+    return 0;
+  }
 
-    function calculateTotal(subtotal, delivery, packaging, discount) {
-        return subtotal + delivery + packaging - discount;
-    }
-
-    function formatPrice(amount) {
-        return "₹" + amount.toFixed(2);
-    }
-
-    /* =====================================================
-       DISPLAY
-       ===================================================== */
-    function escapeHTML(text) {
-        const div = document.createElement("div");
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    const REMOVE_ICON =
-        '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" ' +
-        'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6" /></svg>';
-
-    function renderCart() {
-        cartBody.innerHTML = "";
-
-        if (cart.length === 0) {
-            const emptyRow = document.createElement("tr");
-            emptyRow.className = "empty-row";
-            emptyRow.innerHTML =
-                '<td colspan="5">Your cart is empty. Use "Add to Cart" in the menu above to add a dish.</td>';
-            cartBody.appendChild(emptyRow);
-            updateOrderSummary();
-            return;
-        }
-
-        cart.forEach(function (item, index) {
-            const name = escapeHTML(item.name);
-            const imageHTML = item.img
-                ? '<img src="' + escapeHTML(item.img) + '" alt="' + name + '" width="56" height="56">'
-                : "";
-
-            const row = document.createElement("tr");
-            row.innerHTML =
-                '<td data-label="Item">' +
-                    '<div class="cart-item">' + imageHTML +
-                        "<div><h3>" + name + "</h3><p>" + escapeHTML(item.category) + "</p></div>" +
-                    "</div>" +
-                "</td>" +
-                '<td data-label="Price" class="item-price">' + formatPrice(item.price) + "</td>" +
-                '<td data-label="Quantity">' +
-                    '<div class="qty">' +
-                        '<button type="button" data-action="decrease" data-index="' + index + '" aria-label="Decrease quantity of ' + name + '">-</button>' +
-                        '<span class="item-quantity">' + item.quantity + "</span>" +
-                        '<button type="button" data-action="increase" data-index="' + index + '" aria-label="Increase quantity of ' + name + '">+</button>' +
-                    "</div>" +
-                "</td>" +
-                '<td data-label="Total" class="item-total">' +
-                    formatPrice(calculateItemTotal(item.price, item.quantity)) + "</td>" +
-                '<td data-label="Action">' +
-                    '<button type="button" class="remove" data-action="remove" data-index="' + index + '" aria-label="Remove ' + name + '">' +
-                        REMOVE_ICON +
-                    "</button>" +
-                "</td>";
-
-            cartBody.appendChild(row);
-        });
-
-        updateOrderSummary();
-    }
-
-    function updateOrderSummary() {
-        const subtotal  = calculateSubtotal();
-        const delivery  = calculateDeliveryCharges(subtotal);
-        const packaging = calculatePackagingCharges(subtotal);
-        const discount  = calculateDiscount(subtotal);
-        const total     = calculateTotal(subtotal, delivery, packaging, discount);
-
-        const itemCount = cart.reduce(function (count, item) {
-            return count + item.quantity;
-        }, 0);
-
-        itemCountEl.textContent = "Subtotal (" + itemCount + (itemCount === 1 ? " Item)" : " Items)");
-        subtotalEl.textContent  = formatPrice(subtotal);
-        deliveryEl.textContent  = formatPrice(delivery);
-        packagingEl.textContent = formatPrice(packaging);
-        discountEl.textContent  = discount > 0 ? "-" + formatPrice(discount) : formatPrice(0);
-        totalEl.textContent     = formatPrice(total);
-    }
-
-    /* =====================================================
-       SAVE / LOAD (browser storage)
-       ===================================================== */
-    function saveCart() {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-        } catch (error) {
-            /* storage blocked: the cart still works, it just won't survive a refresh */
-        }
-    }
-
-    function loadCart() {
-        try {
-            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-            if (Array.isArray(saved)) {
-                return saved.filter(function (item) {
-                    return item && item.name && Number(item.price) > 0 && Number(item.quantity) > 0;
-                });
-            }
-        } catch (error) {
-            /* ignore and start with an empty cart */
-        }
-        return [];
-    }
-
-    function refresh() {
-        saveCart();
-        renderCart();
-    }
-
-    
-/* ADD TO CART — menu table */
-
-if (menuBody) {
-    menuBody.addEventListener("click", function (event) {
-        const button = event.target.closest(".add-to-cart");
-
-        if (!button || button.disabled) return;
-
-        const name = button.dataset.name;
-        const price = Number(button.dataset.price);
-
-        if (!name || !(price > 0)) return;
-
-        const existing = cart.find(function (item) {
-            return item.name === name;
-        });
-
-        if (existing) {
-            existing.quantity++;
-        } else {
-            cart.push({
-                name: name,
-                category: button.dataset.category || "",
-                price: price,
-                img: button.dataset.img || "",
-                quantity: 1
-            });
-        }
-
-        refresh();
-
-        const originalText = button.dataset.label || button.textContent;
-        button.dataset.label = originalText;
-        button.textContent = "Added ✓";
-        clearTimeout(button._resetTimer);
-        button._resetTimer = setTimeout(function () {
-            button.textContent = originalText;
-        }, 900);
+  function updateCartBadge() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    $$("[data-cart-count], #cart-count, .cart-count").forEach(el => { el.textContent = count; });
+    $$("a[href*='cart.html']").forEach(link => {
+      if (!link.querySelector(".cart-count-badge")) {
+        const badge = document.createElement("span");
+        badge.className = "cart-count-badge";
+        badge.setAttribute("aria-label", "Items in cart");
+        link.appendChild(badge);
+      }
+      const badge = link.querySelector(".cart-count-badge");
+      if (badge) { badge.textContent = count; badge.hidden = count === 0; }
     });
-}
-    /* =====================================================
-       + / - / REMOVE (shopping cart table)
-       ===================================================== */
-    cartBody.addEventListener("click", function (event) {
-        const button = event.target.closest("button[data-action]");
-        if (!button) return;
+  }
 
-        const index  = Number(button.dataset.index);
-        const action = button.dataset.action;
-        const item   = cart[index];
-        if (!item) return;
+  function renderCart() {
+    const cartBody = $("#cart-items");
+    if (!cartBody) { updateCartBadge(); return; }
+    cartBody.replaceChildren();
 
-        if (action === "increase") {
-            item.quantity++;
-        } else if (action === "decrease") {
-            item.quantity--;
-            if (item.quantity <= 0) cart.splice(index, 1);
-        } else if (action === "remove") {
-            cart.splice(index, 1);
-        } 
-        refresh();
-    });
-
-    /* =====================================================
-       PROCEED TO CHECKOUT
-       ===================================================== */
-    const checkoutBtn = document.getElementById("checkout-btn");
-
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", function () {
-            if (cart.length === 0) {
-                alert("Your cart is empty. Add a dish from the menu first.");
-                return;
-            }
-            window.location.href = "./ordernow.html";
-        });
-    }
-
-    /* =====================================================
-       CLEAR CART
-       ===================================================== */
-    const clearBtn = document.getElementById("clear-cart-btn");
-
-    if (clearBtn) {
-        clearBtn.addEventListener("click", function () {
-            if (cart.length === 0) return;
-
-            if (confirm("Remove all items from your cart?")) {
-                cart = [];
-                refresh();
-            }
-        });
-    }
-    
-    /* ---------- First load ---------- */
-    renderCart();
-
-/* ---------- SEARCH MENU TABLE ---------- */
-
-const searchInput = document.getElementById("menu-search");
-const searchButton = document.getElementById("search-button");
-
-
-function searchMenu() {
-    const searchValue = searchInput.value.trim().toLowerCase();
-
-    (document.querySelectorAll("#menuBody tr")).forEach(function (row) {
-        const rowText = row.textContent.toLowerCase();
-
-        if (rowText.includes(searchValue)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
+    if (cart.length === 0) {
+      const row = document.createElement("tr");
+      row.className = "empty-row";
+      const cell = document.createElement("td");
+      cell.colSpan = 5;
+      cell.textContent = "Your cart is empty. Browse the menu and add something delicious!";
+      row.appendChild(cell);
+      cartBody.appendChild(row);
+    } else {
+      cart.forEach((item, index) => {
+        const row = document.createElement("tr");
+        const itemCell = document.createElement("td");
+        itemCell.dataset.label = "Item";
+        const itemWrap = document.createElement("div");
+        itemWrap.className = "cart-item";
+        if (item.img) {
+          const img = document.createElement("img");
+          img.src = item.img;
+          img.alt = item.name;
+          img.width = 56; img.height = 56;
+          img.loading = "lazy";
+          itemWrap.appendChild(img);
         }
-    });
-}
+        const details = document.createElement("div");
+        const name = document.createElement("h3"); name.textContent = item.name;
+        const category = document.createElement("p"); category.textContent = item.category;
+        details.append(name, category); itemWrap.appendChild(details); itemCell.appendChild(itemWrap);
 
-// Search when the button is clicked
-if (searchButton && searchInput) {
-    searchButton.addEventListener("click", searchMenu);
-
-    // Search when Enter is pressed
-    searchInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            searchMenu();
-        }
-    });
-}
-
-/* ---------- DAY MODE / NIGHT MODE ---------- */
-
-const themeButton = document.getElementById("theme-toggle");
-
-function updateThemeButton() {
-    const isDark = document.body.classList.contains("dark-theme");
-
-    const themeIcon = themeButton?.querySelector(".theme-icon");
-    const themeText = themeButton?.querySelector(".theme-text");
-
-    if (themeIcon) {
-        themeIcon.textContent = isDark ? "☾" : "☀";
+        const priceCell = document.createElement("td"); priceCell.dataset.label = "Price"; priceCell.className = "item-price"; priceCell.textContent = money(item.price);
+        const qtyCell = document.createElement("td"); qtyCell.dataset.label = "Quantity";
+        const qty = document.createElement("div"); qty.className = "qty quantity-box";
+        const minus = actionButton("−", "decrease", index, `Decrease ${item.name}`);
+        const count = document.createElement("span"); count.className = "item-quantity"; count.textContent = item.quantity;
+        const plus = actionButton("+", "increase", index, `Increase ${item.name}`);
+        qty.append(minus, count, plus); qtyCell.appendChild(qty);
+        const totalCell = document.createElement("td"); totalCell.dataset.label = "Total"; totalCell.className = "item-total"; totalCell.textContent = money(item.price * item.quantity);
+        const actionCell = document.createElement("td"); actionCell.dataset.label = "Action";
+        actionCell.appendChild(actionButton("Remove", "remove", index, `Remove ${item.name}`, "remove"));
+        row.append(itemCell, priceCell, qtyCell, totalCell, actionCell); cartBody.appendChild(row);
+      });
     }
+    updateSummary();
+    updateCartBadge();
+  }
 
-    if (themeText) {
-        themeText.textContent = isDark ? "NIGHT MODE" : "DAY MODE";
+  function actionButton(text, action, index, label, extraClass = "") {
+    const button = document.createElement("button");
+    button.type = "button"; button.dataset.action = action; button.dataset.index = index;
+    button.setAttribute("aria-label", label); button.textContent = text;
+    if (extraClass) button.className = extraClass;
+    return button;
+  }
+
+  function updateSummary() {
+    const amount = subtotal();
+    const delivery = amount > 0 ? DELIVERY_CHARGE : 0;
+    const packaging = amount > 0 ? PACKAGING_CHARGE : 0;
+    const discount = discountFor(amount);
+    const total = Math.max(0, amount + delivery + packaging - discount);
+    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const set = (selector, value) => { const el = $(selector); if (el) el.textContent = value; };
+    set("#item-count", `Subtotal (${itemCount} ${itemCount === 1 ? "Item" : "Items"})`);
+    set("#subtotal-amount, #subtotal", money(amount));
+    set("#delivery-amount, #delivery", money(delivery));
+    set("#packaging-amount, #packaging", money(packaging));
+    set("#discount-amount, #discount", discount ? `−${money(discount)}` : money(0));
+    set("#total-amount, #total", money(total));
+  }
+
+  function addToCart(item, button) {
+    const name = String(item.name || "").trim();
+    const price = Number(item.price);
+    if (!name || !Number.isFinite(price) || price <= 0) {
+      announce("This item could not be added. Please check its name and price.");
+      return;
     }
-}
+    const existing = cart.find(product => product.name.toLowerCase() === name.toLowerCase());
+    if (existing) existing.quantity += 1;
+    else cart.push({ name, category: String(item.category || ""), price, img: String(item.img || ""), quantity: 1 });
+    saveCart(); renderCart();
+    if (button) {
+      const original = button.dataset.originalLabel || button.textContent.trim() || "Add to Cart";
+      button.dataset.originalLabel = original;
+      button.textContent = "Added ✓";
+      button.classList.add("is-added");
+      if (button._resetTimer) clearTimeout(button._resetTimer);
+      button._resetTimer = setTimeout(() => { button.textContent = original; button.classList.remove("is-added"); }, 1000);
+    }
+    announce(`${name} added to your cart.`);
+  }
 
-function toggleTheme() {
-    const isDark = document.body.classList.toggle("dark-theme");
+  function announce(message) {
+    let status = $("#bitebox-status");
+    if (!status) {
+      status = document.createElement("div"); status.id = "bitebox-status"; status.className = "bitebox-status";
+      status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite"); document.body.appendChild(status);
+    }
+    status.textContent = message; status.classList.add("visible");
+    clearTimeout(status._timer); status._timer = setTimeout(() => status.classList.remove("visible"), 2200);
+  }
 
-    localStorage.setItem("biteboxTheme", isDark ? "dark" : "light");
+  /* Add-to-cart buttons on menu cards and optional menu table */
+  document.addEventListener("click", event => {
+    const button = event.target.closest(".add-to-cart, [data-add-to-cart]");
+    if (!button || button.disabled) return;
+    const card = button.closest("article, tr, .menu-card");
+    const name = button.dataset.name || $("h3, h4, .item-name", card)?.textContent?.trim();
+    const priceText = button.dataset.price || $(".price, .item-price", card)?.textContent || "";
+    const price = Number(String(priceText).replace(/[^0-9.]/g, ""));
+    const image = button.dataset.img || $("img", card)?.getAttribute("src") || "";
+    const category = button.dataset.category || card?.dataset.category || "";
+    addToCart({ name, price, img: image, category }, button);
+  });
 
+  /* Cart quantity and remove controls */
+  const cartBody = $("#cart-items");
+  if (cartBody) cartBody.addEventListener("click", event => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+    const index = Number(button.dataset.index);
+    const item = cart[index]; if (!item) return;
+    if (button.dataset.action === "increase") item.quantity += 1;
+    else if (button.dataset.action === "decrease") {
+      item.quantity -= 1;
+      if (item.quantity <= 0) cart.splice(index, 1);
+    } else if (button.dataset.action === "remove") cart.splice(index, 1);
+    saveCart(); renderCart();
+  });
+
+  const checkoutBtn = $("#checkout-btn");
+  if (checkoutBtn) checkoutBtn.addEventListener("click", () => {
+    if (!cart.length) { announce("Your cart is empty. Add a dish before checkout."); return; }
+    window.location.href = "./ordernow.html";
+  });
+  const clearBtn = $("#clear-cart-btn");
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    if (cart.length && window.confirm("Remove all items from your cart?")) { cart = []; saveCart(); renderCart(); }
+  });
+
+  /* Menu search: supports table rows and menu cards */
+  const searchInput = $("#menu-search");
+  const searchButton = $("#search-button");
+  function searchMenu() {
+    if (!searchInput) return;
+    const query = searchInput.value.trim().toLowerCase();
+    const items = $$("#menuBody tr, #menu-items article, #menu-container article, .menu-card");
+    let visible = 0;
+    items.forEach(item => {
+      const match = item.textContent.toLowerCase().includes(query);
+      item.hidden = !match; if (match) visible++;
+    });
+    const empty = $("#menu-no-results");
+    if (empty) empty.hidden = visible > 0;
+  }
+  if (searchButton) searchButton.addEventListener("click", searchMenu);
+  if (searchInput) {
+    searchInput.addEventListener("input", searchMenu);
+    searchInput.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); searchMenu(); } });
+  }
+
+  /* Theme toggle with persistent preference */
+  const themeButton = $("#theme-toggle");
+  function updateThemeButton() {
+    if (!themeButton) return;
+    const dark = document.body.classList.contains("dark-theme");
+    const icon = $(".theme-icon", themeButton); const label = $(".theme-text", themeButton);
+    if (icon) icon.textContent = dark ? "☾" : "☀";
+    if (label) label.textContent = dark ? "NIGHT MODE" : "DAY MODE";
+    themeButton.setAttribute("aria-pressed", String(dark));
+  }
+  const savedTheme = (() => { try { return localStorage.getItem(THEME_KEY); } catch { return null; } })();
+  document.body.classList.toggle("dark-theme", savedTheme === "dark");
+  updateThemeButton();
+  if (themeButton) themeButton.addEventListener("click", () => {
+    const dark = document.body.classList.toggle("dark-theme");
+    try { localStorage.setItem(THEME_KEY, dark ? "dark" : "light"); } catch (error) { /* optional preference */ }
     updateThemeButton();
-}
+  });
 
-// Load the previously saved theme when the page opens
-const savedTheme = localStorage.getItem("biteboxTheme");
+  /* Optional Add Menu Item modal + MockAPI integration. It runs only if its markup exists. */
+  const addMenuBtn = $("#add-menu-btn");
+  const menuModal = $("#menu-modal");
+  const cancelMenuForm = $("#cancel-menu-form");
+  const menuForm = $("#menu-form");
+  const menuContainer = $("#menu-container");
+  function closeMenuModal() { if (menuModal) menuModal.classList.remove("show"); }
+  if (addMenuBtn && menuModal) addMenuBtn.addEventListener("click", () => menuModal.classList.add("show"));
+  if (cancelMenuForm) cancelMenuForm.addEventListener("click", closeMenuModal);
+  if (menuModal) menuModal.addEventListener("click", event => { if (event.target === menuModal) closeMenuModal(); });
+  document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenuModal(); });
 
-if (savedTheme === "dark") {
-    document.body.classList.add("dark-theme");
-} else {
-    document.body.classList.remove("dark-theme");
-}
-
-updateThemeButton();
-
-// Activate the button
-if (themeButton) {
-    themeButton.addEventListener("click", toggleTheme);
-}
-const addMenuBtn = document.getElementById("add-menu-btn");
-const menuModal = document.getElementById("menu-modal");
-const cancelMenuForm = document.getElementById("cancel-menu-form");
-const menuForm = document.getElementById("menu-form");
-
-// 1. Open the modal
-addMenuBtn.addEventListener("click", function () {
-    menuModal.classList.add("show");
-});
-
-// 2. Close the modal when Cancel is clicked
-cancelMenuForm.addEventListener("click", function () {
-    menuModal.classList.remove("show");
-});
-
-// 3. Add a new menu item when the form is submitted
-const API_URL = "https://6ae1efa7bbb5412922996528.mockapi.io/menu";
-
-menuForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const menuItem = {
-        name: document.getElementById("menu-name").value.trim(),
-        price: Number(document.getElementById("menu-price").value),
-        category: document.getElementById("menu-category").value,
-        rating: Number(document.getElementById("menu-rating").value),
-        reviews: Number(document.getElementById("menu-reviews").value),
-        image: document.getElementById("menu-image").value.trim()
-    };
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(menuItem)
-        });
-        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
-        const data = await response.json();
-        console.log("Menu item added:", data);
-        menuForm.reset();
-        menuModal.classList.remove("show");
-        fetchMenuItems();
-    } catch (error) {
-        console.error("Error adding menu item:", error);
-    }
-});
-
-async function fetchMenuItems() {
-    try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error(`Request failed: ${response.status}`);
-        const menuItems = await response.json();
-        displayMenuItems(menuItems);
-    } catch (error) {
-        console.error("Error fetching menu items:", error);
-    }
-}
-
-function displayMenuItems(menuItems) {
-    const menuContainer = document.getElementById("menu-container");
-    menuContainer.innerHTML = "";
-
-    menuItems.forEach(menuItem => {
-        const card = document.createElement("article");
-        card.innerHTML = `
-            <img src="${menuItem.image}" alt="${menuItem.name}">
-            <h3>${menuItem.name}</h3>
-            <p class="rating">
-                ${menuItem.rating}
-                <small>(${menuItem.reviews})</small>
-            </p>
-            <p class="price">₹${menuItem.price}</p>
-            <button> Add to Cart🛒 </button>
-        `;
-        menuContainer.appendChild(card);
+  function safeText(tag, text, className) {
+    const el = document.createElement(tag); el.textContent = text == null ? "" : String(text);
+    if (className) el.className = className; return el;
+  }
+  function displayRemoteMenu(items) {
+    if (!menuContainer || !Array.isArray(items)) return;
+    menuContainer.replaceChildren();
+    items.forEach(item => {
+      const card = document.createElement("article"); card.className = "menu-card";
+      if (item.image) { const img = document.createElement("img"); img.src = item.image; img.alt = item.name || "Menu item"; img.loading = "lazy"; card.appendChild(img); }
+      card.appendChild(safeText("h3", item.name));
+      card.appendChild(safeText("p", `★ ${Number(item.rating || 0).toFixed(1)} (${Number(item.reviews || 0)} reviews)`, "rating"));
+      card.appendChild(safeText("p", money(Number(item.price) || 0), "price"));
+      const button = safeText("button", "Add to Cart +", "add-to-cart"); button.type = "button";
+      button.dataset.name = item.name || ""; button.dataset.price = String(item.price || ""); button.dataset.category = item.category || ""; button.dataset.img = item.image || "";
+      card.appendChild(button); menuContainer.appendChild(card);
     });
-}
+  }
+  async function fetchRemoteMenu() {
+    if (!menuContainer) return;
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) throw new Error(`Menu request failed (${response.status})`);
+      displayRemoteMenu(await response.json());
+    } catch (error) { console.warn("BiteBox: optional online menu could not be loaded.", error); }
+  }
+  if (menuForm) menuForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    const name = $("#menu-name")?.value.trim();
+    const price = Number($("#menu-price")?.value);
+    const category = $("#menu-category")?.value || "";
+    const rating = Number($("#menu-rating")?.value || 0);
+    const reviews = Number($("#menu-reviews")?.value || 0);
+    const image = $("#menu-image")?.value.trim() || "";
+    if (!name || !Number.isFinite(price) || price <= 0) { announce("Enter a valid dish name and price."); return; }
+    const submit = $("button[type='submit']", menuForm); if (submit) { submit.disabled = true; submit.textContent = "Saving…"; }
+    try {
+      const response = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, price, category, rating, reviews, image }) });
+      if (!response.ok) throw new Error(`Save failed (${response.status})`);
+      menuForm.reset(); closeMenuModal(); await fetchRemoteMenu(); announce("Menu item saved successfully.");
+    } catch (error) { console.error(error); announce("Could not save the item. Check your internet connection and API settings."); }
+    finally { if (submit) { submit.disabled = false; submit.textContent = "Save Menu Item"; } }
+  });
+  if (menuContainer && menuForm) fetchRemoteMenu();
 
-fetchMenuItems();
+  /* Newsletter: front-end demo feedback (no email service connected) */
+  $$(".newsletter-form").forEach(form => form.addEventListener("submit", event => {
+    event.preventDefault();
+    const input = $("input[type='email']", form);
+    if (input && input.checkValidity()) { announce("Thanks for subscribing! This demo does not send emails yet."); form.reset(); }
+    else if (input) input.reportValidity();
+  }));
+
+  renderCart();
+})();
