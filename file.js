@@ -172,7 +172,7 @@
     status.textContent = message; status.classList.add("visible");
     clearTimeout(status._timer); status._timer = setTimeout(() => status.classList.remove("visible"), 2200);
   }
-
+  
   /* Add-to-cart buttons on menu cards and optional menu table */
   document.addEventListener("click", event => {
     const button = event.target.closest(".add-to-cart, [data-add-to-cart]");

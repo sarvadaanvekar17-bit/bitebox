@@ -1411,23 +1411,25 @@ textarea:focus{
    ========================================================= */
 #shopping-cart{
     max-width:665px;
-    margin:50px auto;
-    border:1px solid #eeeeee;
+    margin:10px auto;
+    border:1px solid #827a7a;
     border-radius:12px;
     overflow:hidden;
-    background:#ffffff;
+    background:#b18282;
     padding:0;
 }
 
 #shopping-cart table{
     width:100%;
+    margin: 0;
+    padding: 0;
     border:none;
     border-collapse:collapse;
     table-layout:fixed;
 }
 
 #shopping-cart th{
-    background:#fff4ec;
+    background:#312f2d;
     font-weight:500;
     font-size:16px;
     padding:18px 8px;
@@ -1523,7 +1525,7 @@ textarea:focus{
     background:#ffffff;
     border:1px solid var(--line);
     border-radius:var(--r-card);
-    padding:24px;
+    padding: 28px;
 }
 
 #order-summary h2{
@@ -2791,6 +2793,38 @@ body.order-page #cart-actions{
     transform: translateX(-89px) scale(1.05);
 }
 
+.menu-items article {
+    position: relative;
+}
+
+#menu-items article .menu-actions {
+    position: absolute;
+    right: 20px;
+    bottom: 68px;
+    display: flex;
+    align-items: left;
+    gap: 12px;
+    margin: 0;
+}
+#menu-items article .menu-actions button {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    cursor: pointer;
+}
+#menu-items article .menu-actions button img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+#menu-items article .menu-actions button:hover {
+    background: transparent;
+}
 
 /* =========================================================
    NIGHT MODE - WHOLE PAGE
@@ -3272,15 +3306,17 @@ body.dark-theme label {
 
 /* Cards */
 body.dark-theme .food-card,
+body.dark-theme .menu-modal-content,
 body.dark-theme .feature-card,
 body.dark-theme .review-card,
 body.dark-theme #popular-dishes article,
 body.dark-theme #reviews article,
 body.dark-theme .contact-container article,
+body.dark-theme #menu-container article,
 body.dark-theme #mission-vision article {
-    background-color: #1e1e1e !important;
+    background-color: #2c2207 !important;
     color: #f1f1f1 !important;
-    border-color: #383838;
+    border-color: #605e5e;
 }
 
 /* Tables */
@@ -3426,7 +3462,7 @@ body table {
     max-width: 450px;
     max-height:85vh;
     overflow-y:auto;
-    background: #ffffff;
+    background: #f8f7f7;
 
 
     border-radius: 12px;
@@ -3458,7 +3494,7 @@ body table {
     width: 100%;
     max-width: 300px;
     overflow: hidden;
-    background: #ffffff;
+    background: #fafaf9;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
@@ -3737,12 +3773,6 @@ body table {
     border-color: #e53935;
 }
 
-
-
-/* =========================================================
-   BITEBOX PROFESSIONAL POLISH LAYER
-   Added as overrides so the existing pages keep their sections.
-   ========================================================= */
 :root {
   --brand: #ff6b35;
   --brand-dark: #e65325;
