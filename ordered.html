@@ -1,21 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordered action</title>
-        <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Order Confirmed | BiteBox</title>
+    <meta name="description" content="Your BiteBox order confirmation and ticket.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/commerce.css">
+  <link rel="stylesheet" href="./css/account.css">
 
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Order Confirmed | BiteBox">
+    <meta property="og:description" content="Your BiteBox order confirmation and ticket.">
 </head>
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
-    <h1>Your order is Noted by the chief 🛒📦✨</h1>
-    <div class="order-container">
-    <a href="./cart.html">
-    <img src="./assets/images/carted.png" 
-         alt="Order Successful - Continue Shopping"
-         class="success-image" height="800px" width="800px" align="center">
-</a>
-</div>
-    <h2>The delivery partner will shortly arrive at the location 🥗 🛵</h2>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="commerce-page">
+    <section class="section">
+      <div class="container" style="max-width:720px">
+        <div class="ticket-card" id="ticket-wrap">
+          <div class="success-badge" aria-hidden="true">✓</div>
+          <h1 style="font-size:var(--text-3xl)">Order Confirmed!</h1>
+          <p class="muted">Thanks for ordering with BiteBox — your food is being prepared.</p>
+          <span class="demo-note">Demo order — no payment was processed.</span>
+          <div id="order-ticket" aria-live="polite" style="margin-top:var(--space-8);text-align:left"></div>
+          <div style="display:flex;gap:var(--space-3);justify-content:center;margin-top:var(--space-8);flex-wrap:wrap">
+            <a class="btn btn-ghost" href="menu.html">Continue Shopping</a>
+            <a class="btn btn-primary" href="orders.html">View My Orders</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="./assets/images/logo.svg" alt="BiteBox Logo"><p>Delicious food delivered to your doorstep.</p></div>
+      <div class="footer-col"><h3>Quick Links</h3><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a></div>
+      <div class="footer-col"><h3>Contact Us</h3><p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
+
+  <script src="./file.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,163 @@
+/* =========================================================
+   BiteBox 2.0 — Design Tokens
+   Single source of truth for colors, type, spacing, radii,
+   shadows, motion, z-index and layout widths.
+   ========================================================= */
+
+:root{
+    /* ---- Brand palette (BiteBox 2.0 dark-first) ---- */
+    --color-bg:#101010;
+    --color-surface:#191919;
+    --color-card:#242424;
+    --color-ink:#f5efe2;
+    --color-muted:#a8a29e;
+    --color-line:#2c2c2c;
+    --color-primary:#ff7138;
+    --color-primary-dark:#e05f24;
+    --color-secondary:#ffb15c;
+    --color-cream:#fff4e8;
+    --color-accent:#ffb15c;
+    --color-danger:#e0645a;
+    --color-success:#6fbf73;
+
+    /* Brand gradient (primary CTA) */
+    --gradient-brand:linear-gradient(135deg,var(--color-primary) 0%,var(--color-secondary) 100%);
+    --gradient-surface:linear-gradient(180deg,var(--color-surface) 0%,var(--color-bg) 100%);
+
+    /* ---- Typography ---- */
+    --font-display:"Sora","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-body:"Inter","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-script:"Great Vibes","Pacifico",cursive;
+
+    --text-xs:.75rem;
+    --text-sm:.875rem;
+    --text-base:1rem;
+    --text-lg:1.125rem;
+    --text-xl:1.25rem;
+    --text-2xl:1.5rem;
+    --text-3xl:1.875rem;
+    --text-4xl:2.25rem;
+    --text-5xl:clamp(2.4rem,6vw,4.2rem);
+    --text-hero:clamp(2.6rem,7vw,5.4rem);
+
+    --weight-regular:400;
+    --weight-medium:500;
+    --weight-semibold:600;
+    --weight-bold:700;
+    --weight-extrabold:800;
+
+    --leading-tight:1.08;
+    --leading-snug:1.22;
+    --leading-normal:1.6;
+    --tracking-tight:-.03em;
+    --tracking-wide:.08em;
+
+    /* ---- Spacing (4px base) ---- */
+    --space-1:4px;
+    --space-2:8px;
+    --space-3:12px;
+    --space-4:16px;
+    --space-5:20px;
+    --space-6:24px;
+    --space-8:32px;
+    --space-10:40px;
+    --space-12:48px;
+    --space-16:64px;
+    --space-20:80px;
+    --space-24:96px;
+    --space-section:clamp(56px,9vw,120px);
+
+    /* ---- Radius ---- */
+    --radius-sm:8px;
+    --radius-md:14px;
+    --radius-lg:22px;
+    --radius-xl:32px;
+    --radius-pill:999px;
+
+    /* ---- Shadows (dark-tuned) ---- */
+    --shadow-sm:0 4px 14px rgba(0,0,0,.28);
+    --shadow-md:0 14px 34px rgba(0,0,0,.34);
+    --shadow-lg:0 28px 64px rgba(0,0,0,.42);
+    --shadow-brand:0 14px 34px rgba(255,113,56,.28);
+    --shadow-gold:0 14px 34px rgba(255,177,92,.22);
+
+    /* ---- Motion ---- */
+    --transition-fast:150ms ease;
+    --transition-base:250ms ease;
+    --transition-slow:450ms cubic-bezier(.22,.8,.24,1);
+    --ease-out:cubic-bezier(.22,.8,.24,1);
+
+    /* ---- Z-index scale ---- */
+    --z-base:0;
+    --z-dropdown:100;
+    --z-sticky:200;
+    --z-header:300;
+    --z-modal:500;
+    --z-toast:900;
+
+    /* ---- Layout ---- */
+    --container-sm:720px;
+    --container-md:1080px;
+    --container-lg:1240px;
+    --header-height:76px;
+    --gutter:clamp(16px,4vw,40px);
+
+    /* ---- Breakpoints (reference values for media queries) ---- */
+    --bp-mobile:768px;
+    --bp-tablet:1199px;
+    --bp-desktop:1200px;
+}
+
+/* =========================================================
+   Light theme override — preserves the existing light/dark
+   toggle (body.dark-theme is toggled by file.js).
+   When .dark-theme is absent these light tokens apply.
+   ========================================================= */
+body:not(.dark-theme){
+    --color-bg:#faf6ec;
+    --color-surface:#fffdf7;
+    --color-card:#fffdf7;
+    --color-ink:#2f2a22;
+    --color-muted:#7a7264;
+    --color-line:#e7dcc4;
+    --color-primary:#c19a3f;
+    --color-primary-dark:#8a6514;
+    --color-secondary:#d4af37;
+    --color-cream:#fff4e8;
+    --color-accent:#ff7138;
+    --color-danger:#b94a3a;
+    --color-success:#3f7d4e;
+
+    --gradient-brand:linear-gradient(135deg,#d9b45b 0%,#c19a3f 60%,#8a6514 100%);
+    --gradient-surface:linear-gradient(180deg,#fffdf7 0%,#faf6ec 100%);
+
+    --shadow-sm:0 4px 14px rgba(90,70,30,.10);
+    --shadow-md:0 14px 34px rgba(90,70,30,.14);
+    --shadow-lg:0 28px 64px rgba(90,70,30,.18);
+    --shadow-brand:0 14px 34px rgba(193,154,63,.30);
+    --shadow-gold:0 14px 34px rgba(212,175,55,.28);
+}
+
+/* Dark theme — explicit reaffirmation of the brand tokens.
+   Keeps the selector contract used by file.js. */
+body.dark-theme{
+    --color-bg:#101010;
+    --color-surface:#191919;
+    --color-card:#242424;
+    --color-ink:#f5efe2;
+    --color-muted:#a8a29e;
+    --color-line:#2c2c2c;
+    --color-primary:#ff7138;
+    --color-primary-dark:#e05f24;
+    --color-secondary:#ffb15c;
+    --color-cream:#fff4e8;
+    --gradient-brand:linear-gradient(135deg,#ff7138 0%,#ffb15c 100%);
+    --gradient-surface:linear-gradient(180deg,#191919 0%,#101010 100%);
+    background:var(--color-bg);
+    color:var(--color-ink);
+}
+
+body:not(.dark-theme){
+    background:var(--color-bg);
+    color:var(--color-ink);
+}

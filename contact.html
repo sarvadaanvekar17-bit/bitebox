@@ -1,213 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Bite Box</title>
-        <link rel="stylesheet" href="./style.css">
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family
-    =Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;
-    400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Contact | BiteBox</title>
+    <meta name="description" content="Get in touch with the BiteBox team — questions, feedback and support.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/pages.css">
 
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Contact | BiteBox">
+    <meta property="og:description" content="Get in touch with the BiteBox team — questions, feedback and support.">
 </head>
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
-
-    <!-- ================= HEADER ================= -->
-
-    <header>
-
-        <div class="logo">
-            <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            |
-            <a href="menu.html">Menu</a>
-            |
-            <a href="about.html">About</a>
-            |
-            <a href="contact.html">Contact</a>
-            |
-            <a href="cart.html">🛒</a>
- <button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-        </nav>
-
-    </header>
-
- <h1 align="center"> Contact Us </h1>
-          <img alt="A warm restaurant dining area with a neatly set table, colorful food dishes, and soft lighting. A couple of diners are seated and enjoying a meal, while the background shows a cozy and welcoming interior. The overall mood is friendly, relaxed, and inviting." src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBWoCuWFp_c4Kpj9l4Tw6y2nY3TOrQwkFj_P34gZ24Rg&s=10" width="500" height="300">
-<hr>
-<section class="contact-section">
-
-    <!-- Section Heading -->
-    <div class="contact-heading">
-        <h4>— Get In Touch —</h4>
-        <h1>We Are Here for You</h1>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
     </div>
+  </header>
 
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="page-hero-inner container">
+        <p class="eyebrow">We'd love to hear from you</p>
+        <h1>Get in <span class="hero-accent">touch</span></h1>
+        <p class="page-hero-sub">Questions, feedback or a craving emergency — the BiteBox team is here.</p>
+      </div>
+    </section>
 
-    <!-- Cards Container -->
-    <div class="contact-container">
+    <section class="section">
+      <div class="container contact-grid">
 
-        <!-- Address Card -->
-        <article>
-
-            <img src="./assets/images/address.png" alt="Address">
-
-            <h3>Address</h3>
-
-            <p>
-                BiteBox Restaurant<br>
-                123 Food Street,<br>
-                Pune,Maharashtra,
-                India.
-
-        </article>
-
-
-        <!-- Phone Card -->
-        <article>
-
-            <img src="./assets/images/phone.png" alt="Phone">
-
-            <h3>Phone</h3>
-
-            <p>
-                +91 98765 00000<br>
-                +91 00004 56789
-            </p>
-
-        </article>
-
-
-        <!-- Email Card -->
-        <article>
-
-            <img src="./assets/images/email.png" alt="Email">
-
-            <h3>Email</h3>
-
-            <p>
-                support@bitebox.com<br>
-                info@bitebox.com
-            </p>
-
-        </article>
-
-
-        <!-- Social Media Card -->
-        <article>
-            <h3>Follow Us</h3>
-
-            <div class="social-icons">
-
-                <a href="#">
-                    <img src="./assets/images/facebook.png" alt="Facebook">
-                </a>
-
-                <a href="#">
-                    <img src="./assets/images/instagram.png" alt="Instagram">
-                </a>
-
-                <a href="#">
-                    <img src="./assets/images/twitter.png" alt="Twitter">
-                </a>
-
-                <a href="#">
-                    <img src="./assets/images/youtube.png" alt="YouTube">
-                </a>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-<section>
-<h2> Visit Our Website </h2>
-<p>
-<a href="https://theuselessweb.com/">click on this link</a>
-<br>
-<br>
-<hr>
-<h3>Find Us Here:</h3>
-<iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d15204.852434958932!2d75.91225497619631!3d17.687390123208257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3bc2b93eaeff5f23%3A0x4a6fa6e0cd541a04!2sItvedant%20-%20Pimpri%2C%20BRTS%20Road%2C%2022-B%2C%201st%20Floor%2C%20Rainbow%20Plaza%20Above%20Axis%20Bank%2C%20Kokane%20Chowk%2C%20Rahatani%２Rd%２Pimple%２Saudagar%２Maharashtra%２411017!3m２!1d18.5960309!２d73.788₂₂59!5e₀!3m₂!₁sen!₂sin!4v₁789₀₄₂₈₉₈₁₆₆!5m₂!₁sen!₂sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-</p>
-<br>
-<hr>
-<br>
-</section>
-<h3>Exclusive BTS:</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jqYUXNaZuu0?si=9275ztwC6IjpWwAo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<!--================ Contact Details Section ================-->
-<section id="contact-details">
-
-    <!-- Left Column -->
-    <div class="left-column">
-        <!-- Business Hours -->
-        <div class="business-card">
-            <h2>Business Hours</h2>
-            <hr>
-            <div class="business-content">
-                <img src="./assets/images/clock.png" alt="Clock">
-                <table>
-                    <tr> <td>Monday – Friday</td>
-                         <td>11:00 AM – 11:00 PM</td>
-                    </tr>
-
-                    <tr> <td>Saturday</td>
-                        <td>10:00 AM – 12:00 AM</td>
-                    </tr>
-
-                    <tr> <td>Sunday</td>
-                        <td>10:00 AM – 10:00 PM</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-  <!-- Event Card -->
-        <div class="event-card">
-            <img src="./assets/images/cal.png" alt="Calendar">
+        <div class="contact-cards">
+          <article class="contact-card">
+            <div class="c-icon">📞</div>
             <div>
-                <h3>Planning a special event?</h3>
-                <p>
-                    We also offer catering services for parties,
-                    events and corporate meetings.
-                </p>
-                <a href="#">Contact Us</a>
+              <h3>Call us</h3>
+              <p><a href="tel:+911234567890">+91 12345 67890</a><br>Mon–Sun, 10 AM – 11 PM</p>
             </div>
+          </article>
+          <article class="contact-card">
+            <div class="c-icon">✉️</div>
+            <div>
+              <h3>Email us</h3>
+              <p><a href="mailto:support@bitebox.com">support@bitebox.com</a><br>We reply within 24 hours</p>
+            </div>
+          </article>
+          <article class="contact-card">
+            <div class="c-icon">📍</div>
+            <div>
+              <h3>Visit us</h3>
+              <p>123 Food Street,<br>Pune, Maharashtra 400001</p>
+            </div>
+          </article>
         </div>
-    </div>
 
-    <!-- Right Column -->
-    <div class="right-column">
-        <h2>Send Us a Message</h2>
-        <hr>
-        <form>
-            <div class="form-row">
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
+        <div class="contact-form-card">
+          <h2>Send us a message</h2>
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="row2">
+              <div class="field">
+                <label for="cf-name">Your name</label>
+                <input id="cf-name" name="name" type="text" placeholder="Full name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input id="cf-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
             </div>
-
-            <div class="form-row">
-                <input type="tel" placeholder="Phone Number">
-                <input type="text" placeholder="Subject">
+            <div class="field">
+              <label for="cf-subject">Subject</label>
+              <select id="cf-subject" name="subject">
+                <option>General enquiry</option>
+                <option>Order support</option>
+                <option>Feedback</option>
+                <option>Partnership</option>
+              </select>
             </div>
- <textarea placeholder="Your Message"></textarea>
-            <button>Send Message ✈</button>
-        </form>
-    </div>
-    <script src="./file.js" defer></script>
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary contact-submit">Send Message →</button>
+            <p class="muted" style="font-size:var(--text-xs);margin:var(--space-3) 0 0">Demo form — messages are not sent anywhere yet.</p>
+          </form>
+        </div>
+      </div>
 
+      <div class="container">
+        <div class="map-card">
+          📍 123 Food Street, Pune, Maharashtra 400001 — map integration coming soon
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="./assets/images/logo.svg" alt="BiteBox Logo"><p>Delicious food delivered to your doorstep. Fresh, fast and tasty!</p></div>
+      <div class="footer-col"><h3>Quick Links</h3><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a></div>
+      <div class="footer-col"><h3>Contact Us</h3><p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p><p>📍 123 Food Street,<br>Pune, Maharashtra 400001</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
+
+  <script src="./file.js" defer></script>
 </body>
 </html>

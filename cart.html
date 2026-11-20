@@ -1,401 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Your Cart | BiteBox</title>
+    <meta name="description" content="Review your BiteBox cart and check out.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/commerce.css">
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Your Cart | BiteBox">
+    <meta property="og:description" content="Review your BiteBox cart and check out.">
 </head>
-
 <body>
-    <header>
-        <div class="logo">
-            <img src="./assets/images/logo.png" alt="BiteBox Logo">
-        </div>
-        <nav>
-            <p>
-                <a href="index.html">Home</a>
-                |
-                <a href="menu.html">Menu</a>
-                |
-                <a href="about.html">About</a>
-                |
-                <a href="contact.html">Contact</a>
-                |
-                <a href="cart.html">🛒</a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-                <button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-            </p>
-        </nav>
-    </header>
-
-    <br>
-    <br>
-
-    <!-- Menu Table -->
-   
-    <table id="cart-table" border="2" align="center" cellpadding="10px" cellspacing="6px">
-        <caption>
-            <h1 align="center">More items</h1>
-            <h3 align="center">- BiteBox Menu -</h3>
-        </caption>
-        <div class="menu-controls">
-            <div class="menu-search">
-                <input type="text" id="menu-search" placeholder="Search for dishes...">
-
-                <button type="button" id="search-button">
-                    <img src="./assets/icons/search.jpg" alt="Search">
-                </button>
-                </div>
-                    <button type="button" id="add-menu-btn"> + Add Menu Item </button>
-            </div>   
-             <div id="menu-modal" class="menu-modal">
-      <div class="menu-modal-content">
-        <div class="modal-header">
-          <h2>Add Menu Item</h2>
-        </div>
-
-        <form id="menu-form">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="menu-name"> Menu Item Name </label>
-              <input type="text" id="menu-name" placeholder="Enter item name" required>
-            </div>
-
-            <div class="form-group">
-              <label for="menu-price"> Price (₹) </label>
-              <input type="number" id="menu-price" placeholder="Enter price" required>
-            </div>
-
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="menu-category"> Category </label>
-              <input type="text" id="menu-category" placeholder="Enter category" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="menu-rating"> Rating (0 - 5) </label>
-              <input type="text" id="menu-rating" placeholder="★★★★★" required>
-            </div>
-
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="menu-reviews"> Number of Reviews </label>
-              <input type="number" id="menu-reviews" placeholder="Enter number of reviews" 
-              required>
-            </div>
-
-            <div class="form-group">
-              <label for="menu-image"> Image URL / Path </label>
-              <input type="text" id="menu-image" placeholder="Enter image URL or path" 
-              required>
-            </div>
-          </div>
-           <div class="menu-actions">
-          <button type="button" class="update-menu-btn">Update item</button>
-          <button type="button" class="delete-menu-btn">Delete item</button>
-        </div>
-          <div class="form-actions">
-            <button type="button" id="cancel-menu-form"> Cancel </button>
-            <button type="submit"> Add Menu Item </button>
-          </div>
-        </form>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart" aria-current="page">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span>
+        </button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
       </div>
     </div>
+  </header>
 
-    <thead>
-            
-            <tr>
-                <th>Category</th>
-                <th>Food Item</th>
-                <th>Price</th>
-                <th>Availability</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="menuBody">
-                <div id="menu-container">
-
-            <!-- Pizza -->
-            <tr>
-                <article data-category="pizza">
-                <td rowspan="3">Pizza</td>
-                <td>Veg Pizza</td>
-                <td>₹359</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Veg Pizza" data-price="359" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                                <article data-category="pizza">
-
-                <td>Margherita Pizza</td>
-                <td>₹299</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="299" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                                <article data-category="pizza">
-
-                <td>Pepperoni Pizza</td>
-                <td>₹399</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Pepperoni Pizza" data-price="399" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <!-- Burger -->
-            <tr>
-                <article data-category="burger">
-                <td rowspan="3">Burger</td>
-                <td>Cheese Burger</td>
-                <td>₹199</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                                <article data-category="burger">
-
-                <td>Veggie Burger</td>
-                <td>₹250</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Veggie Burger" data-price="250" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                <article data-category="burger">
-
-                <td>Classic Cheeseburger</td>
-                <td>₹290</td>
-                <td>Currently unavailable</td>
-                <td>
-                    <button type="button" disabled>Add to Cart</button>
-                </td>
-                </article>
-            </tr>
-
-            <!-- Pasta -->
-            <tr>
-                                <article data-category="pasta">
-                <td rowspan="2">Pasta</td>
-                <td>White Sauce Pasta</td>
-                <td>₹249</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="White Sauce Pasta" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                <article data-category="pasta">
-                <td>Spaghetti Bolognese</td>
-                <td>₹249</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Spaghetti Bolognese" data-price="249" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Car🛒t</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                <article data-category="biryani">
-                <td rowspan="2">Rice</td>
-                <td>Chicken-Biryani</td>
-                <td>₹279</td>
-                <td>Highly ordered</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Chicken-Biryani" data-price="279" data-category="Rice" data-img="./assets/images/ChickenB.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-            <tr>
-                <article data-category="biryani">
-                <td>Veg-Biryani</td>
-                <td>₹259</td>
-                <td>Available</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Veg-Biryani" data-price="259" data-category="Rice" data-img="./assets/images/ChickenB.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <!-- Beverages -->
-            <tr>
-                <article data-category="beverages">
-                <td rowspan="2">Beverages</td>
-                <td>Cola</td>
-                <td>₹89</td>
-                <td>Chilled</td>
-                <td>
-                <button type="button" class="add-to-cart" data-name="Cola" data-price="89" data-category="beverages" data-img="./assets/images/cola.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <tr>
-                <article data-category="beverages">
-                <td>Sparkling Water</td>
-                <td>₹79</td>
-                <td>Chilled</td>
-                <td>
-                <button type="button" class="add-to-cart" data-name="sparkling-water" data-price="79" data-category="beverages" data-img="./assets/images/soda.png">Add to Cart🛒</button>
-                </td>
-                </article>
-            </tr>
-
-            <!-- Bread -->
-            <tr>
-                <article data-category="bread">
-                <td>Bread</td>
-                <td>Garlic Bread</td>
-                <td>₹179</td>
-                <td>Slightly delayed order</td>
-                <td>
-                    <button type="button" class="add-to-cart" data-name="Garlic Bread" data-price="179" data-category="Bread">Add to Cart🛒</button>
-                </td>
-                </article>
-            </div>
-            </tr>
-
-            <tr align="center">
-                <td colspan="5">
-                    <b>Weekend Offer: Flat 20% OFF on Combo Meals</b>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>How to Place an Order</h2>
-
-    <ol>
-        <li>Select your favourite food.</li>
-        <li>Add the item to your cart.</li>
-        <li>Confirm your order.</li>
-        <li>Enjoy your meal.</li>
-    </ol>
-
-    <br>
-    <br>
-
-    <!-- Cart Hero Section -->
-    <section id="cart-hero">
-        <div class="hero-content">
-            <h2>Your Shopping Cart 🛒</h2>
-           
-        </div>
+  <main id="main" class="commerce-page">
+    <section class="commerce-hero">
+      <div class="container">
+        <p class="eyebrow">Almost yours</p>
+        <h1>Your Shopping Cart</h1>
+        <p>Review your items, apply a coupon, and check out.</p>
+      </div>
     </section>
 
-    <!-- Cart + Order Summary side by side -->
-    <div id="cart-container">
+    <section class="section cart-layout">
+      <div class="container cart-grid">
 
-        <!-- Shopping Cart (rows are added by file.js) -->
-        <section id="shopping-cart">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody id="cart-items">
-                    <!-- Filled by JavaScript -->
-                </tbody>
+        <!-- Items -->
+        <div class="cart-items-card">
+          <div class="cart-items-head">
+            <h2>Your Items</h2>
+            <button type="button" id="clear-cart-btn" class="link-danger">Clear cart</button>
+          </div>
+          <div class="cart-table-wrap">
+            <table class="cart-table">
+              <thead>
+                <tr><th>Item</th><th>Price</th><th>Quantity</th><th>Total</th><th></th></tr>
+              </thead>
+              <tbody id="cart-items"></tbody>
             </table>
-        </section>
+          </div>
+          <div class="cart-empty" id="cart-empty" hidden>
+            <img src="./assets/images/opt/dishes.webp" alt="" width="120">
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added anything yet.</p>
+            <a class="btn btn-primary" href="menu.html">Browse the Menu →</a>
+          </div>
+          <a class="continue-link" href="menu.html">← Continue shopping</a>
+        </div>
 
-        <!-- Right column: Clear Cart sits above the Order Summary -->
-<div class="summary-column">
+        <!-- Summary -->
+        <aside class="order-summary-card">
+          <h2>Order Summary</h2>
+          <dl class="summary-lines">
+            <div><dt id="item-count">Subtotal (0 Items)</dt><dd id="subtotal-amount">₹0.00</dd></div>
+            <div><dt>Delivery Charges</dt><dd id="delivery-amount">₹0.00</dd></div>
+            <div><dt>Packaging Charges</dt><dd id="packaging-amount">₹0.00</dd></div>
+            <div id="discount-row"><dt>Discount</dt><dd id="discount-amount">₹0.00</dd></div>
+            <div id="coupon-row" hidden><dt>Coupon <span id="coupon-code"></span></dt><dd id="coupon-discount"></dd></div>
+          </dl>
 
-    <button type="button" id="clear-cart-btn">
-        <img src="./assets/images/delete.png" width="18" height="18" alt="">
-        Clear Cart
-    </button>
+          <form class="coupon-form" id="coupon-form" novalidate>
+            <label class="sr-only" for="coupon-input">Coupon code</label>
+            <input id="coupon-input" type="text" placeholder="Coupon code (e.g. BITE10)" autocomplete="off">
+            <button type="submit" class="btn btn-ghost btn-sm" id="coupon-apply">Apply</button>
+          </form>
+          <p class="coupon-msg" id="coupon-msg" role="status" aria-live="polite"></p>
 
-    <!-- Order Summary -->
-    <aside id="order-summary">
-        <h2>Order Summary</h2>
-
-        <p>
-            <span id="item-count">Subtotal (0 Items)</span>
-            <span id="subtotal-amount">₹0.00</span>
-        </p>
-
-        <p>
-            <span>Delivery Charges</span>
-            <span id="delivery-amount">₹0.00</span>
-        </p>
-
-        <p>
-            <span>Packaging Charges</span>
-            <span id="packaging-amount">₹0.00</span>
-        </p>
-
-        <p id="discount-row">
-            <span>Discount</span>
-            <span id="discount-amount">₹0.00</span>
-        </p>
-
-        <hr>
-
-        <h3>
+          <div class="summary-total">
             <span>Total Amount</span>
-            <span id="total-amount">₹0.00</span>
-        </h3>
+            <strong id="total-amount">₹0.00</strong>
+          </div>
 
-        <button type="button" id="checkout-btn">Proceed to Checkout</button>
+          <button type="button" id="checkout-btn" class="btn btn-primary btn-block">Proceed to Checkout →</button>
+          <p class="secure-note">🔒 Demo checkout — no payment is processed.</p>
+        </aside>
 
-        <p class="secure-note">
-            <img src="./assets/images/shield.png" width="18" height="18" alt="">
-            Secure Checkout
-        </p>
-    </aside>
-
-</div>
-    </div>
-<br>
-    <!-- Cart Action Buttons -->
-    <section id="cart-actions">
-        <a href="menu.html">
-            <img src="./assets/images/arrow.png" width="18" height="18" alt="">
-            Continue Shopping🛒
-        </a>
+      </div>
     </section>
+  </main>
 
-<script src="./file.js" defer></script>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/images/logo.svg" alt="BiteBox Logo">
+        <p>Delicious food delivered to your doorstep. Fresh, fast and tasty!</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p><p>📍 123 Food Street,<br>Pune, Maharashtra 400001</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
+
+  <script src="./js/pricing.js" defer></script>
+  <script src="./file.js" defer></script>
+  <script src="./js/cart.js" defer></script>
 </body>
-
 </html>

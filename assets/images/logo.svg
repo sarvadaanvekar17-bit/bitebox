@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="BiteBox logo">
+  <defs>
+    <linearGradient id="bb-badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4dc9f"/>
+      <stop offset=".5" stop-color="#d4af37"/>
+      <stop offset="1" stop-color="#9a6f14"/>
+    </linearGradient>
+    <linearGradient id="bb-cheese" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0c2"/>
+      <stop offset=".55" stop-color="#ffd071"/>
+      <stop offset="1" stop-color="#f0a94e"/>
+    </linearGradient>
+    <linearGradient id="bb-crust" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6cf8d"/>
+      <stop offset="1" stop-color="#d98f45"/>
+    </linearGradient>
+    <linearGradient id="bb-text" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff6d8"/>
+      <stop offset="1" stop-color="#c19a3f"/>
+    </linearGradient>
+    <radialGradient id="bb-shine" cx=".3" cy=".2" r=".9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="14" y="14" width="192" height="192" rx="42" fill="url(#bb-badge)"/>
+  <rect x="14" y="14" width="192" height="192" rx="42" fill="url(#bb-shine)"/>
+
+
+  <g fill="#fffdf7" opacity=".95">
+    <path d="M36 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+    <path d="M186 44 l2.4 6.4 6.4 2.4 -6.4 2.4 -2.4 6.4 -2.4 -6.4 -6.4 -2.4 6.4 -2.4 z"/>
+    <path d="M180 168 l2 5.4 5.4 2 -5.4 2 -2 5.4 -2 -5.4 -5.4 -2 5.4 -2 z"/>
+  </g>
+
+  <g stroke="#fffdf7" stroke-width="5" stroke-linecap="round" fill="none" opacity=".9">
+    <path d="M88 50 q7 -11 0 -22"/>
+    <path d="M110 46 q7 -11 0 -22"/>
+    <path d="M132 50 q7 -11 0 -22"/>
+  </g>
+
+  <path d="M56 84 Q110 48 164 84 L110 170 Z" fill="url(#bb-crust)"/>
+  <g fill="#fff3d6" opacity=".85">
+    <ellipse cx="82" cy="78" rx="4" ry="2.4" transform="rotate(-18 82 78)"/>
+    <ellipse cx="100" cy="70" rx="4" ry="2.4" transform="rotate(-6 100 70)"/>
+    <ellipse cx="120" cy="74" rx="4" ry="2.4" transform="rotate(10 120 74)"/>
+    <ellipse cx="138" cy="82" rx="4" ry="2.4" transform="rotate(22 138 82)"/>
+  </g>
+
+  <path d="M66 86 Q110 56 154 86 L110 158 Z" fill="url(#bb-cheese)"/>
+  <g fill="#ffd071">
+    <ellipse cx="98" cy="160" rx="6" ry="10"/>
+    <ellipse cx="110" cy="163" rx="6" ry="11"/>
+    <ellipse cx="122" cy="159" rx="6" ry="9"/>
+  </g>
+  <g fill="#b94a3a">
+    <circle cx="94" cy="102" r="9"/>
+    <circle cx="124" cy="114" r="9"/>
+    <circle cx="100" cy="130" r="8"/>
+  </g>
+  <g fill="#8f2f22" opacity=".55">
+    <circle cx="94" cy="102" r="3"/>
+    <circle cx="124" cy="114" r="3"/>
+    <circle cx="100" cy="130" r="2.6"/>
+  </g>
+  <path d="M128 96 q14 -6 18 8 q-12 4 -18 -8 z" fill="#4f8f3a"/>
+  <path d="M132 100 q10 -2 12 6 q-9 2 -12 -6 z" fill="#6fb35a"/>
+
+  <text x="110" y="202" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="22" font-weight="800" fill="url(#bb-text)" stroke="#fffdf7" stroke-width=".6" paint-order="stroke">BiteBox</text>
+</svg>

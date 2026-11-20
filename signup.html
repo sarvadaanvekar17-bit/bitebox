@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Sign Up | BiteBox</title>
+    <meta name="description" content="Create your BiteBox account to order faster and track your orders.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/account.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Sign Up | BiteBox">
+    <meta property="og:description" content="Create your BiteBox account to order faster and track your orders.">
+</head>
+<body class="auth-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="auth-page">
+    <section class="auth-card auth-card-wide">
+      <p class="eyebrow">Join BiteBox</p>
+      <h1>Create your account</h1>
+      <p class="auth-sub">Save your details, track orders faster, and get tastier updates.</p>
+      <p class="demo-note">Demo sign-up — accounts are stored only in this browser.</p>
+
+      <form id="signup-form" class="auth-form" novalidate>
+        <div class="field">
+          <label for="su-name">Full name</label>
+          <input id="su-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+          <span class="field-error" data-for="name"></span>
+        </div>
+        <div class="field">
+          <label for="su-email">Email address</label>
+          <input id="su-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <span class="field-error" data-for="email"></span>
+        </div>
+        <div class="field">
+          <label for="su-phone">Phone number <small>(optional)</small></label>
+          <input id="su-phone" name="phone" type="tel" placeholder="10-digit mobile" autocomplete="tel" inputmode="numeric" maxlength="10">
+          <span class="field-error" data-for="phone"></span>
+        </div>
+        <div class="field">
+          <label for="su-password">Password</label>
+          <div class="pass-wrap">
+            <input id="su-password" name="password" type="password" placeholder="Create a password (min 6 chars)" autocomplete="new-password" minlength="6" required>
+            <button type="button" class="pass-toggle" data-target="su-password" aria-label="Show password">👁</button>
+          </div>
+          <span class="field-error" data-for="password"></span>
+        </div>
+        <div class="field">
+          <label for="su-confirm">Confirm password</label>
+          <div class="pass-wrap">
+            <input id="su-confirm" name="confirm" type="password" placeholder="Repeat your password" autocomplete="new-password" minlength="6" required>
+            <button type="button" class="pass-toggle" data-target="su-confirm" aria-label="Show password">👁</button>
+          </div>
+          <span class="field-error" data-for="confirm"></span>
+        </div>
+        <button type="submit" class="auth-submit btn btn-primary btn-block" id="signup-submit">Create account</button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+    </section>
+  </main>
+
+  <script src="./file.js" defer></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/auth.js" defer></script>
+  <script src="./js/auth-forms.js" defer></script>
+</body>
+</html>

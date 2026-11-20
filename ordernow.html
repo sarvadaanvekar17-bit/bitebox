@@ -1,270 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | BiteBox</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Checkout | BiteBox</title>
+    <meta name="description" content="Checkout — enter delivery details and place your BiteBox order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/commerce.css">
 
-    <link rel="stylesheet" href="./style.css">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Checkout | BiteBox">
+    <meta property="og:description" content="Checkout — enter delivery details and place your BiteBox order.">
 </head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-<body class="order-page">
-    <header>
-        <div class="logo">
-            <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
-        </div>
-        <nav>
-            <p>
-                <a href="index.html">Home</a>
-                |
-                <a href="menu.html">Menu</a>
-                |
-                <a href="about.html">About</a>
-                |
-                <a href="contact.html">Contact</a>
-                |
-                <a href="cart.html">🛒</a>
-              <button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-            </p>
-        </nav>
-    </header>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span>
+        </button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
 
-    <main id="checkout">
-
-        <div class="checkout-head">
-            <ol class="steps" aria-label="Checkout progress">
-                <li class="done"><a href="cart.html">Cart</a></li>
-                <li class="current" aria-current="step">Your details</li>
-                <li>Order placed</li>
-            </ol>
-            <h1>Checkout</h1>
-            <p>Tell us where to deliver and how you'd like to pay.</p>
-        </div>
-
-        <div class="checkout-grid">
-
-            <!-- Delivery + payment details -->
-            <form id="order-form" action="./ordered.html">
-
-                <div class="form-block">
-                    <h2>Contact</h2>
-                    <div class="fields">
-                        <div class="field full">
-                            <label for="name">Full name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
-                        </div>
-
-                        <div class="field">
-                            <label for="email">Email address</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
-                        </div>
-
-                        <div class="field">
-                            <label for="phone">Phone number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" autocomplete="tel" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-block">
-                    <h2>Delivery address</h2>
-                    <div class="field">
-                        <label for="address">Current location</label>
-                        <textarea id="address" name="address" rows="5" placeholder="Write your full address here" autocomplete="street-address" required></textarea>
-                    </div>
-                </div>
-
-                <fieldset class="form-block payment">
-                    <legend>Payment method</legend>
-
-                    <div class="pay-options">
-                        <div class="pay-option">
-                            <input type="radio" id="cash" name="payment" value="Cash" required>
-                            <label for="cash">Cash</label>
-                        </div>
-
-                        <div class="pay-option">
-                            <input type="radio" id="card" name="payment" value="Card">
-                            <label for="card">Card</label>
-                        </div>
-
-                        <div class="pay-option">
-                            <input type="radio" id="upi" name="payment" value="UPI">
-                            <label for="upi">UPI</label>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <!-- Filled by ordernow.js so ordered.html receives the final amount -->
-                <input type="hidden" id="order-total-field" name="total" value="">
-
-                <div class="form-actions">
-                    <input type="submit" id="order-submit" value="Order now">
-                </div>
-            </form>
-
-            <!-- Receipt -->
-            <aside id="order-recap">
-                <h2>Your order</h2>
-
-                <ul id="recap-items"></ul>
-
-                <div class="tear" aria-hidden="true"></div>
-
-                <p><span>Subtotal</span> <span id="recap-subtotal">₹0.00</span></p>
-                <p><span>Delivery charges</span> <span id="recap-delivery">₹0.00</span></p>
-                <p><span>Packaging charges</span> <span id="recap-packaging">₹0.00</span></p>
-                <p><span>Discount</span> <span id="recap-discount">₹0.00</span></p>
-
-                <div class="tear" aria-hidden="true"></div>
-
-                <h3><span>Total</span> <span id="recap-total">₹0.00</span></h3>
-
-                <a class="edit-cart" href="cart.html">Edit cart</a>
-            </aside>
-
-        </div>
-    </main>
-
-    <!-- Cart Action Buttons -->
-    <section id="cart-actions">
-        <a href="menu.html">
-            <img src="./assets/images/arrow.png" width="18" height="18" alt="">
-            Continue Shopping🛒
-        </a>
+  <main id="main" class="commerce-page">
+    <section class="commerce-hero">
+      <div class="container">
+        <p class="eyebrow">Final step</p>
+        <h1>Checkout</h1>
+        <p>Tell us where to deliver and how you'd like to pay. <em>Demo checkout — no payment is processed.</em></p>
+      </div>
     </section>
-<script>
-(function () {
-    "use strict";
 
-    const DELIVERY_CHARGE  = 40;
-    const PACKAGING_CHARGE = 20;
-    const CART_KEY         = "biteboxCart";
-    const LAST_ORDER_KEY   = "biteboxLastOrder";
+    <section class="section">
+      <div class="container checkout-grid">
 
-    const form        = document.getElementById("order-form");
-    const submitBtn   = document.getElementById("order-submit");
-    const itemsList   = document.getElementById("recap-items");
-    const totalField  = document.getElementById("order-total-field");
+        <form id="order-form" novalidate>
 
-    /* ---------- Load cart saved by the cart page ---------- */
-    function loadCart() {
-        try {
-            const saved = JSON.parse(localStorage.getItem(CART_KEY));
-            if (Array.isArray(saved)) {
-                return saved.filter(function (item) {
-                    return item && item.name && Number(item.price) > 0 && Number(item.quantity) > 0;
-                });
-            }
-        } catch (error) { /* start empty */ }
-        return [];
-    }
+          <div class="form-block">
+            <h2>Contact</h2>
+            <div class="fields">
+              <div class="field full">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+                <span class="field-error" data-for="name"></span>
+              </div>
+              <div class="field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                <span class="field-error" data-for="email"></span>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" maxlength="10" required>
+                <span class="field-error" data-for="phone"></span>
+              </div>
+            </div>
+          </div>
 
-    const cart = loadCart();
+          <div class="form-block">
+            <h2>Delivery address</h2>
+            <div class="fields">
+              <div class="field full">
+                <label for="house">House / building</label>
+                <input type="text" id="house" name="house" placeholder="Flat, house no., building" autocomplete="address-line1" required>
+                <span class="field-error" data-for="house"></span>
+              </div>
+              <div class="field full">
+                <label for="street">Street / area</label>
+                <input type="text" id="street" name="street" placeholder="Street, locality, landmark" autocomplete="address-line2" required>
+                <span class="field-error" data-for="street"></span>
+              </div>
+              <div class="field">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="City" autocomplete="address-level2" required>
+                <span class="field-error" data-for="city"></span>
+              </div>
+              <div class="field">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="State" autocomplete="address-level1" required>
+                <span class="field-error" data-for="state"></span>
+              </div>
+              <div class="field">
+                <label for="pin">PIN code</label>
+                <input type="text" id="pin" name="pin" placeholder="6-digit PIN" inputmode="numeric" maxlength="6" autocomplete="postal-code" required>
+                <span class="field-error" data-for="pin"></span>
+              </div>
+              <div class="field full">
+                <label for="instructions">Delivery instructions <small>(optional)</small></label>
+                <textarea id="instructions" name="instructions" rows="2" placeholder="Gate code, floor, preferred time…"></textarea>
+              </div>
+            </div>
+          </div>
 
-    /* ---------- Calculations (same rules as the cart page) ---------- */
-    function calculateDiscount(subtotal) {
-        if (subtotal > 1000) return subtotal * 0.25;
-        if (subtotal >= 800) return subtotal * 0.15;
-        if (subtotal >= 699) return subtotal * 0.10;
-        return 0;
-    }
+          <div class="form-block payment">
+            <h2>Payment method</h2>
+            <p class="demo-note" style="display:inline-block;margin-bottom:var(--space-4)">Demo only — no real payment is collected.</p>
+            <div class="pay-options">
+              <div class="pay-option"><input type="radio" id="cash" name="payment" value="Cash" required><label for="cash">Cash on Delivery</label></div>
+              <div class="pay-option"><input type="radio" id="upi" name="payment" value="UPI"><label for="upi">UPI</label></div>
+              <div class="pay-option"><input type="radio" id="card" name="payment" value="Card"><label for="card">Card</label></div>
+            </div>
+            <span class="field-error" data-for="payment"></span>
+          </div>
 
-    function formatPrice(amount) {
-        return "₹" + amount.toFixed(2);
-    }
+          <div class="form-actions">
+            <button type="submit" id="order-submit" class="btn btn-primary btn-block">Place Order</button>
+          </div>
+        </form>
 
-    const subtotal  = cart.reduce(function (sum, item) { return sum + item.price * item.quantity; }, 0);
-    const delivery  = subtotal > 0 ? DELIVERY_CHARGE : 0;
-    const packaging = subtotal > 0 ? PACKAGING_CHARGE : 0;
-    const discount  = calculateDiscount(subtotal);
-    const total     = subtotal + delivery + packaging - discount;
+        <aside id="order-recap" class="order-summary-card">
+          <h2>Your Order</h2>
+          <ul id="recap-items" class="recap-list"></ul>
+          <div class="tear" aria-hidden="true"></div>
+          <dl class="summary-lines">
+            <div><dt>Subtotal</dt><dd id="recap-subtotal">₹0.00</dd></div>
+            <div><dt>Delivery charges</dt><dd id="recap-delivery">₹0.00</dd></div>
+            <div><dt>Packaging charges</dt><dd id="recap-packaging">₹0.00</dd></div>
+            <div><dt>Discount</dt><dd id="recap-discount">₹0.00</dd></div>
+            <div id="recap-coupon-row" hidden><dt>Coupon</dt><dd id="recap-coupon"></dd></div>
+          </dl>
+          <div class="tear" aria-hidden="true"></div>
+          <div class="summary-total"><span>Total</span><strong id="recap-total">₹0.00</strong></div>
+          <a class="edit-cart" href="cart.html">← Edit cart</a>
+        </aside>
 
-    /* ---------- Show recap ---------- */
-    if (cart.length === 0) {
-        const empty = document.createElement("li");
-        empty.className = "recap-empty";
-        empty.innerHTML = 'Your cart is empty. <a href="menu.html">Pick a dish</a> or <a href="cart.html">go to your cart</a>.';
-        itemsList.appendChild(empty);
-        submitBtn.disabled = true;
-    } else {
-        cart.forEach(function (item) {
-            const li = document.createElement("li");
+      </div>
+    </section>
+  </main>
 
-            let thumb;
-            if (item.img) {
-                thumb = document.createElement("img");
-                thumb.src = item.img;
-                thumb.alt = "";
-                thumb.width = 48;
-                thumb.height = 48;
-            } else {
-                thumb = document.createElement("div");
-                thumb.className = "recap-thumb";
-                thumb.textContent = item.name.charAt(0);
-            }
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="./assets/images/logo.svg" alt="BiteBox Logo"><p>Delicious food delivered to your doorstep.</p></div>
+      <div class="footer-col"><h3>Quick Links</h3><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a></div>
+      <div class="footer-col"><h3>Contact Us</h3><p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
 
-            const info = document.createElement("div");
-
-            const name = document.createElement("span");
-            name.className = "recap-name";
-            name.textContent = item.name;
-
-            const qty = document.createElement("span");
-            qty.className = "recap-qty";
-            qty.textContent = "Qty " + item.quantity;
-
-            info.appendChild(name);
-            info.appendChild(qty);
-
-            const amount = document.createElement("span");
-            amount.className = "recap-price";
-            amount.textContent = formatPrice(item.price * item.quantity);
-
-            li.appendChild(thumb);
-            li.appendChild(info);
-            li.appendChild(amount);
-            itemsList.appendChild(li);
-        });
-
-        submitBtn.value = "Order now – " + formatPrice(total);
-    }
-
-    document.getElementById("recap-subtotal").textContent  = formatPrice(subtotal);
-    document.getElementById("recap-delivery").textContent  = formatPrice(delivery);
-    document.getElementById("recap-packaging").textContent = formatPrice(packaging);
-    document.getElementById("recap-discount").textContent  = discount > 0 ? "-" + formatPrice(discount) : formatPrice(0);
-    document.getElementById("recap-total").textContent     = formatPrice(total);
-
-    totalField.value = total.toFixed(2);
-
-    /* ---------- Place order ---------- */
-    form.addEventListener("submit", function (event) {
-        if (cart.length === 0) {
-            event.preventDefault();
-            return;
-        }
-
-        try {
-            localStorage.setItem(LAST_ORDER_KEY, JSON.stringify({
-                items: cart,
-                subtotal: subtotal,
-                delivery: delivery,
-                packaging: packaging,
-                discount: discount,
-                total: total
-            }));
-            localStorage.removeItem(CART_KEY); // order placed: empty the cart
-        } catch (error) { /* order still goes through */ }
-    });
-})();
-</script>
-<script src="./file.js" defer></script>
-
+  <script src="./js/pricing.js" defer></script>
+  <script src="./file.js" defer></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/checkout.js" defer></script>
 </body>
-
 </html>

@@ -1,0 +1,89 @@
+/* =========================================================
+   BiteBox 2.0 — Base
+   Typography, document defaults, selection, links.
+   Depends on: variables.css
+   ========================================================= */
+
+html{
+    font-family:var(--font-body);
+    font-size:var(--text-base);
+    color:var(--color-ink);
+    background:var(--color-bg);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+body{
+    font-family:var(--font-body);
+    font-weight:var(--weight-regular);
+    line-height:var(--leading-normal);
+    background:var(--color-bg);
+    color:var(--color-ink);
+}
+
+/* ---- Headings: bold display face ---- */
+h1,h2,h3,h4,h5,h6{
+    font-family:var(--font-display);
+    font-weight:var(--weight-bold);
+    line-height:var(--leading-tight);
+    letter-spacing:var(--tracking-tight);
+    color:var(--color-ink);
+    margin:0 0 var(--space-4);
+}
+
+h1{ font-size:var(--text-hero); font-weight:var(--weight-extrabold); }
+h2{ font-size:var(--text-4xl); font-weight:var(--weight-bold); }
+h3{ font-size:var(--text-3xl); font-weight:var(--weight-semibold); }
+h4{ font-size:var(--text-2xl); font-weight:var(--weight-semibold); }
+h5{ font-size:var(--text-xl); font-weight:var(--weight-semibold); }
+h6{ font-size:var(--text-lg); font-weight:var(--weight-semibold); }
+
+p{
+    color:var(--color-muted);
+    margin:0 0 var(--space-4);
+    max-width:68ch;
+}
+
+/* ---- Links ---- */
+a{
+    color:var(--color-primary);
+    text-decoration:none;
+    transition:color var(--transition-fast),opacity var(--transition-fast);
+}
+a:hover{ color:var(--color-secondary); }
+
+/* ---- Selection ---- */
+::selection{
+    background:var(--color-primary);
+    color:var(--color-cream);
+}
+
+/* ---- Utility text helpers ---- */
+.eyebrow{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-size:var(--text-xs);
+    font-weight:var(--weight-bold);
+    letter-spacing:var(--tracking-wide);
+    text-transform:uppercase;
+    color:var(--color-primary);
+    margin-bottom:var(--space-3);
+}
+
+.muted{ color:var(--color-muted); }
+.small{ font-size:var(--text-sm); }
+
+/* ---- Section rhythm ---- */
+section, .section{ margin:0; }
+.section{ padding-block:var(--space-section); }
+.section-tight{ padding-block:var(--space-20); }
+
+/* ---- Accessibility: skip link ---- */
+.skip-link{
+    position:absolute; left:-9999px; top:0; z-index:9999;
+    background:var(--color-primary); color:#fff;
+    padding:.75rem 1.25rem; border-radius:0 0 var(--radius-md) 0;
+    font-weight:var(--weight-semibold); text-decoration:none;
+}
+.skip-link:focus{ left:0; }
+:focus-visible{ outline:3px solid var(--color-primary); outline-offset:2px; }

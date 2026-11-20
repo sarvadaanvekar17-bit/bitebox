@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>Login | BiteBox</title>
+    <meta name="description" content="Log in to your BiteBox account.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/account.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Login | BiteBox">
+    <meta property="og:description" content="Log in to your BiteBox account.">
+</head>
+<body class="auth-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="auth-page">
+    <section class="auth-card">
+      <p class="eyebrow">Welcome back</p>
+      <h1>Log in to BiteBox</h1>
+      <p class="auth-sub">Pick up right where you left off — your cart and orders are waiting.</p>
+      <p class="demo-note">Demo sign-in — accounts are stored only in this browser.</p>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <div class="field">
+          <label for="li-email">Email address</label>
+          <input id="li-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <span class="field-error" data-for="email"></span>
+        </div>
+        <div class="field">
+          <label for="li-password">Password</label>
+          <div class="pass-wrap">
+            <input id="li-password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required>
+            <button type="button" class="pass-toggle" data-target="li-password" aria-label="Show password">👁</button>
+          </div>
+          <span class="field-error" data-for="password"></span>
+        </div>
+        <p class="auth-forgot"><a href="#" id="forgot-link">Forgot password?</a> <small class="muted">(demo — no recovery)</small></p>
+        <button type="submit" class="auth-submit btn btn-primary btn-block" id="login-submit">Log in</button>
+      </form>
+
+      <p class="auth-switch">New to BiteBox? <a href="signup.html">Create an account</a></p>
+    </section>
+  </main>
+
+  <script src="./file.js" defer></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/auth.js" defer></script>
+  <script src="./js/auth-forms.js" defer></script>
+</body>
+</html>

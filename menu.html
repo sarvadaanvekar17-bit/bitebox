@@ -3,87 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171311">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
   <meta name="description" content="Explore the BiteBox menu: freshly prepared favourites delivered to your door.">
   <title>Menu | BiteBox</title>
-  <link rel="stylesheet" href="./style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/menu.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="Menu | BiteBox">
+    <meta property="og:description" content="Explore the BiteBox menu: freshly prepared favourites delivered to your door.">
 </head>
 <body>
-  <header>
-    <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.png" alt="BiteBox" width="170"></a>
-    <nav aria-label="Main navigation">
-      <p>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home">
+        <img src="./assets/images/logo.svg" alt="BiteBox">
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="menu.html" aria-current="page">Menu</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="cart.html" aria-label="Shopping cart">🛒 Cart</a>
-        <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"><span class="theme-icon">☀</span><span class="theme-text">DAY MODE</span></button>
-      </p>
-    </nav>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon" aria-hidden="true">☾</span>
+          <span class="theme-text">NIGHT</span>
+        </button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section id="menu-hero">
-      <p class="eyebrow">MADE FRESH. DELIVERED FAST.</p>
-      <h1>Good food. <span style="color:var(--brand)">Great mood.</span></h1>
-      <p>Find your new favourite, from cheesy pizza and juicy burgers to comforting pasta and aromatic biryani.</p>
+  <main id="main">
+
+    <!-- Menu intro -->
+    <section class="hero menu-hero">
+      <div class="menu-hero-inner container">
+        <p class="eyebrow">Made Fresh. Delivered Fast.</p>
+        <h1>Find Your Next <span class="hero-accent">Favourite</span></h1>
+        <p class="menu-hero-sub">Fresh flavours, delicious moments, delivered to your door.</p>
+      </div>
     </section>
 
-    <section id="menu-items" aria-labelledby="menu-title">
-      <h2 id="menu-title">Explore the Menu</h2>
-      <div class="menu-toolbar">
-        <input class="menu-search" id="menu-search" type="search" placeholder="Search pizza, burger, pasta…" aria-label="Search menu">
-        <button class="menu-search-button" id="search-button" type="button">Search</button>
+    <!-- Menu browser -->
+    <section class="section menu-browser" id="menu-items">
+      <div class="container">
+
+        <div class="menu-toolbar">
+          <div class="menu-search-wrap">
+            <input class="menu-search" id="menu-search" type="search"
+                   placeholder="Search by dish name…" aria-label="Search menu" autocomplete="off">
+            <button class="menu-clear" id="menu-clear" type="button" aria-label="Clear search" hidden>✕</button>
+          </div>
+          <button class="menu-search-button" id="search-button" type="button">Search</button>
+          <label class="menu-sort">
+            <span class="sr-only">Sort dishes</span>
+            <select id="menu-sort" aria-label="Sort dishes">
+              <option value="default">Sort: Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="menu-cats" id="menu-cats" role="tablist" aria-label="Food categories"></div>
+
+        <div class="menu-grid" id="menu-grid">
+          <article class="dish-card" data-category="Pizza"
+                   data-name="Margherita Pizza" data-price="249"
+                   data-img="./assets/images/opt/pizza.webp" data-rating="★★★★★ (120)">
+            <span class="tag">Bestseller</span>
+            <button type="button" class="dish-media qv-open" aria-label="Quick view Margherita Pizza">
+              <img src="./assets/images/opt/pizza.webp" alt="Margherita pizza" loading="lazy">
+            </button>
+            <div class="dish-body">
+              <h3>Margherita Pizza</h3>
+              <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(120)</small></p>
+              <p class="price">₹249</p>
+              <div class="dish-actions">
+                <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                        data-name="Margherita Pizza" data-price="249" data-category="Pizza"
+                        data-img="./assets/images/opt/pizza.webp">Add to Cart</button>
+                <button type="button" class="qv-open btn btn-ghost btn-sm">Quick view</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card" data-category="Burger"
+                   data-name="Cheese Burger" data-price="199"
+                   data-img="./assets/images/opt/burger.webp" data-rating="★★★★★ (98)">
+            <button type="button" class="dish-media qv-open" aria-label="Quick view Cheese Burger">
+              <img src="./assets/images/opt/burger.webp" alt="Cheese burger" loading="lazy">
+            </button>
+            <div class="dish-body">
+              <h3>Cheese Burger</h3>
+              <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(98)</small></p>
+              <p class="price">₹199</p>
+              <div class="dish-actions">
+                <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                        data-name="Cheese Burger" data-price="199" data-category="Burger"
+                        data-img="./assets/images/opt/burger.webp">Add to Cart</button>
+                <button type="button" class="qv-open btn btn-ghost btn-sm">Quick view</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card" data-category="Pasta"
+                   data-name="Creamy Alfredo Pasta" data-price="229"
+                   data-img="./assets/images/opt/pasta.webp" data-rating="★★★★★ (85)">
+            <button type="button" class="dish-media qv-open" aria-label="Quick view Creamy Alfredo Pasta">
+              <img src="./assets/images/opt/pasta.webp" alt="Creamy Alfredo pasta" loading="lazy">
+            </button>
+            <div class="dish-body">
+              <h3>Creamy Alfredo Pasta</h3>
+              <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(85)</small></p>
+              <p class="price">₹229</p>
+              <div class="dish-actions">
+                <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                        data-name="Creamy Alfredo Pasta" data-price="229" data-category="Pasta"
+                        data-img="./assets/images/opt/pasta.webp">Add to Cart</button>
+                <button type="button" class="qv-open btn btn-ghost btn-sm">Quick view</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card" data-category="Biryani"
+                   data-name="Chicken Biryani" data-price="279"
+                   data-img="./assets/images/opt/chickenbiryani.webp" data-rating="★★★★★ (110)">
+            <span class="tag spicy">Popular</span>
+            <button type="button" class="dish-media qv-open" aria-label="Quick view Chicken Biryani">
+              <img src="./assets/images/opt/chickenbiryani.webp" alt="Chicken biryani" loading="lazy">
+            </button>
+            <div class="dish-body">
+              <h3>Chicken Biryani</h3>
+              <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(110)</small></p>
+              <p class="price">₹279</p>
+              <div class="dish-actions">
+                <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                        data-name="Chicken Biryani" data-price="279" data-category="Biryani"
+                        data-img="./assets/images/opt/chickenbiryani.webp">Add to Cart</button>
+                <button type="button" class="qv-open btn btn-ghost btn-sm">Quick view</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p id="menu-no-results" class="menu-empty" hidden>
+          No dishes match your search. Try another word or category.
+        </p>
+
       </div>
-      <div class="menu-grid">
-        <article data-category="Pizza">
-          <span class="tag">Bestseller</span>
-          <img src="./assets/images/pizza.png" alt="Margherita pizza" loading="lazy">
-          <h3>Margherita Pizza</h3>
-          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(120)</small></p>
-          <p class="price">₹249</p>
-          <button type="button" class="add-to-cart" data-name="Margherita Pizza" data-price="249" data-category="Pizza" data-img="./assets/images/pizza.png">Add to Cart <span aria-hidden="true">＋</span></button>
-        </article>
-        <article data-category="Burger">
-          <img src="./assets/images/burger.png" alt="Cheese burger" loading="lazy">
-          <h3>Cheese Burger</h3>
-          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(98)</small></p>
-          <p class="price">₹199</p>
-          <button type="button" class="add-to-cart" data-name="Cheese Burger" data-price="199" data-category="Burger" data-img="./assets/images/burger.png">Add to Cart <span aria-hidden="true">＋</span></button>
-        </article>
-        <article data-category="Pasta">
-          <img src="./assets/images/pasta.png" alt="Creamy Alfredo pasta" loading="lazy">
-          <h3>Creamy Alfredo Pasta</h3>
-          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(85)</small></p>
-          <p class="price">₹229</p>
-          <button type="button" class="add-to-cart" data-name="Creamy Alfredo Pasta" data-price="229" data-category="Pasta" data-img="./assets/images/pasta.png">Add to Cart <span aria-hidden="true">＋</span></button>
-        </article>
-        <article data-category="Biryani">
-          <span class="tag spicy">Popular</span>
-          <img src="./assets/images/ChickenB.png" alt="Chicken biryani" loading="lazy">
-          <h3>Chicken Biryani</h3>
-          <p class="rating" aria-label="5 out of 5 stars">★★★★★ <small>(110)</small></p>
-          <p class="price">₹279</p>
-          <button type="button" class="add-to-cart" data-name="Chicken Biryani" data-price="279" data-category="Biryani" data-img="./assets/images/ChickenB.png">Add to Cart <span aria-hidden="true">＋</span></button>
-        </article>
-      </div>
-      <p id="menu-no-results" class="menu-empty" hidden>No dishes match your search. Try another word.</p>
     </section>
 
     <section id="restaurant-info">
-      <h2>Good food, made easy.</h2>
-      <p>🛵 Delivery available <span aria-hidden="true"> · </span> Fresh ingredients <span aria-hidden="true"> · </span> Open every day</p>
+      <div class="container restaurant-info-inner">
+        <h2>Good food, made easy.</h2>
+        <p>🛵 Delivery available <span aria-hidden="true"> · </span> Fresh ingredients <span aria-hidden="true"> · </span> Open every day</p>
+      </div>
     </section>
+
   </main>
 
-  <footer class="bitebox-menu-footer">
-    <p>© 2026 BiteBox. Fresh food, fast delivery.</p>
-    <a href="index.html">Back to home ↑</a>
+  <!-- Quick-view modal -->
+  <div class="qv-overlay" id="quickview" hidden>
+    <div class="qv-card" role="dialog" aria-modal="true" aria-labelledby="qv-name">
+      <button type="button" class="qv-close" id="qv-close" aria-label="Close">✕</button>
+      <div class="qv-media"><img id="qv-img" src="" alt=""></div>
+      <div class="qv-body">
+        <span class="qv-cat" id="qv-cat"></span>
+        <h3 id="qv-name"></h3>
+        <p class="rating" id="qv-rating"></p>
+        <p class="qv-price" id="qv-price"></p>
+        <div class="qv-qty">
+          <button type="button" id="qv-minus" aria-label="Decrease quantity">−</button>
+          <span id="qv-qty">1</span>
+          <button type="button" id="qv-plus" aria-label="Increase quantity">+</button>
+        </div>
+        <button type="button" class="btn btn-primary qv-add" id="qv-add">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/images/logo.svg" alt="BiteBox Logo">
+        <p>Delicious food delivered to your doorstep. Fresh, fast and tasty!</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>📞 +91 12345 67890</p>
+        <p>✉ support@bitebox.com</p>
+        <p>📍 123 Food Street,<br>Pune, Maharashtra 400001</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
   </footer>
+
   <script src="./file.js" defer></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/menu.js" defer></script>
 </body>
 </html>

@@ -1,123 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Bite Box</title>
-        <link rel="stylesheet" href="./style.css">
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family
-    =Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;
-    400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>About | BiteBox</title>
+    <meta name="description" content="Learn about BiteBox — our story, fresh ingredients and commitment to great food.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/pages.css">
 
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="About | BiteBox">
+    <meta property="og:description" content="Learn about BiteBox — our story, fresh ingredients and commitment to great food.">
 </head>
-<body style =  " background-color : rgba(248, 225, 151, 0.938);">
-        
-    <header>
-
-        <div class="logo">
-            <img src="./assets/images/logo.png" alt="BiteBox Logo" width="180">
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            |
-            <a href="menu.html">Menu</a>
-            |
-            <a href="about.html">About</a>
-            |
-            <a href="contact.html">Contact</a>
-            |
-            <a href="cart.html">🛒</a>
-             <button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-        </nav>
-
-    </header>
-        <h1>About</h1>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
     </div>
-</section>
-<section id="story">
-    <h2>Our Story</h2>
-     <p> Serving Happiness Since 2016 </p>
-    <article>
-        <img src="./assets/images/restaurent.png" width="600">
+  </header>
 
-        <div>
-            <h3>Every Meal Has A Story</h3>
-            <p> BiteBox was founded with a simple goal —
-                to serve fresh, delicious food using quality
-                ingredients and authentic recipes.
-            </p>
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="page-hero-inner container">
+        <p class="eyebrow">Our story</p>
+        <h1>Food with a <span class="hero-accent">story</span></h1>
+        <p class="page-hero-sub">BiteBox was born from a simple belief — great food should be easy to order and impossible to forget.</p>
+      </div>
+    </section>
 
-            <p> What started as a small kitchen has now
-                grown into a trusted food destination loved
-                by thousands of happy customers.
-            </p>
-        </div>
-    </article>
-</section>
-<section id="mission-vision">
-    <h2>Our Mission & Vision</h2>
-    <div>
-        <article>
-            <h3>Our Mission</h3>
-            <p> To serve fresh, delicious, and high-quality meals
-                prepared with the finest ingredients while providing
-                exceptional customer service and memorable dining
-                experiences.
-            </p>
+    <section class="section">
+      <div class="about-story">
+        <p class="script">Est. 2020</p>
+        <p>BiteBox was founded in 2020 with a mission to bring delicious, fresh food to your doorstep. Our team of chefs and delivery staff work tirelessly to ensure every order is prepared with care and delivered promptly.</p>
+        <p>We believe food is not just sustenance — it's about creating memorable experiences. That's why we source quality ingredients and craft each dish with passion and creativity.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="mission-grid">
+        <article class="mission-card">
+          <div class="m-icon">🌿</div>
+          <h3>Our Mission</h3>
+          <p>Serve honest, freshly prepared food that makes everyday moments taste better — delivered fast, every single time.</p>
         </article>
-        <article>
-            <h3>Our Vision</h3>
-            <p> To become the most trusted and loved restaurant by
-                continuously delivering innovative flavors, outstanding
-                hospitality, and a welcoming environment for every guest.
-            </p>
+        <article class="mission-card">
+          <div class="m-icon">✨</div>
+          <h3>Our Vision</h3>
+          <p>To become the most trusted food companion — where cravings meet convenience and every bite feels premium.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="stats-band">
+        <div class="stat-item"><div class="stat-num">2020</div><div class="stat-label">Founded</div></div>
+        <div class="stat-item"><div class="stat-num">10–11</div><div class="stat-label">Delivery hours</div></div>
+        <div class="stat-item"><div class="stat-num">₹499+</div><div class="stat-label">Free delivery</div></div>
+        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Fresh promise</div></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="chef-note">
+        <span class="script">A note from our kitchen</span>
+        <p><em>"As the head chef of BiteBox, I want to personally thank you for your continued support. Our team is dedicated to bringing you the best culinary experiences, and we are constantly innovating to create new and exciting dishes for you to enjoy."</em></p>
+        <p><em>"We take pride in our commitment to quality and freshness, and we are always looking for ways to improve our menu and services. Your feedback is invaluable to us."</em></p>
+        <p><strong>— The BiteBox Kitchen</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="./assets/images/logo.svg" alt="BiteBox Logo"><p>Delicious food delivered to your doorstep. Fresh, fast and tasty!</p></div>
+      <div class="footer-col"><h3>Quick Links</h3><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a></div>
+      <div class="footer-col"><h3>Contact Us</h3><p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p><p>📍 123 Food Street,<br>Pune, Maharashtra 400001</p></div>
     </div>
-</section>
-  <header><nav>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
 
-</header>
-  
-</body>
-<h2><hr>
-   <em> Our Moto is to provide the best food experience to our customers.</em>
-<hr></h2>
-<p>
-<strong> <h1><sub>We</h1></strong></sub> </h1></strong>are a team of passionate food lovers dedicated to bringing you the best culinary experiences.
- Our mission is to provide high-quality, delicious meals that satisfy your cravings and leave you wanting more.</strong>
-<p>We believe in using fresh ingredients, innovative recipes, and exceptional service to create memorable dining experiences for our customers. 
-</p >
-<section id="statistics">
-    <h2>Restaurant Statistics</h2>
-    <div>
-        <article>
-            <img src="./assets/images/10exp.png">
-            <h3>10+</h3>
-            <p>Years of Experience</p>
-        </article>
-        <article>
-            <img src="./assets/images/happycustomer.png" alt=customers height="100px" width="1000px">
-            <h3>50K+</h3>
-            <p>Happy Customers</p>
-        </article>
-        <article>
-            <img src="./assets/images/dishes.png">
-            <h3>100+</h3>
-            <p>Delicious Dishes</p>
-        </article>
-        <article>
-            <img src="./assets/images/exp.png">
-            <h3>25+</h3>
-            <p>Expert Chefs</p>
-        </article>
-    </div>
-</section>
-<script src="./file.js" defer></script>
+  <script src="./file.js" defer></script>
 </body>
 </html>

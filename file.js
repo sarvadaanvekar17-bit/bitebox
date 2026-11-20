@@ -36,6 +36,7 @@
       category: String(item?.category || ""),
       price: Number(item?.price),
       img: String(item?.img || item?.image || ""),
+      id: Number.isFinite(Number(item?.id)) ? Number(item.id) : undefined,
       quantity: Math.floor(Number(item?.quantity))
     })).filter(item => item.name && Number.isFinite(item.price) && item.price > 0 && Number.isFinite(item.quantity) && item.quantity > 0);
   }
@@ -148,9 +149,11 @@
       announce("This item could not be added. Please check its name and price.");
       return;
     }
+    const qty = Math.max(1, Math.min(20, parseInt(button && button.dataset ? button.dataset.qty : "", 10) || 1));
     const existing = cart.find(product => product.name.toLowerCase() === name.toLowerCase());
-    if (existing) existing.quantity += 1;
-    else cart.push({ name, category: String(item.category || ""), price, img: String(item.img || ""), quantity: 1 });
+    const id = Number.isFinite(Number(item.id)) ? Number(item.id) : undefined;
+    if (existing) existing.quantity += qty;
+    else cart.push({ name, category: String(item.category || ""), price, img: String(item.img || ""), id, quantity: qty });
     saveCart(); renderCart();
     if (button) {
       const original = button.dataset.originalLabel || button.textContent.trim() || "Add to Cart";
@@ -161,6 +164,47 @@
       button._resetTimer = setTimeout(() => { button.textContent = original; button.classList.remove("is-added"); }, 1000);
     }
     announce(`${name} added to your cart.`);
+    playAddSound();
+  }
+
+  /* Short synthesized "added" chime (no audio file needed) */
+  let addAudioCtx = null;
+  function playAddSound() {
+    if (window.BB_AUDIO_MUTED) return;
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      addAudioCtx = addAudioCtx || new Ctx();
+      if (addAudioCtx.state === "suspended") addAudioCtx.resume();
+      const t = addAudioCtx.currentTime;
+
+      const master = addAudioCtx.createGain();
+      master.gain.setValueAtTime(0.0001, t);
+      master.gain.exponentialRampToValueAtTime(0.16, t + 0.02);
+      master.gain.exponentialRampToValueAtTime(0.0001, t + 0.34);
+      master.connect(addAudioCtx.destination);
+
+      const pop = addAudioCtx.createOscillator();
+      pop.type = "triangle";
+      pop.frequency.setValueAtTime(520, t);
+      pop.frequency.exponentialRampToValueAtTime(880, t + 0.12);
+      pop.connect(master);
+      pop.start(t);
+      pop.stop(t + 0.34);
+
+      const chime = addAudioCtx.createOscillator();
+      const chimeGain = addAudioCtx.createGain();
+      chime.type = "sine";
+      chime.frequency.setValueAtTime(1040, t + 0.08);
+      chime.frequency.exponentialRampToValueAtTime(1560, t + 0.2);
+      chimeGain.gain.setValueAtTime(0.0001, t + 0.08);
+      chimeGain.gain.exponentialRampToValueAtTime(0.1, t + 0.12);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+      chime.connect(chimeGain);
+      chimeGain.connect(addAudioCtx.destination);
+      chime.start(t + 0.08);
+      chime.stop(t + 0.42);
+    } catch (error) { /* audio unavailable */ }
   }
 
   function announce(message) {
@@ -183,7 +227,8 @@
     const price = Number(String(priceText).replace(/[^0-9.]/g, ""));
     const image = button.dataset.img || $("img", card)?.getAttribute("src") || "";
     const category = button.dataset.category || card?.dataset.category || "";
-    addToCart({ name, price, img: image, category }, button);
+    const id = button.dataset.id;
+    addToCart({ name, price, img: image, category, id }, button);
   });
 
   /* Cart quantity and remove controls */
@@ -243,7 +288,7 @@
     themeButton.setAttribute("aria-pressed", String(dark));
   }
   const savedTheme = (() => { try { return localStorage.getItem(THEME_KEY); } catch { return null; } })();
-  document.body.classList.toggle("dark-theme", savedTheme === "dark");
+  document.body.classList.toggle("dark-theme", savedTheme !== "light");
   updateThemeButton();
   if (themeButton) themeButton.addEventListener("click", () => {
     const dark = document.body.classList.toggle("dark-theme");
@@ -315,6 +360,283 @@
     if (input && input.checkValidity()) { announce("Thanks for subscribing! This demo does not send emails yet."); form.reset(); }
     else if (input) input.reportValidity();
   }));
+
+  /* Contact page form: front-end demo feedback (connect an email/API service to send) */
+  const contactForm = $("#contact-form");
+  if (contactForm) contactForm.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+    const submit = $("button[type='submit']", contactForm);
+    const originalLabel = submit ? submit.textContent.trim() : "Send Message";
+    if (submit) { submit.disabled = true; submit.textContent = "Sending…"; }
+    setTimeout(() => {
+      announce("Thanks! Your message has been noted. This demo does not send emails yet.");
+      contactForm.reset();
+      if (submit) { submit.disabled = false; submit.textContent = originalLabel; }
+    }, 900);
+  });
+
+  /* Premium interactions: sticky header state, scroll reveal, card tilt */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const siteHeader = $("header");
+
+  function updateHeaderState() {
+    siteHeader?.classList.toggle("scrolled", window.scrollY > 24);
+  }
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+  updateHeaderState();
+
+  const revealTargets = new Set();
+  $$("main > section:not(.hero), .feature-card, .food-card, .review-card, .customer-notice, #offer, .newsletter, .featured-video, .contact-card, .visit-card, .map-card, .contact-form-card, .business-card, .event-card").forEach(el => revealTargets.add(el));
+  const revealItems = Array.from(revealTargets);
+
+  revealItems.forEach(el => {
+    el.classList.add("reveal");
+    if (el.matches(".feature-card, .food-card, .review-card, .contact-card")) {
+      const siblings = el.parentElement
+        ? Array.from(el.parentElement.children).filter(child => child.matches(".feature-card, .food-card, .review-card, .contact-card"))
+        : [el];
+      const index = Math.max(0, siblings.indexOf(el));
+      el.style.setProperty("--reveal-delay", `${Math.min(index, 5) * 70}ms`);
+    }
+  });
+
+  if ("IntersectionObserver" in window && !reduceMotion.matches) {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    revealItems.forEach(el => revealObserver.observe(el));
+  } else {
+    revealItems.forEach(el => el.classList.add("is-visible"));
+  }
+
+  if (!reduceMotion.matches) {
+    $$(".feature-card, .food-card, .review-card, .customer-notice, .contact-card, .visit-card, .map-card, .contact-form-card, .business-card, .event-card").forEach(el => {
+      el.addEventListener("pointermove", event => {
+        if (event.pointerType === "touch") return;
+        const rect = el.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `translateY(-6px) perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg)`;
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+  }
+
+  /* Auth links in the header (injected once on every page that has a nav) */
+  (function ensureAuthNav() {
+    const nav = $("header nav");
+    if (!nav) return;
+    const cartLink = nav.querySelector("a[href*='cart.html']");
+    if (!cartLink || nav.querySelector(".auth-nav")) return;
+
+    const wrap = document.createElement("span");
+    wrap.className = "auth-nav";
+
+    let currentUser = null;
+    try { currentUser = JSON.parse(localStorage.getItem("biteboxUser") || "null"); } catch (e) { currentUser = null; }
+
+    function authLink(href, text, cls) {
+      const a = document.createElement("a");
+      a.href = href; a.textContent = text; a.className = cls || "auth-link";
+      return a;
+    }
+
+    if (currentUser && currentUser.email) {
+      wrap.append(
+        authLink("account.html", "My Account", "auth-link auth-account"),
+        authLink("orders.html", "My Orders", "auth-link")
+      );
+      const logout = authLink("#", "Logout", "auth-link auth-logout");
+      logout.addEventListener("click", event => {
+        event.preventDefault();
+        try { localStorage.removeItem("biteboxUser"); } catch (e) {}
+        window.location.href = "index.html";
+      });
+      wrap.appendChild(logout);
+    } else {
+      wrap.append(
+        authLink("login.html", "Login"),
+        authLink("signup.html", "Sign Up", "auth-link auth-signup")
+      );
+    }
+
+    cartLink.before(wrap);
+  })();
+
+  /* Placeholder "#" links show feedback instead of jumping to top */
+  $$('a[href="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      announce("This link is a placeholder for now.");
+    });
+  });
+
+  /* Sign up / login (demo auth stored in localStorage) */
+  const hashPassword = value => {
+    const text = String(value || "");
+    let hash = 5381;
+    for (let i = 0; i < text.length; i++) hash = ((hash << 5) + hash) ^ text.charCodeAt(i);
+    return "h" + (hash >>> 0).toString(36);
+  };
+
+  const signupForm = $("#signup-form");
+  if (signupForm) signupForm.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!signupForm.checkValidity()) { signupForm.reportValidity(); return; }
+    const data = Object.fromEntries(new FormData(signupForm));
+    const password = String(data.password || "");
+    if (password !== String(data.confirm || "")) { announce("Passwords do not match."); return; }
+    const users = readStorage("biteboxUsers", []);
+    const email = String(data.email || "").trim().toLowerCase();
+    if (users.some(user => String(user.email || "").toLowerCase() === email)) {
+      announce("An account with this email already exists. Try logging in.");
+      return;
+    }
+    const user = {
+      id: "u" + Date.now().toString(36),
+      name: String(data.name || "").trim(),
+      email,
+      passwordHash: hashPassword(password),
+      createdAt: new Date().toISOString()
+    };
+    users.push(user);
+    writeStorage("biteboxUsers", users);
+    writeStorage("biteboxUser", user);
+    announce("Account created! Welcome to BiteBox.");
+    setTimeout(() => { window.location.href = "index.html"; }, 800);
+  });
+
+  const loginForm = $("#login-form");
+  if (loginForm) loginForm.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!loginForm.checkValidity()) { loginForm.reportValidity(); return; }
+    const data = Object.fromEntries(new FormData(loginForm));
+    const email = String(data.email || "").trim().toLowerCase();
+    const users = readStorage("biteboxUsers", []);
+    const user = users.find(item => String(item.email || "").toLowerCase() === email);
+    if (!user || user.passwordHash !== hashPassword(String(data.password || ""))) {
+      announce("Invalid email or password.");
+      return;
+    }
+    writeStorage("biteboxUser", user);
+    announce(`Welcome back, ${user.name || "foodie"}!`);
+    setTimeout(() => { window.location.href = "index.html"; }, 800);
+  });
+
+  /* Order ticket renderer for ordered.html */
+  function renderOrderTicket(root) {
+    const ticket = readStorage("biteboxLastTicket", null);
+    if (!ticket || !Array.isArray(ticket.items)) {
+      root.innerHTML = `
+        <div class="ticket-empty">
+          <h2>No ticket found</h2>
+          <p>Your order ticket will appear here after checkout.</p>
+          <a class="btn-primary" href="menu.html">Order now</a>
+        </div>`;
+      return;
+    }
+
+    const created = ticket.createdAt ? new Date(ticket.createdAt) : new Date();
+    const dateText = created.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+
+    root.replaceChildren();
+
+    const head = document.createElement("div");
+    head.className = "ticket-head";
+    const id = document.createElement("span"); id.className = "ticket-id"; id.textContent = ticket.id || "BB-ORDER";
+    const status = document.createElement("span"); status.className = "ticket-status"; status.textContent = "Confirmed";
+    const date = document.createElement("small"); date.textContent = dateText;
+    head.append(id, status, date);
+    root.appendChild(head);
+
+    if (ticket.customer) {
+      const customer = document.createElement("div");
+      customer.className = "ticket-customer";
+      const name = document.createElement("strong"); name.textContent = ticket.customer.name || "Customer";
+      const meta = document.createElement("span");
+      meta.textContent = [ticket.customer.email, ticket.customer.phone, ticket.customer.payment && `Paid via ${ticket.customer.payment}`].filter(Boolean).join(" • ");
+      customer.append(name, meta);
+      root.appendChild(customer);
+    }
+
+    const list = document.createElement("ul");
+    list.className = "ticket-items";
+    ticket.items.forEach(item => {
+      const li = document.createElement("li");
+      if (item.img) {
+        const img = document.createElement("img");
+        img.src = item.img; img.alt = ""; img.width = 44; img.height = 44; img.loading = "lazy";
+        li.appendChild(img);
+      }
+      const info = document.createElement("div");
+      const name = document.createElement("strong"); name.textContent = item.name;
+      const qty = document.createElement("small"); qty.textContent = `Qty ${item.quantity}`;
+      info.append(name, qty);
+      const price = document.createElement("span"); price.textContent = money(Number(item.price) * Number(item.quantity));
+      li.append(info, price);
+      list.appendChild(li);
+    });
+    root.appendChild(list);
+
+    const totals = document.createElement("div");
+    totals.className = "ticket-totals";
+    const rows = [
+      ["Subtotal", ticket.subtotal],
+      ["Delivery", ticket.delivery],
+      ["Packaging", ticket.packaging],
+      ["Discount", ticket.discount ? -Number(ticket.discount) : 0],
+      ["Total", ticket.total]
+    ];
+    rows.forEach(([label, value], index) => {
+      const row = document.createElement("p");
+      if (index === rows.length - 1) row.className = "ticket-total";
+      const left = document.createElement("span"); left.textContent = label;
+      const right = document.createElement("span"); right.textContent = money(Number(value) || 0);
+      row.append(left, right);
+      totals.appendChild(row);
+    });
+    root.appendChild(totals);
+
+    const actions = document.createElement("div");
+    actions.className = "ticket-actions";
+    const menu = document.createElement("a"); menu.className = "btn-primary"; menu.href = "menu.html"; menu.textContent = "Back to menu";
+    const home = document.createElement("a"); home.className = "btn-ghost"; home.href = "index.html"; home.textContent = "Home";
+    actions.append(menu, home);
+    root.appendChild(actions);
+  }
+
+  const ticketRoot = $("#order-ticket");
+  if (ticketRoot) renderOrderTicket(ticketRoot);
+
+  /* ---------- Mobile navigation (all pages) ---------- */
+  const navHeader = $("#site-header");
+  const navToggle = $("#nav-toggle");
+  const mainNav = $("#main-nav");
+  function setNav(open) {
+    if (!navHeader || !navToggle) return;
+    navHeader.classList.toggle("nav-open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", function () {
+      setNav(!navHeader.classList.contains("nav-open"));
+    });
+    mainNav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) setNav(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setNav(false);
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) setNav(false);
+    });
+  }
 
   renderCart();
 })();

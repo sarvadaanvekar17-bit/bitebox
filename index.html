@@ -1,673 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+    <title>BiteBox — Crave More. Experience More.</title>
+    <meta name="description" content="BiteBox — freshly crafted cravings, delivered straight to your door.">
 
-    <title>BiteBox</title>
-
-    <link rel="stylesheet" href="./style.css">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/home.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="BiteBox — Crave More. Experience More.">
+    <meta property="og:description" content="BiteBox — freshly crafted cravings, delivered straight to your door.">
 </head>
-
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- ================= HEADER ================= -->
+    <header class="site-header" id="site-header">
+        <div class="nav-inner">
+            <a class="logo" href="index.html" aria-label="BiteBox home">
+                <img src="./assets/images/logo.svg" alt="BiteBox">
+            </a>
 
-    <header>
+            <nav class="main-nav" id="main-nav" aria-label="Primary">
+                <a href="index.html" aria-current="page">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="cart.html" class="nav-cart">My Cart</a>
+            </nav>
 
-        <div class="logo">
-    <img
-        src="./assets/images/logo.png"
-        alt="BiteBox Logo">
-</div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            |
-            <a href="menu.html">Menu</a>
-            |
-            <a href="about.html">About</a>
-            |
-            <a href="contact.html">Contact</a>
-            |
-            <a href="cart.html">🛒</a>
-        
-            <button type="button" id="theme-toggle" class="theme-toggle">
-    <span class="theme-icon">☀</span>
-    <span class="theme-text">DAY MODE</span>
-</button>
-        </nav>
-
+            <div class="nav-actions">
+                <button type="button" id="audio-toggle" class="icon-btn" aria-label="Toggle sound" aria-pressed="true" title="Sound on/off">
+                    <span class="audio-icon" aria-hidden="true">🔊</span>
+                </button>
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
+                    <span class="theme-text">NIGHT</span>
+                </button>
+                <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <main>
-
-        <!-- ================= HERO SECTION ================= -->
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <h1>Delicious Food Served at Your Doorstep</h1>
-
-                <p>
-                    Fresh Food • Fast Delivery • All In One Place
-                </p>
-
-                <hr>
-
-                <a href="./menu.html">ORDER NOW!!</a>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= WHY CHOOSE US ================= -->
-
-        <section class="features" id="features">
-
-            <h2>Why Choose Us?</h2>
-
-             <!-- Hygiene Kitchen -->
-
-            <article class="feature-card">
-
-                <img src="./assets/images/hyg.png"
-                    alt="Hygiene Kitchen"
-                    width="200">
-
-                <h3>
-                    <em>Hygiene Kitchen</em>
-                </h3>
-            </article>
-
-
-            <!-- Fast Delivery -->
-
-            <article class="feature-card">
-
-                <img src="./assets/images/fast.png"
-                    alt="Fast Delivery"
-                    width="200">
-
-                <h3>
-                    <em>Fast Food Delivery</em>
-                </h3>
-
-
-            </article>
-
-             <!-- Fresh Ingredients -->
-
-            <article class="feature-card">
-
-                <img src="./assets/images/fresh.png"
-                    alt="Fresh Ingredients"
-                    width="200">
-
-                <h3>
-                    <em>Fresh Ingredients</em>
-                </h3>
-
-            </article>
-
-
-            <!-- Easy Delivery -->
-
-            <article class="feature-card">
-
-                <img src="./assets/images/easy.png"
-                    alt="Easy Food Delivery"
-                    width="200">
-
-                <h3>
-                    😌
-                    <em>You Relax, 🛵We Deliver</em>
-                </h3>
-
-            </article>
-
-        </section>
-         <!-- ================= FEATURED VIDEO ================= -->
-
-        <section class="featured-video">
-
-            <video
-                src="./Black and Yellow Modern Pizza Sale Video.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                width="800">
-            </video>
-
-        </section>
-
-
-        <!-- ================= POPULAR DISHES ================= -->
-
-        <section class="popular-dishes" id="popular-dishes">
-
-            <h2>Popular Dishes</h2>
-
-
-            <!-- Pizza -->
-
-            <article class="food-card">
-
-                <img src="./assets/images/pizza.png"
-                    alt="Cheese Pizza"
-                    width="220">
-
-                <h3>Cheese Pizza</h3>
-
-                <p>
-                    Loaded with fresh vegetables and mozzarella cheese.
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <small>(126)</small>
-                </p>
-
-                <p>
-                    <strong>₹249</strong>
-                </p>
-
-            </article>
-
-
-            <!-- Burger -->
-
-            <article class="food-card">
-
-                <img src="./assets/images/burger.png"
-                    alt="Chicken Burger"
-                    width="220">
-
-                <h3>Chicken Burger</h3>
-
-                <p>
-                    Crispy chicken patty served with fresh lettuce and cheese.
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <small>(99)</small>
-                </p>
-
-                <p>
-                    <strong>₹199</strong>
-                </p>
-
-            </article>
-
-
-            <!-- Pasta -->
-
-            <article class="food-card">
-
-                <img src="./assets/images/pasta.png"
-                    alt="White Sauce Pasta"
-                    width="220">
-
-                <h3>White Sauce Pasta</h3>
-
-                <p>
-                    Creamy white sauce pasta tossed with herbs and fresh vegetables.
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <small>(76)</small>
-                </p>
-
-                <p>
-                    <strong>₹229</strong>
-                </p>
-
-            </article>
-
-
-            <!-- Biryani -->
-
-            <article class="food-card">
-
-                <img src="./assets/images/ChickenB.png"
-                    alt="Chicken Biryani"
-                    width="250">
-
-                <h3>Chicken Biryani</h3>
-
-                <p>
-                    Aromatic basmati rice layered with tender chicken and authentic spices.
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                    <small>(112)</small>
-                </p>
-
-                <p>
-                    <strong>₹249</strong>
-                </p>
-
-            </article>
-
-        </section>
-
-
-        <!-- ================= CUSTOMER NOTICE ================= -->
-
-        <aside class="customer-notice">
-
-            <h2>
-                <em>Customer Notice</em>
-            </h2>
-
-            <p>
-                <mark>
-                    Free home delivery is available on orders above ₹499/-.
-                </mark>
-            </p>
-
-            <p>
-                Delivery services are available from
-                10:00 AM to 11:00 PM.
-            </p>
-
-        </aside>
-
-          <!--Todays Special Offers -->
-            <section id="offer">
-                <div class="offer-content">
-                    <h2>Today's Special Offer!</h2>
-                    <p> Get <strong>20% OFF</strong> on all orders above 
-                        <strong>₹699</strong>
-                    </p>
-                    <p> Use Code: <strong>BITE20</strong> </p>
-                    <a href="menu.html"> Order Now </a>
+    <main id="main">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="top">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <p class="eyebrow reveal-hero">BiteBox · Crave More. Experience More.</p>
+                    <h1 class="reveal-hero d1">GOOD FOOD.<br><span class="hero-accent">GREAT MOOD.</span></h1>
+                    <p class="hero-sub reveal-hero d2">Freshly crafted cravings, delivered straight to your door.</p>
+                    <div class="hero-actions reveal-hero d3">
+                        <a class="btn btn-primary" href="menu.html">Order Now <span aria-hidden="true">→</span></a>
+                        <a class="btn btn-ghost" href="#dishes">Explore Menu</a>
+                    </div>
+                    <ul class="trust-row reveal-hero d4">
+                        <li>✓ Farm-fresh daily</li>
+                        <li>✓ Fast delivery</li>
+                        <li>✓ Easy ordering</li>
+                    </ul>
                 </div>
-            </section>
-            
 
-        <!-- ================= CUSTOMER REVIEWS ================= -->
-
-        <section class="reviews" id="reviews">
-
-            <h2>What Our Customers Say</h2>
-
-
-            <!-- Review 1 -->
-
-            <article class="review-card">
-
-                <img
-                    src="./assets/images/customer.png"
-                    alt="Sarvada Anvekar"
-                    width="80"
-                    height="80">
-
-                <h3>Sarvada Anvekar</h3>
-
-                <p>
-                    Amazing food and super fast delivery.
-                    BiteBox is my go-to place every time!
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                </p>
-
-            </article>
-
-
-            <!-- Review 2 -->
-
-            <article class="review-card">
-
-                <img
-                    src="./assets/images/customer1.png"
-                    alt="Samarth Vernekar"
-                    width="80"
-                    height="80">
-
-                <h3>Samarth Vernekar</h3>
-
-                <p>
-                    The food quality is excellent and
-                    always fresh. Highly recommended!
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                </p>
-
-            </article>
-             <article class="review-card">
-
-                <img
-                    src="./assets/images/customer.png"
-                    alt="Sampada Shet"
-                    width="80"
-                    height="80">
-
-                <h3>Sampada Shet</h3>
-
-                <p>
-                    Finger licking good taste, also the delivery is too fast!! Turned out the food is 
-                    siziling hot!!
-                </p>
-
-                <p>
-                    <span>⭐⭐⭐⭐⭐</span>
-                </p>
-
-            </article>
-
+                <div class="hero-visual" id="hero-visual" aria-hidden="true">
+                    <div class="hero-stage" id="hero-stage">
+                        <div class="hero-ring ring-1"></div>
+                        <div class="hero-ring ring-2"></div>
+                        <div class="hero-ring ring-3"></div>
+                        <div class="hero-plate">
+                            <img src="./assets/images/opt/heropage.webp" alt="Signature dish" fetchpriority="high">
+                        </div>
+                        <img class="float-item f1" src="./assets/images/opt/pizza.webp" alt="">
+                        <img class="float-item f2" src="./assets/images/opt/burger.webp" alt="">
+                        <img class="float-item f3" src="./assets/images/opt/pasta.webp" alt="">
+                        <img class="float-item f4" src="./assets/images/opt/chickenbiryani.webp" alt="">
+                        <img class="float-item f5" src="./assets/images/opt/garlic_bread.webp" alt="">
+                        <img class="float-item f6" src="./assets/images/opt/soda.webp" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-glow" aria-hidden="true"></div>
         </section>
 
+        <!-- ================= MARQUEE ================= -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Fresh Daily ✦ Fast Delivery ✦ Chef Crafted ✦ Easy Ordering ✦ BiteBox ✦&nbsp;</span>
+                <span>Fresh Daily ✦ Fast Delivery ✦ Chef Crafted ✦ Easy Ordering ✦ BiteBox ✦&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- ================= FEATURED DISHES ================= -->
+        <section class="section dishes" id="dishes">
+            <div class="section-head">
+                <p class="eyebrow">Signature Plates</p>
+                <h2>Featured Dishes</h2>
+                <p>Hand-picked favourites, priced for cravings.</p>
+            </div>
+            <div class="grid grid-dishes">
+                <article class="food-card" data-category="Pizza">
+                    <div class="food-media"><img src="./assets/images/opt/pizza.webp" alt="Cheese Pizza" loading="lazy"></div>
+                    <div class="food-body">
+                        <div class="food-top"><h3>Cheese Pizza</h3><span class="rating">★★★★★ <small>(126)</small></span></div>
+                        <p>Loaded with fresh vegetables and mozzarella cheese.</p>
+                        <div class="food-foot">
+                            <strong class="price">₹249</strong>
+                            <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                                data-name="Cheese Pizza" data-price="249"
+                                data-img="./assets/images/opt/pizza.webp" data-category="Pizza">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="Burgers">
+                    <div class="food-media"><img src="./assets/images/opt/burger.webp" alt="Chicken Burger" loading="lazy"></div>
+                    <div class="food-body">
+                        <div class="food-top"><h3>Chicken Burger</h3><span class="rating">★★★★★ <small>(99)</small></span></div>
+                        <p>Crispy chicken patty served with fresh lettuce and cheese.</p>
+                        <div class="food-foot">
+                            <strong class="price">₹199</strong>
+                            <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                                data-name="Chicken Burger" data-price="199"
+                                data-img="./assets/images/opt/burger.webp" data-category="Burgers">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="Pasta">
+                    <div class="food-media"><img src="./assets/images/opt/pasta.webp" alt="White Sauce Pasta" loading="lazy"></div>
+                    <div class="food-body">
+                        <div class="food-top"><h3>White Sauce Pasta</h3><span class="rating">★★★★★ <small>(76)</small></span></div>
+                        <p>Creamy white sauce pasta tossed with herbs and fresh vegetables.</p>
+                        <div class="food-foot">
+                            <strong class="price">₹229</strong>
+                            <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                                data-name="White Sauce Pasta" data-price="229"
+                                data-img="./assets/images/opt/pasta.webp" data-category="Pasta">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="food-card" data-category="Biryani">
+                    <div class="food-media"><img src="./assets/images/opt/chickenbiryani.webp" alt="Chicken Biryani" loading="lazy"></div>
+                    <div class="food-body">
+                        <div class="food-top"><h3>Chicken Biryani</h3><span class="rating">★★★★★ <small>(112)</small></span></div>
+                        <p>Aromatic basmati rice layered with tender chicken and authentic spices.</p>
+                        <div class="food-foot">
+                            <strong class="price">₹249</strong>
+                            <button type="button" class="add-to-cart btn btn-primary btn-sm"
+                                data-name="Chicken Biryani" data-price="249"
+                                data-img="./assets/images/opt/chickenbiryani.webp" data-category="Biryani">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="section-cta">
+                <a class="btn btn-ghost" href="menu.html">View All Menu →</a>
+            </div>
+        </section>
+
+        <!-- ================= CATEGORIES ================= -->
+        <section class="section categories" id="categories">
+            <div class="section-head">
+                <p class="eyebrow">Browse By Craving</p>
+                <h2>Food Categories</h2>
+            </div>
+            <div class="grid grid-cats">
+                <a class="category-card" href="menu.html">
+                    <img src="./assets/images/opt/pizza.webp" alt="Pizza" loading="lazy">
+                    <span>Pizza</span>
+                </a>
+                <a class="category-card" href="menu.html">
+                    <img src="./assets/images/opt/burger.webp" alt="Burgers" loading="lazy">
+                    <span>Burgers</span>
+                </a>
+                <a class="category-card" href="menu.html">
+                    <img src="./assets/images/opt/pasta.webp" alt="Pasta" loading="lazy">
+                    <span>Pasta</span>
+                </a>
+                <a class="category-card" href="menu.html">
+                    <img src="./assets/images/opt/fresh.webp" alt="Fresh Bowls" loading="lazy">
+                    <span>Fresh Bowls</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= WHY CHOOSE ================= -->
+        <section class="section why" id="why">
+            <div class="section-head">
+                <p class="eyebrow">The BiteBox Promise</p>
+                <h2>Why Choose BiteBox?</h2>
+            </div>
+            <div class="grid grid-features">
+                <article class="feature-card">
+                    <div class="feature-icon"><img src="./assets/images/opt/fresh.webp" alt="Fresh ingredients" loading="lazy"></div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>We source quality produce daily so every dish tastes garden-fresh.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><img src="./assets/images/opt/fast.webp" alt="Fast delivery" loading="lazy"></div>
+                    <h3>Fast Food Delivery</h3>
+                    <p>Hot, fresh meals at your doorstep — fast enough to beat the craving.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><img src="./assets/images/easy.png" alt="Easy ordering" loading="lazy"></div>
+                    <h3>You Relax, We Deliver</h3>
+                    <p>Order in a few taps and let BiteBox handle the rest.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><img src="./assets/images/opt/hyg.webp" alt="Hygiene kitchen" loading="lazy"></div>
+                    <h3>Hygiene Kitchen</h3>
+                    <p>Clean prep, careful packing, and food you can trust.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= OFFER ================= -->
+        <section class="offer" id="offer">
+            <div class="offer-inner">
+                <p class="eyebrow">Limited Time</p>
+                <h2>Today's Special Offer!</h2>
+                <p class="offer-sub">Get <strong>20% OFF</strong> on all orders above <strong>₹699</strong></p>
+                <p class="offer-code">Use Code: <strong>BITE20</strong></p>
+                <a class="btn btn-light" href="menu.html">Order Now →</a>
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIALS ================= -->
+        <section class="section reviews" id="reviews">
+            <div class="section-head">
+                <p class="eyebrow">Happy Foodies</p>
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="grid grid-reviews">
+                <article class="review-card">
+                    <img class="review-avatar" src="./assets/images/customer.png" alt="Sarvada Anvekar" loading="lazy">
+                    <h3>Sarvada Anvekar</h3>
+                    <p>"Amazing food and super fast delivery. BiteBox is my go-to place every time!"</p>
+                    <span class="rating">★★★★★</span>
+                </article>
+                <article class="review-card">
+                    <img class="review-avatar" src="./assets/images/customer1.png" alt="Samarth Vernekar" loading="lazy">
+                    <h3>Samarth Vernekar</h3>
+                    <p>"The food quality is excellent and always fresh. Highly recommended!"</p>
+                    <span class="rating">★★★★★</span>
+                </article>
+                <article class="review-card">
+                    <img class="review-avatar" src="./assets/images/customer.png" alt="Sampada Shet" loading="lazy">
+                    <h3>Sampada Shet</h3>
+                    <p>"Finger licking good taste, also the delivery is too fast!! Turned out the food is sizzling hot!!"</p>
+                    <span class="rating">★★★★★</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= VIDEO REEL ================= -->
+        <section class="reel featured-video">
+            <div class="reel-frame">
+                <video src="./Black and Yellow Modern Pizza Sale Video.mp4"
+                    poster="./assets/images/opt/bitebox_poster.webp"
+                    autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+        </section>
 
         <!-- ================= NEWSLETTER ================= -->
-
         <section class="newsletter" id="newsletter">
-
-            <div class="newsletter-content">
-
-                <img
-                    src="./assets/images/mail.png"
-                    alt="Newsletter Icon"
-                    width="80"
-                    height="80">
-
-                <div>
-
-                    <h2>Stay Updated!</h2>
-
-                    <p>
-                        Subscribe to our newsletter and get
-                        the latest offers and updates.
-                    </p>
-
+            <div class="newsletter-inner">
+                <div class="newsletter-copy">
+                    <p class="eyebrow">Stay in the Loop</p>
+                    <h2>Crave-worthy updates, straight to your inbox</h2>
+                    <p>Subscribe for the latest offers, new dishes and BiteBox news.</p>
                 </div>
-
+                <form class="newsletter-form" novalidate>
+                    <label class="sr-only" for="newsletter-email">Email address</label>
+                    <input id="newsletter-email" type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <img class="newsletter-img" src="./assets/images/newsletter-food.png" alt="Fresh food" loading="lazy">
             </div>
-
-
-            <div class="newsletter-form">
-
-                <input
-                    type="email"
-                    placeholder="Enter your email">
-
-                <button>
-                    Subscribe
-                </button>
-
-            </div>
-
-
-            <div class="newsletter-image">
-
-                <img
-                    src="./assets/images/newsletter-food.png"
-                    alt="Newsletter Food"
-                    width="180"
-                    height="120">
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= OUR STORY ================= -->
-
-        <section class="story">
-
-            <h2>Our Story</h2>
-
-            <p>
-                BiteBox was founded in 2020 with a mission to bring
-                delicious and fresh food to your doorstep.
-                Our team of chefs and delivery staff work tirelessly
-                to ensure that every order is prepared with care
-                and delivered promptly.
-            </p>
-
-            <p>
-                We believe that food is not just about sustenance,
-                but also about creating memorable experiences.
-                That's why we source the finest ingredients and
-                craft each dish with passion and creativity.
-            </p>
-
-            <p>
-                Thank you for choosing BiteBox.
-                We look forward to serving you and making
-                your dining experience delightful!
-            </p>
-
-        </section>
-
-
-        <!-- ================= CHEF'S MESSAGE ================= -->
-
-        <section class="chef-message">
-
-            <h2>Chef's Message</h2>
-
-            <p>
-                Dear valued customers,
-            </p>
-
-            <p>
-                <em>
-                    As the head chef of BiteBox, I want to personally
-                    thank you for your continued support.
-                    Our team is dedicated to bringing you the best
-                    culinary experiences, and we are constantly
-                    innovating to create new and exciting dishes
-                    for you to enjoy.
-                </em>
-            </p>
-
-            <p>
-                <em>
-                    We take pride in our commitment to quality
-                    and freshness, and we are always looking for
-                    ways to improve our menu and services.
-                    Your feedback is invaluable to us,
-                    and we encourage you to share your thoughts
-                    and suggestions.
-                </em>
-            </p>
-
-            <p>
-                <u>
-                    <mark>
-                        Thank you for being a part of the BiteBox family.
-                    </mark>
-                </u>
-            </p>
-
         </section>
 
     </main>
 
-
     <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-
-        <!-- Footer Logo -->
-        <div class="footer-container">
-        <section class="footer-brand">
-
-            <img
-                src="./assets/images/logo.png"
-                alt="BiteBox Logo"
-                width="180">
-
-            <p>
-                Delicious food delivered to your doorstep.
-                Fresh, fast and tasty!
-            </p>
-
-
-            <!-- Social Media -->
-
-            <a href="#">
-                <img
-                    src="./assets/images/facebook.png"
-                    alt="Facebook"
-                    width="35"
-                    height="35">
-            </a>
-
-            <a href="#">
-                <img
-                    src="./assets/images/instagram.png"
-                    alt="Instagram"
-                    width="35"
-                    height="35">
-            </a>
-
-            <a href="#">
-                <img
-                    src="./assets/images/twitter.png"
-                    alt="Twitter"
-                    width="35"
-                    height="35">
-            </a>
-
-            <a href="#">
-                <img
-                    src="./assets/images/youtube.png"
-                    alt="YouTube"
-                    width="35"
-                    height="35">
-
-        </section>
-
-
-        <!-- Quick Links -->
-
-        <section class="footer-section">
-
-            <h3>Quick Links</h3>
-
-            <ul>
-
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-
-                <li>
-                    <a href="menu.html">Menu</a>
-                </li>
-
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-
-                <li>
-                    <a href="cart.html">Cart</a>
-                </li>
-
-            </ul>
-
-        </section>
-
-
-        <!-- Customer Service -->
-
-        <section class="footer-section">
-
-            <h3>Customer Service</h3>
-
-            <ul>
-
-                <li>Track Order</li>
-                <li>FAQs</li>
-                <li>Shipping Policy</li>
-                <li>Return Policy</li>
-                <li>Terms & Conditions</li>
-
-            </ul>
-
-        </section>
-
-
-        <!-- Contact Information -->
-
-        <section class="footer-section">
-
-            <h3>Contact Us</h3>
-
-            <p>📞 Phone: 
-                <br>+91 12345 67890</p>
-
-            <p>✉ Email: <br>support@bitebox.com</p>
-
-            <p>Address:<br>
-                📍 123 Food Street,
-                Pune, Maharashtra 400001
-            </p>
-
-        </section>
-
-
-        <!-- Payment Methods -->
-
-        <section class="footer-section">
-
-            <h3>Payment Methods</h3>
-
-            <img
-                src="./assets/images/visa.png"
-                alt="Visa"
-                width="60">
-
-            <img
-                src="./assets/images/mastercard.png"
-                alt="MasterCard"
-                width="60">
-
-            <img
-                src="./assets/images/upi.png"
-                alt="UPI"
-                width="60">
-
-        </section>
-
-
-        <!-- Copyright -->
-
-        <div class="copyright">
-</div>
-            <p>
-                © 2026 BiteBox. All Rights Reserved.
-            </p>
-
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="./assets/images/logo.svg" alt="BiteBox Logo">
+                <p>Delicious food delivered to your doorstep. Fresh, fast and tasty!</p>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook"><img src="./assets/images/facebook.png" alt=""></a>
+                    <a href="#" aria-label="Instagram"><img src="./assets/images/instagram.png" alt=""></a>
+                    <a href="#" aria-label="Twitter"><img src="./assets/images/twitter.png" alt=""></a>
+                    <a href="#" aria-label="YouTube"><img src="./assets/images/youtube.png" alt=""></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="cart.html">Cart</a>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <a href="#">Track Order</a>
+                <a href="#">FAQs</a>
+                <a href="#">Shipping Policy</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>📞 +91 12345 67890</p>
+                <p>✉ support@bitebox.com</p>
+                <p>📍 123 Food Street,<br>Pune, Maharashtra 400001</p>
+            </div>
+            <div class="footer-col">
+                <h3>We Accept</h3>
+                <div class="payments">
+                    <img src="./assets/images/visa.png" alt="Visa" loading="lazy">
+                    <img src="./assets/images/mastercard.png" alt="MasterCard" loading="lazy">
+                    <img src="./assets/images/upi.png" alt="UPI" loading="lazy">
+                </div>
+            </div>
         </div>
+        <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
     </footer>
- <script src="./file.js" defer></script>
+
+    <script src="./file.js" defer></script>
+    <script src="./js/home.js" defer></script>
 </body>
 </html>

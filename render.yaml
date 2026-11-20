@@ -1,0 +1,24 @@
+# Render blueprint — Spring Boot backend (example).
+# Deploy: Render Dashboard → New → Blueprint → point at this repo, set env vars.
+# Requires a MySQL database (Render Postgres won't work — use Aiven/Railway/MySQL hosting).
+services:
+  - type: web
+    name: bitebox-api
+    runtime: java
+    plan: free
+    buildCommand: cd backend && mvn -q package -DskipTests
+    startCommand: java -jar backend/target/bitebox-backend-0.1.0.jar --spring.profiles.active=prod
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false   # set to your Netlify URL, e.g. https://bitebox.netlify.app
+      - key: JAVA_VERSION
+        value: "21"
+    healthCheckPath: /actuator/health

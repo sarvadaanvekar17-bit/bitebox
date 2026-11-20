@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/opt/favicon-32.png">
+    <link rel="apple-touch-icon" href="./assets/images/opt/apple-touch-icon.png">
+  <meta name="theme-color" content="#101010">
+  <title>My Account | BiteBox</title>
+    <meta name="description" content="Your BiteBox account — profile and order overview.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/commerce.css">
+  <link rel="stylesheet" href="./css/account.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BiteBox">
+    <meta property="og:title" content="My Account | BiteBox">
+    <meta property="og:description" content="Your BiteBox account — profile and order overview.">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a class="logo" href="index.html" aria-label="BiteBox home"><img src="./assets/images/logo.svg" alt="BiteBox"></a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="nav-cart">My Cart</a>
+      </nav>
+      <div class="nav-actions">
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-text">NIGHT</span></button>
+        <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="commerce-page">
+    <section class="account-hero">
+      <div class="container">
+        <p class="eyebrow">Your BiteBox account</p>
+        <h1>My Account</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container account-grid">
+
+        <aside class="profile-card">
+          <div class="avatar" id="avatar">?</div>
+          <h2 id="profile-name">—</h2>
+          <p class="profile-email" id="profile-email"></p>
+          <dl class="profile-meta">
+            <div><dt>Phone</dt><dd id="profile-phone">—</dd></div>
+            <div><dt>Member since</dt><dd id="profile-since">—</dd></div>
+          </dl>
+          <div class="profile-actions">
+            <a class="btn btn-ghost" href="orders.html">View order history</a>
+            <button type="button" class="btn btn-ghost" id="logout-btn">Log out</button>
+          </div>
+          <p class="demo-note" style="margin-top:var(--space-5)">Demo account — data stays in this browser.</p>
+        </aside>
+
+        <div>
+          <div class="dash-card">
+            <h2>Account overview</h2>
+            <div class="stat-row">
+              <div class="stat"><strong id="stat-orders">0</strong><span>Orders</span></div>
+              <div class="stat"><strong id="stat-spent">₹0</strong><span>Total spent</span></div>
+              <div class="stat"><strong id="stat-items">0</strong><span>Items ordered</span></div>
+            </div>
+            <h2 style="font-size:var(--text-lg);margin-bottom:var(--space-4)">Recent orders</h2>
+            <div id="recent-orders"></div>
+            <a class="edit-cart" href="orders.html">View all orders →</a>
+          </div>
+
+          <div class="dash-card">
+            <h2>Edit profile</h2>
+            <form class="edit-form" id="profile-form" novalidate>
+              <div class="field">
+                <label for="pf-name">Full name</label>
+                <input id="pf-name" name="name" type="text" required>
+              </div>
+              <div class="field">
+                <label for="pf-email">Email address</label>
+                <input id="pf-email" type="email" disabled>
+                <small class="muted">Email can't be changed in demo mode.</small>
+              </div>
+              <div class="field">
+                <label for="pf-phone">Phone number</label>
+                <input id="pf-phone" name="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile">
+              </div>
+              <p class="form-msg" id="profile-msg" role="status"></p>
+              <div style="display:flex;gap:var(--space-3)">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-ghost" id="profile-cancel">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><img src="./assets/images/logo.svg" alt="BiteBox Logo"><p>Delicious food delivered to your doorstep.</p></div>
+      <div class="footer-col"><h3>Quick Links</h3><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="cart.html">Cart</a></div>
+      <div class="footer-col"><h3>Contact Us</h3><p>📞 +91 12345 67890</p><p>✉ support@bitebox.com</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 BiteBox. All Rights Reserved.</div>
+  </footer>
+
+  <script src="./file.js" defer></script>
+  <script src="./js/api.js" defer></script>
+  <script src="./js/auth.js" defer></script>
+  <script src="./js/account.js" defer></script>
+</body>
+</html>
