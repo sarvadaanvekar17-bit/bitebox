@@ -15,6 +15,29 @@ A food ordering web application designed to make discovering food and placing or
 
 ---
 
+## 📸 Project Screenshots
+
+<div align="center">
+
+### 🏠 COSMORA Homepage
+
+<img src="homepage.png" width="100%" alt="COSMORA Homepage"/>
+
+### 🪐 Planet Explorer
+
+<img src="planets.png" width="100%" alt="COSMORA Planet Explorer"/>
+
+### 🌌 Galaxy Discovery
+
+<img src="galaxies.png" width="100%" alt="COSMORA Galaxy Discovery"/>
+
+### 🚀 Space Missions
+
+<img src="missions.png" width="100%" alt="COSMORA Space Missions"/>
+
+</div>
+
+
 ## 📌 About The Project
 
 **BiteBox** is a responsive food ordering web application that provides users with an interactive platform to explore food items, manage their cart and experience a convenient ordering process.
