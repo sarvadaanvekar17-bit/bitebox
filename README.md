@@ -15,27 +15,31 @@ A food ordering web application designed to make discovering food and placing or
 
 ---
 
-## 📸 Project Screenshots
+
+<h2 align="center">📸 Project Screenshots</h2>
 
 <div align="center">
 
-### 🏠 COSMORA Homepage
+<h3>🏠 COSMORA Homepage</h3>
+<img src="https://raw.githubusercontent.com/sarvadaanvekar17-bit/COSMORA_SpaceExplorer/main/homepage.png" width="100%" alt="COSMORA Homepage"/>
 
-<img src="homepage.png" width="100%" alt="COSMORA Homepage"/>
+<br/><br/>
 
-### 🪐 Planet Explorer
+<h3>🪐 Planet Explorer</h3>
+<img src="https://raw.githubusercontent.com/sarvadaanvekar17-bit/COSMORA_SpaceExplorer/main/planets.png" width="100%" alt="COSMORA Planets"/>
 
-<img src="planets.png" width="100%" alt="COSMORA Planet Explorer"/>
+<br/><br/>
 
-### 🌌 Galaxy Discovery
+<h3>🌌 Galaxy Discovery</h3>
+<img src="https://raw.githubusercontent.com/sarvadaanvekar17-bit/COSMORA_SpaceExplorer/main/galaxies.png" width="100%" alt="COSMORA Galaxies"/>
 
-<img src="galaxies.png" width="100%" alt="COSMORA Galaxy Discovery"/>
+<br/><br/>
 
-### 🚀 Space Missions
-
-<img src="missions.png" width="100%" alt="COSMORA Space Missions"/>
+<h3>✨ Cosmic Facts</h3>
+<img src="https://raw.githubusercontent.com/sarvadaanvekar17-bit/COSMORA_SpaceExplorer/main/missions.png" width="100%" alt="COSMORA Cosmic Facts"/>
 
 </div>
+
 
 
 ## 📌 About The Project
